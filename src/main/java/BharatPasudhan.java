@@ -1,4 +1,11 @@
-import org.openqa.selenium.*;
+import org.openqa.selenium.By;
+import org.openqa.selenium.ElementClickInterceptedException;
+import org.openqa.selenium.ElementNotInteractableException;
+import org.openqa.selenium.Keys;
+import org.openqa.selenium.NoSuchElementException;
+import org.openqa.selenium.StaleElementReferenceException;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
@@ -29,7 +36,7 @@ public class BharatPasudhan extends DataProvider {
 
     }
 
-    public static void doPregnancyDiagnosis() throws IOException, ParseException {
+    public static void doPregnancyDiagnosis() throws IOException {
         // Login flow
         loginToPortal();
 
@@ -75,16 +82,16 @@ public class BharatPasudhan extends DataProvider {
     }
 
     public static void clickOnCalvingTab() {
-        new WebDriverWait(driver, Duration.ofSeconds(5)).ignoring(ElementNotInteractableException.class).ignoring(StaleElementReferenceException.class).until(ExpectedConditions.elementToBeClickable(By.xpath("//div[contains(text(),'Animal Breeding')]")));
+        new WebDriverWait(driver, Duration.ofSeconds(10)).ignoring(ElementNotInteractableException.class).ignoring(StaleElementReferenceException.class).until(ExpectedConditions.elementToBeClickable(By.xpath("//div[contains(text(),'Animal Breeding')]")));
         driver.findElement(By.xpath("//div[contains(text(),'Animal Breeding')]")).click();
-        new WebDriverWait(driver, Duration.ofSeconds(5)).ignoring(ElementNotInteractableException.class).ignoring(StaleElementReferenceException.class).until(ExpectedConditions.elementToBeClickable(By.xpath("//ul[@id='submenu2']//li[3]//span[1]//a[1]")));
+        new WebDriverWait(driver, Duration.ofSeconds(10)).ignoring(ElementNotInteractableException.class).ignoring(StaleElementReferenceException.class).until(ExpectedConditions.elementToBeClickable(By.xpath("//ul[@id='submenu2']//li[3]//span[1]//a[1]")));
         driver.findElement(By.xpath("//ul[@id='submenu2']//li[3]//span[1]//a[1]")).click();
     }
 
 
     public static void clickOnPregnancyDiagnosisTab() {
         WebElement animalBreeding = driver.findElement(By.xpath("//div[contains(text(),'Animal Breeding')]"));
-        new WebDriverWait(driver, Duration.ofSeconds(5)).ignoring(ElementNotInteractableException.class).ignoring(StaleElementReferenceException.class).until(ExpectedConditions.elementToBeClickable(animalBreeding));
+        new WebDriverWait(driver, Duration.ofSeconds(10)).ignoring(ElementNotInteractableException.class).ignoring(StaleElementReferenceException.class).until(ExpectedConditions.elementToBeClickable(animalBreeding));
         animalBreeding.click();
         driver.findElement(By.xpath("//ul[@id='submenu2']//li[2]//span[1]//a[1]")).click();
     }
@@ -95,11 +102,12 @@ public class BharatPasudhan extends DataProvider {
         searchBar.click();
     }
 
-    public static void pregnancyDiagnosis() throws IOException, ParseException {
+    public static void pregnancyDiagnosis() throws IOException {
         for (int i = 0; i < getAllAnimalTagId().size(); i++) {
             // Get values from Excel
             String animalId = getAllAnimalTagId().get(i);
-            System.out.println("PD - Animal Id is" + animalId);
+            System.out.println("-------------");
+            System.out.println("PD - Animal Id is " + animalId);
             clickOnPregnancyDiagnosisTab();
             new WebDriverWait(driver, Duration.ofSeconds(10)).ignoring(StaleElementReferenceException.class).until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//input[@id='search-by']")));
             retryingFindClick(By.xpath("//input[@id='search-by']"), animalId);
@@ -142,7 +150,7 @@ public class BharatPasudhan extends DataProvider {
                             modalOk.click();
                         }
                         System.out.println("Pregnancy diagnosis updated for " + animalId + " with pregnancy date " + animalDate);
-
+                        System.out.println("-------------");
                     } else {
                         System.out.println("Pregnancy status is " + pregnancyStatus.getText());
                         String pregnancyDate = driver.findElement(By.xpath("//table[@class='mat-table cdk-table mat-elevation-z8']//td[4]")).getText();
@@ -159,6 +167,7 @@ public class BharatPasudhan extends DataProvider {
         for (int i = 0; i < getAllAnimalTagId().size(); i++) {
             // Get values from Excel
             String animalId = getAllAnimalTagId().get(i);
+            System.out.println("-------------");
             System.out.println("Calving - Animal Id is" + animalId);
             new WebDriverWait(driver, Duration.ofSeconds(10)).ignoring(StaleElementReferenceException.class).until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//input[@id='search-by']")));
             retryingFindClick(By.xpath("//input[@id='search-by']"), animalId);
@@ -285,10 +294,15 @@ public class BharatPasudhan extends DataProvider {
                     }
                     clickOutside();
                     driver.navigate().refresh();
-                    driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(5));
+                    try {
+                        Thread.sleep(2000);
+                    } catch (InterruptedException e) {
+                        throw new RuntimeException(e);
+                    }
                     clickOnCalvingTab();
                 }
                 System.out.println("Calving is updated");
+                System.out.println("-------------");
             } else {
                 driver.navigate().refresh();
                 clickOnCalvingTab();
