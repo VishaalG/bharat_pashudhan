@@ -13,7 +13,6 @@ import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.io.IOException;
-import java.text.ParseException;
 import java.time.Duration;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
@@ -23,8 +22,8 @@ import java.util.Objects;
 
 public class BharatPasudhan extends DataProvider {
 
-    public static final String USERNAME = "pdktait37_TN";
-    public static final String PASSWORD = "Prem123@#";
+    public static final String USERNAME = "pdktait172_TN";
+    public static final String PASSWORD = "epashudhan123";
 
     static WebDriver driver = new FirefoxDriver();
     static WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(50));
@@ -82,9 +81,9 @@ public class BharatPasudhan extends DataProvider {
     }
 
     public static void clickOnCalvingTab() {
-        new WebDriverWait(driver, Duration.ofSeconds(10)).ignoring(ElementNotInteractableException.class).ignoring(StaleElementReferenceException.class).until(ExpectedConditions.elementToBeClickable(By.xpath("//div[contains(text(),'Animal Breeding')]")));
+        new WebDriverWait(driver, Duration.ofSeconds(5)).ignoring(ElementNotInteractableException.class).ignoring(StaleElementReferenceException.class).until(ExpectedConditions.elementToBeClickable(By.xpath("//div[contains(text(),'Animal Breeding')]")));
         driver.findElement(By.xpath("//div[contains(text(),'Animal Breeding')]")).click();
-        new WebDriverWait(driver, Duration.ofSeconds(10)).ignoring(ElementNotInteractableException.class).ignoring(StaleElementReferenceException.class).until(ExpectedConditions.elementToBeClickable(By.xpath("//ul[@id='submenu2']//li[3]//span[1]//a[1]")));
+        new WebDriverWait(driver, Duration.ofSeconds(5)).ignoring(ElementNotInteractableException.class).ignoring(StaleElementReferenceException.class).until(ExpectedConditions.elementToBeClickable(By.xpath("//ul[@id='submenu2']//li[3]//span[1]//a[1]")));
         driver.findElement(By.xpath("//ul[@id='submenu2']//li[3]//span[1]//a[1]")).click();
     }
 
@@ -106,7 +105,7 @@ public class BharatPasudhan extends DataProvider {
         for (int i = 0; i < getAllAnimalTagId().size(); i++) {
             // Get values from Excel
             String animalId = getAllAnimalTagId().get(i);
-            System.out.println("-------------");
+            System.out.println("----START----");
             System.out.println("PD - Animal Id is " + animalId);
             clickOnPregnancyDiagnosisTab();
             new WebDriverWait(driver, Duration.ofSeconds(10)).ignoring(StaleElementReferenceException.class).until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//input[@id='search-by']")));
@@ -150,7 +149,7 @@ public class BharatPasudhan extends DataProvider {
                             modalOk.click();
                         }
                         System.out.println("Pregnancy diagnosis updated for " + animalId + " with pregnancy date " + animalDate);
-                        System.out.println("-------------");
+                        System.out.println("-----END-----");
                     } else {
                         System.out.println("Pregnancy status is " + pregnancyStatus.getText());
                         String pregnancyDate = driver.findElement(By.xpath("//table[@class='mat-table cdk-table mat-elevation-z8']//td[4]")).getText();
@@ -167,8 +166,8 @@ public class BharatPasudhan extends DataProvider {
         for (int i = 0; i < getAllAnimalTagId().size(); i++) {
             // Get values from Excel
             String animalId = getAllAnimalTagId().get(i);
-            System.out.println("-------------");
-            System.out.println("Calving - Animal Id is" + animalId);
+            System.out.println("----START----");
+            System.out.println("Calving - Animal Id is " + animalId);
             new WebDriverWait(driver, Duration.ofSeconds(10)).ignoring(StaleElementReferenceException.class).until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//input[@id='search-by']")));
             retryingFindClick(By.xpath("//input[@id='search-by']"), animalId);
             driver.findElement(By.cssSelector("button[type=' submit']")).click();
@@ -277,9 +276,10 @@ public class BharatPasudhan extends DataProvider {
                     WebElement isEarTag = driver.findElement(By.xpath("//div[@class='form-row additional-info ng-star-inserted']//div[2]//input[1]"));
                     wait.until(ExpectedConditions.elementToBeClickable(isEarTag));
                     isEarTag.click();
-                    WebElement sex = driver.findElement(By.xpath("(//input[@type='radio'])[4]"));
-                    wait.until(ExpectedConditions.elementToBeClickable(sex));
-                    sex.click();
+                    WebElement male = driver.findElement(By.xpath("(//input[@id='sexOfCalf_0'])[1]"));
+                    WebElement female = driver.findElement(By.xpath("(//input[@id='sexOfCalf_0'])[2]"));
+                    wait.until(ExpectedConditions.elementToBeClickable(male));
+                    male.click();
                     Select reasonForNotRegistering = new Select(driver.findElement(By.xpath("//select[@formcontrolname='reasonForNotRegistering']")));
                     int randomNumber = (int) (Math.random() * 2) + 1;
                     reasonForNotRegistering.selectByIndex(randomNumber);
@@ -302,7 +302,7 @@ public class BharatPasudhan extends DataProvider {
                     clickOnCalvingTab();
                 }
                 System.out.println("Calving is updated");
-                System.out.println("-------------");
+                System.out.println("-----END-----");
             } else {
                 driver.navigate().refresh();
                 clickOnCalvingTab();
@@ -356,18 +356,17 @@ public class BharatPasudhan extends DataProvider {
         return result;
     }
 
-    public static String handleGestationDate(String tableDate, String initialDate) {
+    public static String handleGestationDate(String addedDate, String initialDate) {
         String output;
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
-        LocalDate tableDateParse = LocalDate.parse(initialDate, formatter);
-        LocalDate intialDateParse = LocalDate.parse(tableDate, formatter);
-        long daysBetween = ChronoUnit.DAYS.between(tableDateParse, intialDateParse);
-        int randomNumber = (int) (Math.random() * 3) + 1;
-
+        LocalDate initialDateParse = LocalDate.parse(initialDate, formatter);
+        LocalDate finalDateParse = LocalDate.parse(addedDate, formatter);
+        long daysBetween = ChronoUnit.DAYS.between(initialDateParse, finalDateParse);
+        int randomNumber = (int) (Math.random() * 2) + 1;
         if (!(daysBetween >= 270 && daysBetween <= 280)) {
-            output = intialDateParse.plusDays(270).plusDays(randomNumber).format(formatter);
+            output = initialDateParse.plusMonths(9).plusDays(randomNumber).format(formatter);
         } else {
-            output = tableDate;
+            output = finalDateParse.plusDays(randomNumber).format(formatter);
         }
         return output;
     }

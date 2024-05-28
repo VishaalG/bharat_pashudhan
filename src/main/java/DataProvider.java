@@ -3,18 +3,24 @@ import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
-import java.io.*;
-import java.text.ParseException;
+import java.io.FileInputStream;
+import java.io.IOException;
+import java.io.InputStream;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 import java.util.stream.Collectors;
 
 public class DataProvider {
 
+    public static String EXCEL_FILE_LOCATION = "/users/vishag/Downloads/Rangiun PD and Calf.xlsx";
+
     public static List<String> getAllAnimalTagId() throws IOException {
-        InputStream excelFile = new FileInputStream("/users/vishag/Downloads/Rangiun PD and Calf.xlsx");
+        InputStream excelFile = new FileInputStream(EXCEL_FILE_LOCATION);
         XSSFWorkbook wb = new XSSFWorkbook(excelFile);
         XSSFSheet sheet = wb.getSheetAt(0);
         List<String> animalTagIdValues = new ArrayList<>();
@@ -26,7 +32,7 @@ public class DataProvider {
     }
 
     public static String getDescDateOfAnimalTagId(String animalTagIdValues) throws IOException {
-        InputStream excelFile = new FileInputStream("/users/vishag/Downloads/Rangiun PD and Calf.xlsx");
+        InputStream excelFile = new FileInputStream(EXCEL_FILE_LOCATION);
         XSSFWorkbook wb = new XSSFWorkbook(excelFile);
         XSSFSheet sheet = wb.getSheetAt(0);
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
@@ -58,8 +64,8 @@ public class DataProvider {
 
     }
 
-    public static String getDuplicateDescDateOfAnimalTagId(String animalTagIdValues) throws IOException, ParseException {
-        InputStream excelFile = new FileInputStream("/users/vishag/Downloads/Meenaveli PD calving.xlsx");
+    public static String getDuplicateDescDateOfAnimalTagId(String animalTagIdValues) throws IOException {
+        InputStream excelFile = new FileInputStream(EXCEL_FILE_LOCATION);
         XSSFWorkbook wb = new XSSFWorkbook(excelFile);
         XSSFSheet sheet = wb.getSheetAt(0);
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm:ss");
@@ -113,7 +119,7 @@ public class DataProvider {
 
 
     public static String getAnimalDateFromExcelPlusNineMonths(String animalTagIdValues) throws IOException {
-        InputStream excelFile = new FileInputStream("/users/vishag/Downloads/Rangiun PD and Calf.xlsx");
+        InputStream excelFile = new FileInputStream(EXCEL_FILE_LOCATION);
         XSSFWorkbook wb = new XSSFWorkbook(excelFile);
         XSSFSheet sheet = wb.getSheetAt(0);
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
@@ -140,7 +146,7 @@ public class DataProvider {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
         LocalDate date = LocalDate.parse(input, formatter);
         // Add three months to the date
-        int randomNumber = (int) (Math.random() * 3) + 1;
+        int randomNumber = (int) (Math.random() * 2) + 1;
         LocalDate newDate = date.plusMonths(9).plusDays(randomNumber);
         String formattedNewDate = newDate.format(formatter);
         return formattedNewDate;
