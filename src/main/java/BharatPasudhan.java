@@ -22,8 +22,8 @@ import java.util.Objects;
 
 public class BharatPasudhan extends DataProvider {
 
-    public static final String USERNAME = "pdktait172_TN";
-    public static final String PASSWORD = "epashudhan123";
+    public static final String USERNAME = "pdktait84_TN";
+    public static final String PASSWORD = "pdktait84_TN";
 
     static WebDriver driver = new FirefoxDriver();
     static WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(50));
@@ -31,7 +31,8 @@ public class BharatPasudhan extends DataProvider {
 
     public static void main(String[] args) throws IOException {
 
-        doCalving();
+        doPregnancyDiagnosis();
+//        doCalving();
 
     }
 
@@ -89,9 +90,9 @@ public class BharatPasudhan extends DataProvider {
 
 
     public static void clickOnPregnancyDiagnosisTab() {
-        WebElement animalBreeding = driver.findElement(By.xpath("//div[contains(text(),'Animal Breeding')]"));
-        new WebDriverWait(driver, Duration.ofSeconds(10)).ignoring(ElementNotInteractableException.class).ignoring(StaleElementReferenceException.class).until(ExpectedConditions.elementToBeClickable(animalBreeding));
-        animalBreeding.click();
+        new WebDriverWait(driver, Duration.ofSeconds(5)).ignoring(ElementNotInteractableException.class).ignoring(StaleElementReferenceException.class).until(ExpectedConditions.elementToBeClickable(By.xpath("//div[contains(text(),'Animal Breeding')]")));
+        driver.findElement(By.xpath("//div[contains(text(),'Animal Breeding')]")).click();
+        new WebDriverWait(driver, Duration.ofSeconds(5)).ignoring(ElementNotInteractableException.class).ignoring(StaleElementReferenceException.class).until(ExpectedConditions.elementToBeClickable(By.xpath("//ul[@id='submenu2']//li[2]//span[1]//a[1]")));
         driver.findElement(By.xpath("//ul[@id='submenu2']//li[2]//span[1]//a[1]")).click();
     }
 
@@ -107,7 +108,6 @@ public class BharatPasudhan extends DataProvider {
             String animalId = getAllAnimalTagId().get(i);
             System.out.println("----START----");
             System.out.println("PD - Animal Id is " + animalId);
-            clickOnPregnancyDiagnosisTab();
             new WebDriverWait(driver, Duration.ofSeconds(10)).ignoring(StaleElementReferenceException.class).until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//input[@id='search-by']")));
             retryingFindClick(By.xpath("//input[@id='search-by']"), animalId);
             driver.findElement(By.cssSelector("button[type=' submit']")).click();
@@ -150,10 +150,18 @@ public class BharatPasudhan extends DataProvider {
                         }
                         System.out.println("Pregnancy diagnosis updated for " + animalId + " with pregnancy date " + animalDate);
                         System.out.println("-----END-----");
+                        driver.get("https://bharatpashudhan.ndlm.co.in/dashboard");
+                        try {
+                            Thread.sleep(3000);
+                        } catch (InterruptedException e) {
+                            throw new RuntimeException(e);
+                        }
+                        clickOnPregnancyDiagnosisTab();
                     } else {
                         System.out.println("Pregnancy status is " + pregnancyStatus.getText());
                         String pregnancyDate = driver.findElement(By.xpath("//table[@class='mat-table cdk-table mat-elevation-z8']//td[4]")).getText();
                         System.out.println("Pregnancy confirmed already for " + animalId);
+                        System.out.println("-----END-----");
                         driver.get("https://bharatpashudhan.ndlm.co.in/dashboard");
                         clickOnPregnancyDiagnosisTab();
                     }

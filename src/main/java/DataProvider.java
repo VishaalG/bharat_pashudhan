@@ -17,7 +17,7 @@ import java.util.stream.Collectors;
 
 public class DataProvider {
 
-    public static String EXCEL_FILE_LOCATION = "/users/vishag/Downloads/Rangiun PD and Calf.xlsx";
+    public static String EXCEL_FILE_LOCATION = "/users/vishag/Downloads/Avanathankottai PD Calving.xlsx";
 
     public static List<String> getAllAnimalTagId() throws IOException {
         InputStream excelFile = new FileInputStream(EXCEL_FILE_LOCATION);
@@ -106,7 +106,7 @@ public class DataProvider {
         }
     }
 
-    public static String getAnimalDatePlusThreeMonths(String input) throws IOException {
+    public static String getAnimalDatePlusThreeMonths(String input) {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
         LocalDate date = LocalDate.parse(input, formatter);
         // Add three months to the date
