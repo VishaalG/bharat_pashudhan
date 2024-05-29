@@ -108,8 +108,9 @@ public class BharatPasudhan extends DataProvider {
             String animalId = getAllAnimalTagId().get(i);
             System.out.println("----START----");
             System.out.println("PD - Animal Id is " + animalId);
-            new WebDriverWait(driver, Duration.ofSeconds(10)).ignoring(StaleElementReferenceException.class).until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//input[@id='search-by']")));
+            new WebDriverWait(driver, Duration.ofSeconds(5)).ignoring(StaleElementReferenceException.class).until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//input[@id='search-by']")));
             retryingFindClick(By.xpath("//input[@id='search-by']"), animalId);
+            new WebDriverWait(driver, Duration.ofSeconds(5)).ignoring(StaleElementReferenceException.class).until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("button[type=' submit']")));
             driver.findElement(By.cssSelector("button[type=' submit']")).click();
             driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(5));
 
@@ -128,14 +129,15 @@ public class BharatPasudhan extends DataProvider {
                     wait.until(ExpectedConditions.elementToBeClickable(inseminationDate));
                     wait.until(ExpectedConditions.elementToBeClickable(pregnancyStatus));
                     System.out.println("Pregnancy status is " + pregnancyStatus.getText());
+                    System.out.println("Insemination date is " + inseminationDate.getText());
                     String animalDate = getDescDateOfAnimalTagId(inseminationDate.getText());
-                    System.out.println("Animal pregnancy date is set as " + animalDate);
                     if (Objects.equals(pregnancyStatus.getText(), "PD Due")) {
                         WebElement pdDate = driver.findElement(By.xpath("//input[@formcontrolname='pdDate']"));
                         new WebDriverWait(driver, Duration.ofSeconds(10)).ignoring(ElementClickInterceptedException.class).until(ExpectedConditions.elementToBeClickable(By.xpath("//input[@formcontrolname='pdDate']")));
                         clearWebField(pdDate);
                         pdDate.sendKeys(animalDate);
                         clickOutside();
+                        System.out.println("Animal pregnancy date is set as " + animalDate);
                         Select selectPdResult = new Select(driver.findElement(By.xpath("//select[@formcontrolname='pdResult']")));
                         try {
                             Thread.sleep(1000);
