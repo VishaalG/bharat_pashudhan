@@ -114,32 +114,38 @@ public class BharatPasudhan extends DataProvider {
             driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(5));
 
             // Data table
+            new WebDriverWait(driver, Duration.ofSeconds(10)).until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//table[@role='table']")));
             WebElement searchTable = driver.findElement(By.xpath("//table[@role='table']"));
             if (searchTable.isDisplayed()) {
+
                 driver.findElement(By.xpath("//input[@name='selectedTagId']")).click();
                 WebElement newAiButton = driver.findElement(By.xpath("//button[@class='btn btn-primary mr-2']"));
                 wait.until(ExpectedConditions.elementToBeClickable(newAiButton));
                 if (newAiButton.isEnabled()) {
                     newAiButton.click();
-                    WebElement pregnantDate = driver.findElement(By.xpath("//table[@class='mat-table cdk-table mat-elevation-z8']//td[2]"));
+                    WebElement inseminationDate = driver.findElement(By.xpath("//table[@class='mat-table cdk-table mat-elevation-z8']//td[2]"));
                     WebElement pregnancyStatus = driver.findElement(By.xpath("//span[@class='status-highlight']"));
-                    wait.until(ExpectedConditions.elementToBeClickable(pregnantDate));
+                    wait.until(ExpectedConditions.elementToBeClickable(inseminationDate));
                     wait.until(ExpectedConditions.elementToBeClickable(pregnancyStatus));
-                    String animalDate = getAnimalDatePlusThreeMonths(pregnantDate.getText());
+                    System.out.println("Pregnancy status is " + pregnancyStatus.getText());
+                    String animalDate = getDescDateOfAnimalTagId(inseminationDate.getText());
                     System.out.println("Animal pregnancy date is set as " + animalDate);
                     if (Objects.equals(pregnancyStatus.getText(), "PD Due")) {
                         WebElement pdDate = driver.findElement(By.xpath("//input[@formcontrolname='pdDate']"));
                         new WebDriverWait(driver, Duration.ofSeconds(10)).ignoring(ElementClickInterceptedException.class).until(ExpectedConditions.elementToBeClickable(By.xpath("//input[@formcontrolname='pdDate']")));
                         clearWebField(pdDate);
                         pdDate.sendKeys(animalDate);
-                        pdDate.click();
-                        pdDate.sendKeys(Keys.ENTER);
+                        clickOutside();
                         Select selectPdResult = new Select(driver.findElement(By.xpath("//select[@formcontrolname='pdResult']")));
+                        try {
+                            Thread.sleep(1000);
+                        } catch (InterruptedException e) {
+                            throw new RuntimeException(e);
+                        }
                         selectPdResult.selectByIndex(1);
                         clickOutside();
-                        selectPdResult.selectByIndex(1);
                         Select serviceTypeDropdown = new Select(driver.findElement(By.xpath("//select[@formcontrolname='serviceType']")));
-                        new WebDriverWait(driver, Duration.ofSeconds(10)).ignoring(StaleElementReferenceException.class).until(ExpectedConditions.elementToBeClickable(serviceTypeDropdown.getFirstSelectedOption()));
+                        clickOutside();
                         String serviceTypeText = serviceTypeDropdown.getFirstSelectedOption().getText();
                         WebElement finalSubmitButton = driver.findElement(By.xpath("//button[normalize-space()='Submit']"));
                         if (finalSubmitButton.isDisplayed() && finalSubmitButton.isEnabled() && serviceTypeText.contains("Internal AI")) {
@@ -158,8 +164,6 @@ public class BharatPasudhan extends DataProvider {
                         }
                         clickOnPregnancyDiagnosisTab();
                     } else {
-                        System.out.println("Pregnancy status is " + pregnancyStatus.getText());
-                        String pregnancyDate = driver.findElement(By.xpath("//table[@class='mat-table cdk-table mat-elevation-z8']//td[4]")).getText();
                         System.out.println("Pregnancy confirmed already for " + animalId);
                         System.out.println("-----END-----");
                         driver.get("https://bharatpashudhan.ndlm.co.in/dashboard");
@@ -334,7 +338,6 @@ public class BharatPasudhan extends DataProvider {
         while (attempts < 2) {
             try {
                 driver.findElement(by).clear();
-                driver.findElement(by).click();
                 driver.findElement(by).sendKeys(animalId);
                 result = true;
                 break;

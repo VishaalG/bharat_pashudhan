@@ -31,35 +31,23 @@ public class DataProvider {
         return animalTagIdValues;
     }
 
-    public static String getDescDateOfAnimalTagId(String animalTagIdValues) throws IOException {
-        InputStream excelFile = new FileInputStream(EXCEL_FILE_LOCATION);
-        XSSFWorkbook wb = new XSSFWorkbook(excelFile);
-        XSSFSheet sheet = wb.getSheetAt(0);
+    public static String getDescDateOfAnimalTagId(String inseminationDate) throws IOException {
+
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
-        List<String> dates = new ArrayList<>();
-        for (Row r : sheet) {
-            Cell animalId = r.getCell(0);
-            Cell animalDate = r.getCell(1);
-            if (animalId.getStringCellValue().contains(animalTagIdValues)) {
-                dates.add(animalDate.toString());
-            }
-        }
-        DateTimeFormatter inputFormatter = DateTimeFormatter.ofPattern("dd-MMM-yyyy");
-        // Remove the square brackets and parse the input date
-        LocalDate date = LocalDate.parse(dates.get(0), inputFormatter);
+        LocalDate inputDate = LocalDate.parse(inseminationDate, formatter);
         // Add three months to the date
-        LocalDate newDate = date.plusMonths(3);
-
+        int randomNumber = (int) (Math.random() * 3) + 1;
+        LocalDate threeMonthsAddedDate = inputDate.plusMonths(3).plusDays(randomNumber);
         LocalDate currentDate = LocalDate.now();
-        LocalDate oneYearBefore = currentDate.minusYears(1);
+        LocalDate oneYearBeforeToday = currentDate.minusYears(1);
 
-        // Format the new date back to the original format
-        String formattedNewDate = newDate.format(formatter);
 
-        if (newDate.isBefore(oneYearBefore)) {
-            return oneYearBefore.plusDays(1).format(formatter);
+        if (threeMonthsAddedDate.isBefore(oneYearBeforeToday)) {
+            return oneYearBeforeToday.plusDays(1).format(formatter);
+        } else if (threeMonthsAddedDate.isAfter(currentDate)) {
+            return currentDate.format(formatter);
         } else {
-            return formattedNewDate;
+            return threeMonthsAddedDate.format(formatter);
         }
 
     }
