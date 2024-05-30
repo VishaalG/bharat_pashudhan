@@ -6,6 +6,7 @@ import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.StaleElementReferenceException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
@@ -22,10 +23,10 @@ import java.util.Objects;
 
 public class BharatPasudhan extends DataProvider {
 
-    public static final String USERNAME = "pdktait84_TN";
-    public static final String PASSWORD = "pdktait84_TN";
+    public static final String USERNAME = "pdktait55_TN";
+    public static final String PASSWORD = "pdktait55_TN";
 
-    static WebDriver driver = new FirefoxDriver();
+    static WebDriver driver = new ChromeDriver();
     static WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(50));
     static Actions action = new Actions(driver);
 
@@ -108,9 +109,9 @@ public class BharatPasudhan extends DataProvider {
             String animalId = getAllAnimalTagId().get(i);
             System.out.println("----START----");
             System.out.println("PD - Animal Id is " + animalId);
-            new WebDriverWait(driver, Duration.ofSeconds(5)).ignoring(StaleElementReferenceException.class).until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//input[@id='search-by']")));
+            new WebDriverWait(driver, Duration.ofSeconds(10)).ignoring(StaleElementReferenceException.class).until(ExpectedConditions.elementToBeClickable(By.xpath("//input[@id='search-by']")));
             retryingFindClick(By.xpath("//input[@id='search-by']"), animalId);
-            new WebDriverWait(driver, Duration.ofSeconds(5)).ignoring(StaleElementReferenceException.class).until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("button[type=' submit']")));
+            new WebDriverWait(driver, Duration.ofSeconds(10)).ignoring(StaleElementReferenceException.class).until(ExpectedConditions.elementToBeClickable(By.cssSelector("button[type=' submit']")));
             driver.findElement(By.cssSelector("button[type=' submit']")).click();
             driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(5));
 
@@ -124,6 +125,7 @@ public class BharatPasudhan extends DataProvider {
                 wait.until(ExpectedConditions.elementToBeClickable(newAiButton));
                 if (newAiButton.isEnabled()) {
                     newAiButton.click();
+                    new WebDriverWait(driver, Duration.ofSeconds(10)).until(ExpectedConditions.elementToBeClickable(By.xpath("//table[@class='mat-table cdk-table mat-elevation-z8']//td[2]")));
                     WebElement inseminationDate = driver.findElement(By.xpath("//table[@class='mat-table cdk-table mat-elevation-z8']//td[2]"));
                     WebElement pregnancyStatus = driver.findElement(By.xpath("//span[@class='status-highlight']"));
                     wait.until(ExpectedConditions.elementToBeClickable(inseminationDate));
@@ -152,10 +154,18 @@ public class BharatPasudhan extends DataProvider {
                         WebElement finalSubmitButton = driver.findElement(By.xpath("//button[normalize-space()='Submit']"));
                         if (finalSubmitButton.isDisplayed() && finalSubmitButton.isEnabled() && serviceTypeText.contains("Internal AI")) {
                             finalSubmitButton.click();
-                            WebElement modalOk = driver.findElement(By.xpath("//div[@class='campaign-dialog']//button[@type='submit']"));
-                            wait.until(ExpectedConditions.elementToBeClickable(modalOk));
-                            modalOk.click();
-                        }
+                            if(checkElementExists(By.xpath("//div[@class='common-info']//button[normalize-space()='Yes']"))) {
+                            	driver.findElement(By.xpath("//div[@class='common-info']//button[normalize-space()='Yes']")).click();
+                            	if(checkElementExists(By.xpath("//div[@class='common-info']//button[normalize-space()='OK']"))) {
+                            		driver.findElement(By.xpath("//div[@class='common-info']//button[normalize-space()='OK']")).click();
+                            	}	
+                            } else {
+                                WebElement modalOk = driver.findElement(By.xpath("//div[@class='campaign-dialog']//button[@type='submit']"));
+                                wait.until(ExpectedConditions.elementToBeClickable(modalOk));
+                                modalOk.click();
+                            }
+                        }                        
+                       
                         System.out.println("Pregnancy diagnosis updated for " + animalId + " with pregnancy date " + animalDate);
                         System.out.println("-----END-----");
                         driver.get("https://bharatpashudhan.ndlm.co.in/dashboard");
@@ -357,7 +367,7 @@ public class BharatPasudhan extends DataProvider {
     public static boolean checkElementExists(By by) {
         boolean result = false;
         int attempts = 0;
-        while (attempts < 2) {
+        while (attempts < 3) {
             try {
                 driver.findElement(by);
                 result = true;

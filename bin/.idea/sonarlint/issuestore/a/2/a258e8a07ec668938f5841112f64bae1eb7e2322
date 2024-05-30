@@ -1,0 +1,73 @@
+
+	java:S112‘"FDefine and throw a dedicated exception instead of using a generic one.(Ò‚Òéüÿÿÿÿ8˜ø“”ü1J$9ee2c2d5-57a3-4384-bf39-e3cecef831a8
+	java:S112¥"FDefine and throw a dedicated exception instead of using a generic one.(Ò‚Òéüÿÿÿÿ8™ø“”ü1J$724a052c-e4c4-4887-857b-35dc6194a3ee
+	java:S112æ"FDefine and throw a dedicated exception instead of using a generic one.(Ò‚Òéüÿÿÿÿ8™ø“”ü1J$a7163c73-88bb-4231-a477-ab6774ea0468
+	java:S112’"FDefine and throw a dedicated exception instead of using a generic one.(Ò‚Òéüÿÿÿÿ8™ø“”ü1J$27ad71fc-efb7-4b02-8c6a-7e0097b8814e
+	java:S112³"FDefine and throw a dedicated exception instead of using a generic one.(Ò‚Òéüÿÿÿÿ8ùŸ”ü1J$c02c81eb-e5fb-4099-a715-8eebd4647534
+	java:S112º"FDefine and throw a dedicated exception instead of using a generic one.(Ò‚Òéüÿÿÿÿ8¸Ñ¬¥ü1J$dffadc0f-91ab-4523-b6cf-703d0f624214
+¡
+java:S1192d"YDefine a constant instead of duplicating this literal "//input[@id='search-by']" 5 times.(£“¹êıÿÿÿÿ8Ÿø“”ü1J$5f1aacac-d83b-4de4-a377-3b06c93376f9
+—
+java:S1192 "NDefine a constant instead of duplicating this literal "-----END-----" 3 times.(Œ“ûıÿÿÿÿ8Ø¶¢”ü1J$8994f6dc-b416-464e-983a-f0889567ed23
+­
+java:S1192O"jDefine a constant instead of duplicating this literal "//div[contains(text(),'Animal Breeding')]" 5 times.(ˆ®Öß8 ø“”ü1J$dd676431-403c-4c5e-b0c6-55d800d56c86
+¢
+java:S1192z"_Define a constant instead of duplicating this literal "//input[@name='selectedTagId']" 4 times.(ÂÜŸ®8 ø“”ü1J$7a96f872-2dfb-40de-9677-eb8e4268cc6b
+«
+java:S1192{"hDefine a constant instead of duplicating this literal "//button[@class='btn btn-primary mr-2']" 4 times.(·ÊÎ®8 ø“”ü1J$ca916a2b-8f4e-4508-b5a7-11c438017f29
+©
+java:S1192˜"eDefine a constant instead of duplicating this literal "//button[normalize-space()='Submit']" 3 times.(ûÚËÕ8¡ø“”ü1J$d556a427-4f19-4309-b68f-9fe2e1a8ad29
+y
+java:S1192q"WDefine a constant instead of duplicating this literal "button[type=' submit']" 3 times.(ØÍ³ùÿÿÿÿ8Ôæß¥ü1
+š
+java:S1192v"WDefine a constant instead of duplicating this literal "//table[@role='table']" 3 times.(™â¤¨8òì“¥ü1J$321a2fdc-72f0-4921-b7b0-9d90f54c7562
+¦
+java:S1192€"bDefine a constant instead of duplicating this literal "//span[@class='status-highlight']" 3 times.(ñ²ûŠ8¡ø“”ü1J$22f84998-03c7-490c-a3dc-baaf706fa15b
+]
+java:S1220""Move this file to a named package.8©ø“”ü1J$cb572348-bda3-4179-af56-72445e9a23a1
+ƒ	java:S125#"<This block of commented-out lines of code should be removed.(„ã‘îÿÿÿÿÿ8ˆ„””ü1J$b45c2f23-b765-4ec3-9637-5e72bc0627a4
+m	java:S106m"+Replace this use of System.out by a logger.(éüîÁ8Â„””ü1J$a2df3cd1-7f80-41c5-9d38-8d9a58676a1d
+r	java:S106n"+Replace this use of System.out by a logger.(šØùøûÿÿÿÿ8Â„””ü1J$63000549-d9d6-40fe-8e52-8a7d9c5a3299
+s	java:S106ƒ"+Replace this use of System.out by a logger.(ŒÛå½ıÿÿÿÿ8É†””ü1J$edeb6d3c-886f-4fe5-9df3-180403076387
+s	java:S106„"+Replace this use of System.out by a logger.(ğİìÚøÿÿÿÿ8±ù”ü1J$d29fc1d7-a09a-4986-999a-4e4858a09550
+n	java:S106Œ"+Replace this use of System.out by a logger.(ã–ÿÉ8³•”¥ü1J$4b3b4307-d21f-45bf-95f2-e5965b74ebe8
+¢
+java:S2142"^Either re-interrupt this method or rethrow the "InterruptedException" that can be caught here.(ä ¹€8©•”¥ü1J$2b352f28-4363-4377-99e2-d4d94a353b17
+n	java:S106Ÿ"+Replace this use of System.out by a logger.(ë¸ ƒ8¹•”¥ü1J$771b6958-e339-45ad-8672-1861ee61bdb9
+s	java:S106 "+Replace this use of System.out by a logger.(Œ“ûıÿÿÿÿ8¥–”¥ü1J$86bf7afa-bb67-4595-8b2e-ae137a12c80d
+¢
+java:S2142¤"^Either re-interrupt this method or rethrow the "InterruptedException" that can be caught here.(ä ¹€8ƒ¶¥ü1J$4c078932-979f-4afb-88ae-f4186f5e0393
+n	java:S106©"+Replace this use of System.out by a logger.(…ÎŠ‡8ïµ¥ü1J$5c2a16cf-28e6-4e54-95d0-d9d8571b6f38
+s	java:S106ª"+Replace this use of System.out by a logger.(Œ“ûıÿÿÿÿ8÷µ¥ü1J$ab1936ff-7741-4d27-9ab2-65eafcb57fa7
+n	java:S106·"+Replace this use of System.out by a logger.(éüîÁ8üµ¥ü1J$dd0a1823-4f85-4df3-9eb7-6e2ec296e43a
+n	java:S106¸"+Replace this use of System.out by a logger.(Ô¤¾š8€¶¥ü1J$d96c67c3-78aa-46ea-ba89-9a96b15032fe
+n	java:S106À"+Replace this use of System.out by a logger.(¾Ÿü‚8‰¶¥ü1J$23594791-9141-4eeb-9310-913873b9a882
+s	java:S106Î"+Replace this use of System.out by a logger.(¿üÇ¦ÿÿÿÿÿ8’¶¥ü1J$6e2ab31f-847d-4a86-b219-bb4c17df8902
+s	java:S106Ö"+Replace this use of System.out by a logger.(•Ò’ÿÿÿÿÿ8¡¶¥ü1J$d704fe3d-df19-400d-ba57-3a6a354fd0f5
+n	java:S106Ş"+Replace this use of System.out by a logger.(Ï§½Ó8½¶¥ü1J$4f1e10a9-edf7-406a-ab36-61022ba8d4ec
+¢
+java:S2142å"^Either re-interrupt this method or rethrow the "InterruptedException" that can be caught here.(ä ¹€8£¶¥ü1J$72134d4b-bb5d-4a40-b7e1-dc4fd68c1517
+n	java:S106é"+Replace this use of System.out by a logger.(¼İ½Â8¾¶¥ü1J$a5bb9926-ac7f-4e37-a655-e1cd026e6a81
+s	java:S106÷"+Replace this use of System.out by a logger.(÷û‡Âıÿÿÿÿ8¦Å°¥ü1J$b5758dfb-7419-4174-91bc-8f41c14ee66e
+ƒ
+java:S1854¦":Remove this useless assignment to local variable "female".(˜ì™¯ûÿÿÿÿ8“¶¥ü1J$471bb09d-6172-4a01-b1dd-f2ae7bbc2725
+s	java:S106‰"+Replace this use of System.out by a logger.(‹²îÿÿÿÿÿ8›Ü²¥ü1J$39a51a1c-03d0-4d1a-b1cf-97f734fa1ccd
+¢
+java:S2142‘"^Either re-interrupt this method or rethrow the "InterruptedException" that can be caught here.(ä ¹€8¶¶¥ü1J$fd9d88ca-9e6e-4178-804d-fa1cf72a7a9e
+t
+java:S1481¦"+Remove this unused "female" local variable.(˜ì™¯ûÿÿÿÿ8°¶¥ü1J$52982c4d-f1f5-4f8b-9dbb-29a2c8a9a508
+r
+java:S2140ª")Use "java.util.Random.nextInt()" instead.(ÍÿèÕøÿÿÿÿ8´¶¥ü1J$018116e8-8097-482b-bf77-2949782fa44b
+¢
+java:S2142²"^Either re-interrupt this method or rethrow the "InterruptedException" that can be caught here.(ä ¹€8¼¶¥ü1J$675311df-3814-4fae-b9b4-51a922f45106
+¢
+java:S2142¹"^Either re-interrupt this method or rethrow the "InterruptedException" that can be caught here.(ä ¹€8ıã¬¥ü1J$54eca1ed-7081-4825-ab8b-67ae7ffe998a
+s	java:S106¾"+Replace this use of System.out by a logger.(Ÿ²˜ºûÿÿÿÿ8À•Ô¥ü1J$349b1c3e-afea-4555-8a89-672c7c15a4ec
+s	java:S106¿"+Replace this use of System.out by a logger.(Œ“ûıÿÿÿÿ8ıŒÖ¥ü1J$c50e0755-563f-4469-b0ac-55d7edede842
+~
+java:S1854Ø":Remove this useless assignment to local variable "result".(Ü†ø8Ä¶¥ü1J$2c45d53e-62d7-41a4-ad9c-40a58ffcf0f6
+t
+java:S1481Ò"+Remove this unused "result" local variable.(ĞĞî…ıÿÿÿÿ8Å¶¥ü1J$3e2e7641-35b9-4acc-8ff9-768a41f07895
+l	java:S108Ú")Either remove or fill this block of code.(ÀŒÂã8Í¶¥ü1J$9c6ec273-31f9-458a-8df8-a4f579f947ea
+r
+java:S2140ú")Use "java.util.Random.nextInt()" instead.(ÍÿèÕøÿÿÿÿ8Ô¶¥ü1J$86ab92e2-7a40-4867-99d4-d653a1de8a43
