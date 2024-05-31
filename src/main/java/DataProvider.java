@@ -17,7 +17,7 @@ import java.util.stream.Collectors;
 
 public class DataProvider {
 
-    public static String EXCEL_FILE_LOCATION = "E:\\Java Projects\\Akkalnayaanpatty PD.xlsx";
+    public static String EXCEL_FILE_LOCATION = "/Users/vishag/Downloads/Avanathankottai PD Calving.xlsx";
 
     public static List<String> getAllAnimalTagId() throws IOException {
         InputStream excelFile = new FileInputStream(EXCEL_FILE_LOCATION);
