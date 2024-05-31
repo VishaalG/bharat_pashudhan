@@ -31,8 +31,8 @@ public class BharatPasudhan extends DataProvider {
 
     public static void main(String[] args) throws IOException {
 
-        doPregnancyDiagnosis();
-//        doCalving();
+//        doPregnancyDiagnosis();
+        doCalving();
 
     }
 
@@ -95,22 +95,53 @@ public class BharatPasudhan extends DataProvider {
 
 
     public static void clickOnPregnancyDiagnosisTab() {
-         if (retryingFindingElement(By.xpath("//a[@href='#submenu2'][@aria-expanded='true']"))) {
-             new WebDriverWait(driver, Duration.ofSeconds(5)).ignoring(ElementNotInteractableException.class).ignoring(StaleElementReferenceException.class).until(ExpectedConditions.elementToBeClickable(By.xpath("//ul[@id='submenu2']//li[2]//span[1]//a[1]")));
-             driver.findElement(By.xpath("//ul[@id='submenu2']//li[2]//span[1]//a[1]")).click();
-         } else {
-             new WebDriverWait(driver, Duration.ofSeconds(5)).ignoring(ElementNotInteractableException.class).ignoring(StaleElementReferenceException.class).until(ExpectedConditions.elementToBeClickable(By.xpath("//div[contains(text(),'Animal Breeding')]")));
-             driver.findElement(By.xpath("//div[contains(text(),'Animal Breeding')]")).click();
-             new WebDriverWait(driver, Duration.ofSeconds(5)).ignoring(ElementNotInteractableException.class).ignoring(StaleElementReferenceException.class).until(ExpectedConditions.elementToBeClickable(By.xpath("//ul[@id='submenu2']//li[2]//span[1]//a[1]")));
-             driver.findElement(By.xpath("//ul[@id='submenu2']//li[2]//span[1]//a[1]")).click();
-         }
+        if (retryingFindingElement(By.xpath("//a[@href='#submenu2'][@aria-expanded='true']"))) {
+            new WebDriverWait(driver, Duration.ofSeconds(5)).ignoring(ElementNotInteractableException.class).ignoring(StaleElementReferenceException.class).until(ExpectedConditions.elementToBeClickable(By.xpath("//ul[@id='submenu2']//li[2]//span[1]//a[1]")));
+            driver.findElement(By.xpath("//ul[@id='submenu2']//li[2]//span[1]//a[1]")).click();
+        } else {
+            new WebDriverWait(driver, Duration.ofSeconds(5)).ignoring(ElementNotInteractableException.class).ignoring(StaleElementReferenceException.class).until(ExpectedConditions.elementToBeClickable(By.xpath("//div[contains(text(),'Animal Breeding')]")));
+            driver.findElement(By.xpath("//div[contains(text(),'Animal Breeding')]")).click();
+            new WebDriverWait(driver, Duration.ofSeconds(5)).ignoring(ElementNotInteractableException.class).ignoring(StaleElementReferenceException.class).until(ExpectedConditions.elementToBeClickable(By.xpath("//ul[@id='submenu2']//li[2]//span[1]//a[1]")));
+            driver.findElement(By.xpath("//ul[@id='submenu2']//li[2]//span[1]//a[1]")).click();
+        }
+    }
+
+    public static String getInseminationDate(String animalId) {
+        String inseminationDate = null;
+        System.out.println("Animal is pregnant and is in 'milk' state");
+        clickOnPregnancyDiagnosisTab();
+        new WebDriverWait(driver, Duration.ofSeconds(10)).ignoring(StaleElementReferenceException.class).until(ExpectedConditions.elementToBeClickable(By.xpath("//input[@id='search-by']")));
+        retryingFindClick(By.xpath("//input[@id='search-by']"), animalId);
+        new WebDriverWait(driver, Duration.ofSeconds(20)).ignoring(StaleElementReferenceException.class).ignoring(ElementClickInterceptedException.class).until(ExpectedConditions.elementToBeClickable(By.cssSelector("button[type=' submit']")));
+        driver.findElement(By.cssSelector("button[type=' submit']")).click();
+        new WebDriverWait(driver, Duration.ofSeconds(10)).until(ExpectedConditions.elementToBeClickable(By.xpath("//table[@role='table']")));
+        driver.findElement(By.xpath("//input[@name='selectedTagId']")).click();
+        WebElement newPdButton = driver.findElement(By.xpath("//button[@class='btn btn-primary mr-2']"));
+        wait.until(ExpectedConditions.elementToBeClickable(newPdButton));
+        if (newPdButton.isEnabled()) {
+            driver.findElement(By.xpath("//button[@class='btn btn-primary mr-2']")).click();
+            new WebDriverWait(driver, Duration.ofSeconds(10)).until(ExpectedConditions.elementToBeClickable(By.xpath("//table[@class='mat-table cdk-table mat-elevation-z8']//td[2]")));
+            inseminationDate = driver.findElement(By.xpath("//table[@class='mat-table cdk-table mat-elevation-z8']//td[2]")).getText();
+        }
+        return inseminationDate;
+    }
+
+    public static void handleOwnerNotFound() {
+        // To handle owner is not found case
+        if (checkElementExists(By.xpath("//div[@class='common-error-footer']//button[@class='btn btn-primary']"))) {
+            System.out.println("Owner is not found error");
+            WebElement errorBanner = wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//div[@class='common-error-footer']//button[@class='btn btn-primary']")));
+            wait.until(ExpectedConditions.elementToBeClickable(errorBanner));
+            errorBanner.click();
+//            continue;
+        }
     }
 
     public static void pregnancyDiagnosis() throws IOException {
         for (int i = 0; i < getAllAnimalTagId().size(); i++) {
             // Get values from Excel
             String animalId = getAllAnimalTagId().get(i);
-            System.out.println("----START----");
+            System.out.println("------------");
             System.out.println("PD - Animal Id is " + animalId);
             new WebDriverWait(driver, Duration.ofSeconds(10)).ignoring(StaleElementReferenceException.class).until(ExpectedConditions.elementToBeClickable(By.xpath("//input[@id='search-by']")));
             retryingFindClick(By.xpath("//input[@id='search-by']"), animalId);
@@ -152,15 +183,14 @@ public class BharatPasudhan extends DataProvider {
                         clickOutside();
                         Select serviceTypeDropdown = new Select(driver.findElement(By.xpath("//select[@formcontrolname='serviceType']")));
                         clickOutside();
-                        String serviceTypeText = serviceTypeDropdown.getFirstSelectedOption().getText();
                         WebElement finalSubmitButton = driver.findElement(By.xpath("//button[normalize-space()='Submit']"));
-                        if (finalSubmitButton.isDisplayed() && finalSubmitButton.isEnabled() && serviceTypeText.contains("Internal AI")) {
+                        if (finalSubmitButton.isDisplayed() && finalSubmitButton.isEnabled() && serviceTypeDropdown.getFirstSelectedOption().getText().contains("Internal AI") && selectPdResult.getFirstSelectedOption().getText().contains("Pregnancy Confirmed")) {
                             finalSubmitButton.click();
-                            if(checkElementExists(By.xpath("//div[@class='common-info']//button[normalize-space()='Yes']"))) {
-                            	driver.findElement(By.xpath("//div[@class='common-info']//button[normalize-space()='Yes']")).click();
-                            	if(checkElementExists(By.xpath("//div[@class='common-info']//button[normalize-space()='OK']"))) {
-                            		driver.findElement(By.xpath("//div[@class='common-info']//button[normalize-space()='OK']")).click();
-                            	}	
+                            if (checkElementExists(By.xpath("//div[@class='common-info']//button[normalize-space()='Yes']"))) {
+                                driver.findElement(By.xpath("//div[@class='common-info']//button[normalize-space()='Yes']")).click();
+                                if (checkElementExists(By.xpath("//div[@class='common-info']//button[normalize-space()='OK']"))) {
+                                    driver.findElement(By.xpath("//div[@class='common-info']//button[normalize-space()='OK']")).click();
+                                }
                             } else {
                                 WebElement modalOk = driver.findElement(By.xpath("//div[@class='campaign-dialog']//button[@type='submit']"));
                                 wait.until(ExpectedConditions.elementToBeClickable(modalOk));
@@ -168,8 +198,7 @@ public class BharatPasudhan extends DataProvider {
                             }
                         }
                         System.out.println("Pregnancy diagnosis updated for " + animalId + " with pregnancy date " + animalDate);
-                        System.out.println("-----END-----");
-                        driver.get("https://bharatpashudhan.ndlm.co.in/dashboard");
+                        System.out.println("------------");
                         try {
                             Thread.sleep(3000);
                         } catch (InterruptedException e) {
@@ -177,15 +206,14 @@ public class BharatPasudhan extends DataProvider {
                         }
                         clickOnPregnancyDiagnosisTab();
                     } else {
-                        System.out.println("Pregnancy is 'NO' and status is " + pregnancyStatus.getText()  + " for AnimalId " +  animalId);
-                        System.out.println("-----END-----");
-                        driver.get("https://bharatpashudhan.ndlm.co.in/dashboard");
+                        System.out.println("Pregnancy is 'NO' and status is '" + pregnancyStatus.getText() + "' for AnimalId " + animalId);
+                        System.out.println("------------");
                         clickOnPregnancyDiagnosisTab();
                     }
                 }
             } else {
-                System.out.println("Animal pregnancy status is '" + isPregnant.getText() + "' Skipping " + getAllAnimalTagId().get(i));
-                System.out.println("-----END-----");
+                System.out.println("Animal pregnancy status is '" + isPregnant.getText() + "'.  Skipping " + getAllAnimalTagId().get(i));
+                System.out.println("------------");
             }
         }
     }
@@ -194,22 +222,16 @@ public class BharatPasudhan extends DataProvider {
         for (int i = 0; i < getAllAnimalTagId().size(); i++) {
             // Get values from Excel
             String animalId = getAllAnimalTagId().get(i);
-            System.out.println("----START----");
+            System.out.println("------------");
             System.out.println("Calving - Animal Id is " + animalId);
             new WebDriverWait(driver, Duration.ofSeconds(5)).ignoring(StaleElementReferenceException.class).until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//input[@id='search-by']")));
             retryingFindClick(By.xpath("//input[@id='search-by']"), animalId);
+            new WebDriverWait(driver, Duration.ofSeconds(5)).ignoring(ElementClickInterceptedException.class).until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("button[type=' submit']")));
             driver.findElement(By.cssSelector("button[type=' submit']")).click();
             driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(5));
 
-            // To handle owner is not found case
-            if (checkElementExists(By.xpath("//div[@class='common-error-footer']//button[@class='btn btn-primary']"))) {
-                System.out.println("Owner is not found error");
-                WebElement errorBanner = wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//div[@class='common-error-footer']//button[@class='btn btn-primary']")));
-                wait.until(ExpectedConditions.elementToBeClickable(errorBanner));
-                errorBanner.click();
-                continue;
-            }
-            // Data table
+//            handleOwnerNotFound();
+
             WebElement searchTable = driver.findElement(By.xpath("//table[@role='table']"));
             wait.until(ExpectedConditions.visibilityOf(searchTable));
             WebElement isPregnant = driver.findElement(By.xpath("//table[@class='mat-table cdk-table mat-sort mat-elevation-z8 mt-4']//td[8]"));
@@ -218,6 +240,7 @@ public class BharatPasudhan extends DataProvider {
             wait.until(ExpectedConditions.visibilityOf(milkingStatus));
             if (searchTable.isDisplayed() && isPregnant.getText().contains("Yes") && milkingStatus.getText().contains("Dry")) {
                 System.out.println("Animal is pregnant and is in 'dry' state");
+                new WebDriverWait(driver, Duration.ofSeconds(10)).until(ExpectedConditions.elementToBeClickable(By.xpath("//table[@role='table']")));
                 driver.findElement(By.xpath("//input[@name='selectedTagId']")).click();
                 WebElement newCalvingButton = driver.findElement(By.xpath("//button[@class='btn btn-primary mr-2']"));
                 wait.until(ExpectedConditions.elementToBeClickable(newCalvingButton));
@@ -226,6 +249,8 @@ public class BharatPasudhan extends DataProvider {
 
             } else if (searchTable.isDisplayed() && isPregnant.getText().contains("Yes") && milkingStatus.getText().contains("NA")) {
                 System.out.println("Animal is pregnant and is in 'NA' state");
+                new WebDriverWait(driver, Duration.ofSeconds(10)).until(ExpectedConditions.elementToBeClickable(By.xpath("//table[@role='table']")));
+                wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//input[@name='selectedTagId'")));
                 driver.findElement(By.xpath("//input[@name='selectedTagId']")).click();
                 WebElement newCalvingButton = driver.findElement(By.xpath("//button[@class='btn btn-primary mr-2']"));
                 wait.until(ExpectedConditions.elementToBeClickable(newCalvingButton));
@@ -233,21 +258,20 @@ public class BharatPasudhan extends DataProvider {
                 commonFlowForCalving();
 
             } else if (searchTable.isDisplayed() && isPregnant.getText().contains("Yes") && milkingStatus.getText().contains("In Milk")) {
-                System.out.println("Animal is pregnant and is in 'milk' state");
+                String calvingDate = getAnimalDatePlusSixMonths(getInseminationDate(animalId));
+                System.out.println("Gestation date added by 6 months from insemination date");
+                // Calving flow
+                clickOnCalvingTab();
+                retryingFindClick(By.xpath("//input[@id='search-by']"), animalId);
+                driver.findElement(By.cssSelector("button[type=' submit']")).click();
+                new WebDriverWait(driver, Duration.ofSeconds(10)).until(ExpectedConditions.elementToBeClickable(By.xpath("//table[@role='table']")));
                 driver.findElement(By.xpath("//input[@name='selectedTagId']")).click();
                 WebElement newCalvingButton = driver.findElement(By.xpath("//button[@class='btn btn-primary mr-2']"));
                 wait.until(ExpectedConditions.elementToBeClickable(newCalvingButton));
                 newCalvingButton.click();
-                try {
-                    Thread.sleep(3000);
-                } catch (InterruptedException e) {
-                    throw new RuntimeException(e);
-                }
-                String animalDate = getAnimalDateFromExcelPlusNineMonths(animalId);
-                System.out.println("Gestation date added by 9 months from insemination date");
                 WebElement dryOffDate = driver.findElement(By.xpath("//div[@class='ear-tag-detail']//input[@placeholder='dd-mm-yyyy']"));
                 wait.until(ExpectedConditions.elementToBeClickable(dryOffDate));
-                dryOffDate.sendKeys(animalDate);
+                dryOffDate.sendKeys(calvingDate);
                 Select milkingStatusDropdown = new Select(driver.findElement(By.xpath("//select[@formcontrolname='milkingStatus']")));
                 driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(5));
                 milkingStatusDropdown.selectByIndex(1);
@@ -256,7 +280,6 @@ public class BharatPasudhan extends DataProvider {
                 submitMilkStatus.click();
                 driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(5));
                 commonFlowForCalving();
-
             } else if (searchTable.isDisplayed() && isPregnant.getText().contains("No")) {
                 System.out.println("Animal is not pregnant");
             }
@@ -264,29 +287,24 @@ public class BharatPasudhan extends DataProvider {
     }
 
     public static void commonFlowForCalving() {
-        new WebDriverWait(driver, Duration.ofSeconds(5)).ignoring(NoSuchElementException.class).until(ExpectedConditions.elementToBeClickable(By.xpath("//span[@class='status-highlight']")));
+        new WebDriverWait(driver, Duration.ofSeconds(10)).ignoring(NoSuchElementException.class).until(ExpectedConditions.elementToBeClickable(By.xpath("//span[@class='status-highlight']")));
         WebElement pregnancyStatus = driver.findElement(By.xpath("//span[@class='status-highlight']"));
         wait.until(ExpectedConditions.visibilityOf(pregnancyStatus));
         if (Objects.equals(pregnancyStatus.getText(), "Pregnancy Confirmed")) {
             WebElement calvingDate = driver.findElement(By.xpath("//input[@formcontrolname='calvingDate']"));
             clearWebField(calvingDate);
             String pregnancyDateFromTable = driver.findElement(By.xpath("//table[@class='mat-table cdk-table mat-elevation-z8']//td[2]")).getText();
-            String animalDate = getAnimalDatePlusNineMonths(pregnancyDateFromTable);
-            calvingDate.sendKeys(animalDate);
+            String addedNineMonthsDate = getAnimalDatePlusNineMonths(pregnancyDateFromTable);
+            calvingDate.sendKeys(addedNineMonthsDate);
             clickOutside();
             WebElement gestationDays = driver.findElement(By.xpath("//table[@class='table animal-table m-0 ng-star-inserted']//td[5]"));
-            String modifiedGestationDate = handleGestationDate(animalDate, pregnancyDateFromTable);
+            String modifiedGestationDate = handleGestationDate(addedNineMonthsDate, pregnancyDateFromTable);
             System.out.println("Gestation modified animal date is " + modifiedGestationDate);
             clearWebField(calvingDate);
             calvingDate.sendKeys(modifiedGestationDate);
             clickOutside();
             calvingDate.sendKeys(Keys.ENTER);
             clickOutside();
-            try {
-                Thread.sleep(2000);
-            } catch (InterruptedException e) {
-                throw new RuntimeException(e);
-            }
             if (checkGestationRange(gestationDays.getText())) {
                 Select selectPdResult = new Select(driver.findElement(By.xpath("//select[@formcontrolname='calvingStatus']")));
                 selectPdResult.selectByIndex(1);
@@ -315,24 +333,15 @@ public class BharatPasudhan extends DataProvider {
                     if (submitButton.isEnabled() && submitButton.isDisplayed()) {
                         submitButton.click();
                     }
-                    try {
-                        Thread.sleep(4000);
-                    } catch (InterruptedException e) {
-                        throw new RuntimeException(e);
-                    }
                     clickOutside();
-                    driver.navigate().refresh();
-                    try {
-                        Thread.sleep(2000);
-                    } catch (InterruptedException e) {
-                        throw new RuntimeException(e);
-                    }
                     clickOnCalvingTab();
                 }
                 System.out.println("Calving is updated");
-                System.out.println("-----END-----");
+                clickOutside();
+                clickOnCalvingTab();
+                System.out.println("------------");
             } else {
-                driver.navigate().refresh();
+                System.out.println("The gestation date range is out of bounds - " + gestationDays.getText());
                 clickOnCalvingTab();
             }
         }
@@ -358,8 +367,7 @@ public class BharatPasudhan extends DataProvider {
                 result = true;
                 break;
             } catch (StaleElementReferenceException e) {
-            }
-            catch (NoSuchElementException e) {
+            } catch (NoSuchElementException e) {
             }
             attempts++;
         }
@@ -375,8 +383,7 @@ public class BharatPasudhan extends DataProvider {
                 result = true;
                 break;
             } catch (StaleElementReferenceException e) {
-            }
-            catch (NoSuchElementException e) {
+            } catch (NoSuchElementException e) {
             }
             attempts++;
         }
@@ -391,7 +398,7 @@ public class BharatPasudhan extends DataProvider {
     public static boolean checkElementExists(By by) {
         boolean result = false;
         int attempts = 0;
-        while (attempts < 3) {
+        while (attempts < 1) {
             try {
                 driver.findElement(by);
                 result = true;
@@ -405,6 +412,7 @@ public class BharatPasudhan extends DataProvider {
 
     public static String handleGestationDate(String addedDate, String initialDate) {
         String output;
+        LocalDate currentDate = LocalDate.now();
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
         LocalDate initialDateParse = LocalDate.parse(initialDate, formatter);
         LocalDate finalDateParse = LocalDate.parse(addedDate, formatter);
@@ -413,7 +421,11 @@ public class BharatPasudhan extends DataProvider {
         if (!(daysBetween >= 270 && daysBetween <= 280)) {
             output = initialDateParse.plusMonths(9).plusDays(randomNumber).format(formatter);
         } else {
-            output = finalDateParse.plusDays(randomNumber).format(formatter);
+            if (finalDateParse.isAfter(currentDate)) {
+                output = currentDate.format(formatter);
+            } else {
+                output = finalDateParse.plusDays(randomNumber).format(formatter);
+            }
         }
         return output;
     }

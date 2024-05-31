@@ -133,12 +133,19 @@ public class DataProvider {
     public static String getAnimalDatePlusNineMonths(String input) {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
         LocalDate date = LocalDate.parse(input, formatter);
-        // Add three months to the date
-        int randomNumber = (int) (Math.random() * 2) + 1;
-        LocalDate newDate = date.plusMonths(9).plusDays(randomNumber);
-        String formattedNewDate = newDate.format(formatter);
-        return formattedNewDate;
+        // Add Nine months to the date
+        LocalDate newDate = date.plusMonths(9);
+        return newDate.format(formatter);
     }
+
+    public static String getAnimalDatePlusSixMonths(String input) {
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+        LocalDate date = LocalDate.parse(input, formatter);
+        // Add three months to the date
+        LocalDate newDate = date.plusMonths(6);
+        return newDate.format(formatter);
+    }
+
 
     public static void main(String[] args) throws IOException {
     }
