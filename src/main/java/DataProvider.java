@@ -5,6 +5,8 @@ import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
 import java.io.*;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
@@ -19,7 +21,7 @@ public class DataProvider {
     public static String EXCEL_FILE_LOCATION = "/Users/vishag/Downloads/Avanathankottai PD Calving.xlsx";
 
     public static List<String> getAllAnimalTagId() throws IOException {
-        InputStream excelFile = new FileInputStream(EXCEL_FILE_LOCATION);
+        InputStream excelFile = Files.newInputStream(Paths.get(EXCEL_FILE_LOCATION));
         XSSFWorkbook wb = new XSSFWorkbook(excelFile);
         XSSFSheet sheet = wb.getSheetAt(0);
         List<String> animalTagIdValues = new ArrayList<>();
@@ -31,7 +33,7 @@ public class DataProvider {
     }
 
     public static int findRowOfAnimalId(String animalId) throws IOException {
-        InputStream excelFile = new FileInputStream(EXCEL_FILE_LOCATION);
+        InputStream excelFile = Files.newInputStream(Paths.get(EXCEL_FILE_LOCATION));
         XSSFWorkbook wb = new XSSFWorkbook(excelFile);
         XSSFSheet sheet = wb.getSheetAt(0);
         for (Row row : sheet) {
@@ -46,8 +48,8 @@ public class DataProvider {
         return 0;
     }
 
-    public static void updateExcelSheetWithPregnancyDetails(String animalId, String pregnancyDate, String result) throws IOException {
-        InputStream excelFile = new FileInputStream(EXCEL_FILE_LOCATION);
+    public static void updateExcelSheetWithRunDetails(String animalId, String pregnancyDate, String result) throws IOException {
+        InputStream excelFile = Files.newInputStream(Paths.get(EXCEL_FILE_LOCATION));
         XSSFWorkbook wb = new XSSFWorkbook(excelFile);
         XSSFSheet sheet = wb.getSheetAt(0);
         Row row = sheet.getRow(findRowOfAnimalId(animalId));
@@ -63,7 +65,7 @@ public class DataProvider {
             pdResult = row.createCell(6);
         }
         pdResult.setCellValue(result);
-        OutputStream outputStream = new FileOutputStream(EXCEL_FILE_LOCATION);
+        OutputStream outputStream = Files.newOutputStream(Paths.get(EXCEL_FILE_LOCATION));
         wb.write(outputStream);
         outputStream.close();
     }
@@ -90,7 +92,7 @@ public class DataProvider {
     }
 
     public static String getDuplicateDescDateOfAnimalTagId(String animalTagIdValues) throws IOException {
-        InputStream excelFile = new FileInputStream(EXCEL_FILE_LOCATION);
+        InputStream excelFile = Files.newInputStream(Paths.get(EXCEL_FILE_LOCATION));
         XSSFWorkbook wb = new XSSFWorkbook(excelFile);
         XSSFSheet sheet = wb.getSheetAt(0);
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm:ss");

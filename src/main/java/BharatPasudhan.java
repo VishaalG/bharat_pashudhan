@@ -31,8 +31,8 @@ public class BharatPasudhan extends DataProvider {
 
     public static void main(String[] args) throws IOException {
 
-        doPregnancyDiagnosis();
-//        doCalving();
+//        doPregnancyDiagnosis();
+        doCalving();
 
     }
 
@@ -210,19 +210,17 @@ public class BharatPasudhan extends DataProvider {
                         }
                         System.out.println("Pregnancy diagnosis updated for " + animalId + " with pregnancy date " + animalDate);
                         System.out.println("------------");
-                        updateExcelSheetWithPregnancyDetails(animalId, animalDate, "Updated");
+                        updateExcelSheetWithRunDetails(animalId, animalDate, "Updated");
                         clickOnPregnancyDiagnosisTab();
                     } else {
                         System.out.println("Pregnancy is 'NO' and status is '" + pregnancyStatus.getText() + "' for AnimalId " + animalId);
                         System.out.println("------------");
                         clickOnPregnancyDiagnosisTab();
-                        updateExcelSheetWithPregnancyDetails(animalId, animalDate, "Skipped");
                     }
                 }
             } else {
                 System.out.println("Animal pregnancy status is '" + isPregnant.getText() + "'.  Skipping " + getAllAnimalTagId().get(i));
                 System.out.println("------------");
-                updateExcelSheetWithPregnancyDetails(animalId, "", "Skipped");
             }
         }
     }
@@ -254,7 +252,7 @@ public class BharatPasudhan extends DataProvider {
                 WebElement newCalvingButton = driver.findElement(By.xpath("//button[@class='btn btn-primary mr-2']"));
                 wait.until(ExpectedConditions.elementToBeClickable(newCalvingButton));
                 newCalvingButton.click();
-                commonFlowForCalving();
+                commonFlowForCalving(animalId);
 
             } else if (searchTable.isDisplayed() && isPregnant.getText().contains("Yes") && milkingStatus.getText().contains("NA")) {
                 System.out.println("Animal is pregnant and is in 'NA' state");
@@ -264,7 +262,7 @@ public class BharatPasudhan extends DataProvider {
                 WebElement newCalvingButton = driver.findElement(By.xpath("//button[@class='btn btn-primary mr-2']"));
                 wait.until(ExpectedConditions.elementToBeClickable(newCalvingButton));
                 newCalvingButton.click();
-                commonFlowForCalving();
+                commonFlowForCalving(animalId);
 
             } else if (searchTable.isDisplayed() && isPregnant.getText().contains("Yes") && milkingStatus.getText().contains("In Milk")) {
                 String calvingDate = getAnimalDatePlusSixMonths(getInseminationDateFromCalvingHistoryTable());
@@ -287,14 +285,15 @@ public class BharatPasudhan extends DataProvider {
                 wait.until(ExpectedConditions.elementToBeClickable(submitMilkStatus));
                 submitMilkStatus.click();
                 driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(5));
-                commonFlowForCalving();
+                commonFlowForCalving(animalId);
             } else if (searchTable.isDisplayed() && isPregnant.getText().contains("No")) {
                 System.out.println("Animal is not pregnant");
+                updateExcelSheetWithRunDetails(animalId, "", "N");
             }
         }
     }
 
-    public static void commonFlowForCalving() {
+    public static void commonFlowForCalving(String animalId) throws IOException {
         new WebDriverWait(driver, Duration.ofSeconds(10)).ignoring(NoSuchElementException.class).until(ExpectedConditions.elementToBeClickable(By.xpath("//span[@class='status-highlight']")));
         WebElement pregnancyStatus = driver.findElement(By.xpath("//span[@class='status-highlight']"));
         wait.until(ExpectedConditions.visibilityOf(pregnancyStatus));
@@ -305,6 +304,7 @@ public class BharatPasudhan extends DataProvider {
             String addedNineMonthsDate = getAnimalDatePlusNineMonths(pregnancyDateFromTable);
             WebElement gestationDays = driver.findElement(By.xpath("//table[@class='table animal-table m-0 ng-star-inserted']//td[5]"));
             String modifiedGestationDate = handleGestationDate(addedNineMonthsDate, pregnancyDateFromTable);
+            System.out.println("Pregnancy date of animal is " + pregnancyDateFromTable);
             System.out.println("Gestation modified animal date is " + modifiedGestationDate);
             clearWebField(calvingDate);
             calvingDate.sendKeys(modifiedGestationDate);
@@ -347,10 +347,11 @@ public class BharatPasudhan extends DataProvider {
                             submitButton.click();
                         }
                         clickOutside();
+                        updateExcelSheetWithRunDetails(animalId, modifiedGestationDate, "Y");
                         clickOnCalvingTab();
                     }
                 } else {
-                    System.out.println("Unable to select 'Successful Calving option from calving status dropdown'");
+                    System.out.println("Unable to select 'Successful Calving' option from calving status dropdown'");
                 }
                 System.out.println("Calving is updated");
                 clickOutside();
