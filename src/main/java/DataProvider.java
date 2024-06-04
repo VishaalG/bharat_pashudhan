@@ -27,7 +27,11 @@ public class DataProvider {
         List<String> animalTagIdValues = new ArrayList<>();
         for (Row r : sheet) {
             Cell animalTagIdColumn = r.getCell(0);
-            animalTagIdValues.add(animalTagIdColumn.getStringCellValue());
+            if (animalTagIdColumn.getCellType().equals(CellType.STRING)) {
+                animalTagIdValues.add(animalTagIdColumn.getStringCellValue());
+            } else if (animalTagIdColumn.getCellType().equals(CellType.NUMERIC)) {
+                animalTagIdValues.add(String.valueOf(animalTagIdColumn.getNumericCellValue()));
+            }
         }
         return animalTagIdValues;
     }
