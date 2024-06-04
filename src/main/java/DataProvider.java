@@ -1,11 +1,10 @@
 import org.apache.poi.ss.usermodel.Cell;
+import org.apache.poi.ss.usermodel.CellType;
 import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
-import java.io.FileInputStream;
-import java.io.IOException;
-import java.io.InputStream;
+import java.io.*;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
@@ -31,7 +30,45 @@ public class DataProvider {
         return animalTagIdValues;
     }
 
-    public static String getDescDateOfAnimalTagId(String inseminationDate) throws IOException {
+    public static int findRowOfAnimalId(String animalId) throws IOException {
+        InputStream excelFile = new FileInputStream(EXCEL_FILE_LOCATION);
+        XSSFWorkbook wb = new XSSFWorkbook(excelFile);
+        XSSFSheet sheet = wb.getSheetAt(0);
+        for (Row row : sheet) {
+            for (Cell cell : row) {
+                if (cell.getCellType() == CellType.STRING) {
+                    if (cell.getRichStringCellValue().getString().trim().equals(animalId)) {
+                        return row.getRowNum();
+                    }
+                }
+            }
+        }
+        return 0;
+    }
+
+    public static void updateExcelSheetWithPregnancyDetails(String animalId, String pregnancyDate, String result) throws IOException {
+        InputStream excelFile = new FileInputStream(EXCEL_FILE_LOCATION);
+        XSSFWorkbook wb = new XSSFWorkbook(excelFile);
+        XSSFSheet sheet = wb.getSheetAt(0);
+        Row row = sheet.getRow(findRowOfAnimalId(animalId));
+        Cell updatePregnancyDate = row.getCell(5);
+        Cell pdResult = row.getCell(6);
+        // Update pregnancy result
+        if (updatePregnancyDate == null) {
+            updatePregnancyDate = row.createCell(5);
+        }
+        updatePregnancyDate.setCellValue(pregnancyDate);
+        // Update pregnancy result
+        if (pdResult == null) {
+            pdResult = row.createCell(6);
+        }
+        pdResult.setCellValue(result);
+        OutputStream outputStream = new FileOutputStream(EXCEL_FILE_LOCATION);
+        wb.write(outputStream);
+        outputStream.close();
+    }
+
+    public static String getDescDateOfAnimalTagId(String inseminationDate) {
 
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
         LocalDate inputDate = LocalDate.parse(inseminationDate, formatter);
