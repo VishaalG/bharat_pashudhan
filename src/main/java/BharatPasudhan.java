@@ -176,14 +176,14 @@ public class BharatPasudhan extends DataProvider {
                     wait.until(ExpectedConditions.elementToBeClickable(pregnancyStatus));
                     System.out.println("Pregnancy status is " + pregnancyStatus.getText());
                     System.out.println("Insemination date is " + inseminationDate.getText());
-                    String animalDate = getDescDateOfAnimalTagId(inseminationDate.getText());
+                    String pregnancyDate = getDescDateOfAnimalTagId(inseminationDate.getText());
                     if (Objects.equals(pregnancyStatus.getText(), "PD Due")) {
                         WebElement pdDate = driver.findElement(By.xpath("//input[@formcontrolname='pdDate']"));
                         new WebDriverWait(driver, Duration.ofSeconds(10)).ignoring(ElementClickInterceptedException.class).until(ExpectedConditions.elementToBeClickable(By.xpath("//input[@formcontrolname='pdDate']")));
                         clearWebField(pdDate);
-                        pdDate.sendKeys(animalDate);
+                        pdDate.sendKeys(pregnancyDate);
                         clickOutside();
-                        System.out.println("Pregnancy date is set as " + animalDate);
+                        System.out.println("Pregnancy date is set as " + pregnancyDate);
                         Select selectPdResult = new Select(driver.findElement(By.xpath("//select[@formcontrolname='pdResult']")));
                         try {
                             Thread.sleep(2000);
@@ -208,18 +208,20 @@ public class BharatPasudhan extends DataProvider {
                                 modalOk.click();
                             }
                         }
-                        System.out.println("Pregnancy diagnosis updated for " + animalId + " with pregnancy date " + animalDate);
+                        System.out.println("Pregnancy diagnosis updated for " + animalId + " with pregnancy date " + pregnancyDate);
                         System.out.println("------------");
-                        updateExcelSheetWithRunDetails(animalId, animalDate, "Updated");
+                        updateExcelSheetWithRunDetails(animalId, pregnancyDate, "Y");
                         clickOnPregnancyDiagnosisTab();
                     } else {
                         System.out.println("Pregnancy is 'NO' and status is '" + pregnancyStatus.getText() + "' for AnimalId " + animalId);
                         System.out.println("------------");
+                        updateExcelSheetWithRunDetails(animalId, pregnancyDate, "N");
                         clickOnPregnancyDiagnosisTab();
                     }
                 }
             } else {
                 System.out.println("Animal pregnancy status is '" + isPregnant.getText() + "'.  Skipping " + getAllAnimalTagId().get(i));
+                updateExcelSheetWithRunDetails(animalId, "Pregnant", "N");
                 System.out.println("------------");
             }
         }
@@ -306,10 +308,15 @@ public class BharatPasudhan extends DataProvider {
             String modifiedGestationDate = handleGestationDate(addedNineMonthsDate, pregnancyDateFromTable);
             System.out.println("Pregnancy date of animal is " + pregnancyDateFromTable);
             System.out.println("Gestation modified animal date is " + modifiedGestationDate);
-            clearWebField(calvingDate);
             calvingDate.sendKeys(modifiedGestationDate);
             clickOutside();
-            if (checkGestationRange(gestationDays.getText())) {
+            try {
+                Thread.sleep(4000);
+            } catch (InterruptedException e) {
+                throw new RuntimeException(e);
+            }
+            wait.until(ExpectedConditions.visibilityOf(driver.findElement(By.xpath("//table[@class='table animal-table m-0 ng-star-inserted']//td[5]"))));
+            if (checkGestationRange(driver.findElement(By.xpath("//table[@class='table animal-table m-0 ng-star-inserted']//td[5]")).getText())) {
                 new WebDriverWait(driver, Duration.ofSeconds(10)).ignoring(NoSuchElementException.class).until(ExpectedConditions.elementToBeClickable(By.xpath("//select[@formcontrolname='calvingStatus']")));
                 Select selectPdResult = new Select(driver.findElement(By.xpath("//select[@formcontrolname='calvingStatus']")));
                 selectPdResult.selectByIndex(1);
@@ -348,6 +355,12 @@ public class BharatPasudhan extends DataProvider {
                         }
                         clickOutside();
                         updateExcelSheetWithRunDetails(animalId, modifiedGestationDate, "Y");
+                        try {
+                            Thread.sleep(4000);
+                        } catch (InterruptedException e) {
+                            throw new RuntimeException(e);
+                        }
+                        driver.get("https://bharatpashudhan.ndlm.co.in/dashboard/");
                         clickOnCalvingTab();
                     }
                 } else {

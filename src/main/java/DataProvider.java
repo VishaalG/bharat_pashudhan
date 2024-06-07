@@ -4,7 +4,10 @@ import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
-import java.io.*;
+import java.io.FileInputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.OutputStream;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.time.LocalDate;
@@ -19,6 +22,7 @@ import java.util.stream.Collectors;
 public class DataProvider {
 
     public static String EXCEL_FILE_LOCATION = "/Users/vishag/Downloads/Avanathankottai PD Calving.xlsx";
+    // =TEXT(DATE(VALUE(MID(B1,7,4)), VALUE(MID(B1,4,2)), VALUE(LEFT(B1,2))), "dd/mm/yy")
 
     public static List<String> getAllAnimalTagId() throws IOException {
         InputStream excelFile = Files.newInputStream(Paths.get(EXCEL_FILE_LOCATION));
@@ -30,7 +34,9 @@ public class DataProvider {
             if (animalTagIdColumn.getCellType().equals(CellType.STRING)) {
                 animalTagIdValues.add(animalTagIdColumn.getStringCellValue());
             } else if (animalTagIdColumn.getCellType().equals(CellType.NUMERIC)) {
-                animalTagIdValues.add(String.valueOf(animalTagIdColumn.getNumericCellValue()));
+                Double animalNumericalValue = animalTagIdColumn.getNumericCellValue();
+                int animalValue = animalNumericalValue.intValue();
+                animalTagIdValues.add(String.valueOf(animalValue));
             }
         }
         return animalTagIdValues;
