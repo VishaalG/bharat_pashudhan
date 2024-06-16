@@ -432,12 +432,13 @@ public class BharatPasudhan extends DataProvider {
                         System.out.println("Animal is already Vaccinated on " + vaccinationTimeline.getText());
                         driver.findElement(By.xpath("//mat-icon[@role='img']")).click();
                         driver.findElement(By.xpath("//input[@id='search-by']")).clear();
+                        updateExcelSheetWithRunDetails(animalId, "Already Vaccinated", "N");
                         System.out.println("------------");
                         continue;
                     }
                 }
                 if (retryingFindingElement(By.xpath("//h3[normalize-space()='No history record found']"))) {
-                    System.out.println("Candidate for vaccination");
+                    System.out.println("Animal is not vaccinated");
                     driver.findElement(By.xpath("//mat-icon[@role='img']")).click();
                     wait.ignoring(NoSuchElementException.class).until(ExpectedConditions.elementToBeClickable(By.xpath("(//input[@id='filter-by'])[2]")));
                     driver.findElement(By.xpath("(//input[@id='filter-by'])[2]")).clear();
@@ -467,7 +468,8 @@ public class BharatPasudhan extends DataProvider {
                         throw new RuntimeException(e);
                     }
                     driver.findElement(By.xpath("//button[normalize-space()='Submit']")).click();
-                    System.out.println("Vaccinated with date " + vaccinationDate + " for animal " + animalId);
+                    System.out.println("Vaccinated animal on " + vaccinationDate);
+                    updateExcelSheetWithRunDetails(animalId, "Vaccinated", "Y");
                     try {
                         Thread.sleep(5000);
                     } catch (InterruptedException e) {
@@ -510,7 +512,7 @@ public class BharatPasudhan extends DataProvider {
 
     public static boolean verifyAnimalDetailsByVillageSearch(String animalId) {
         boolean ableToFindAnimalByVillage = false;
-        new WebDriverWait(driver, Duration.ofSeconds(10)).ignoring(NoSuchElementException.class).until(ExpectedConditions.elementToBeClickable(By.xpath("//input[@id='search-by']")));
+        new WebDriverWait(driver, Duration.ofSeconds(10)).ignoring(NoSuchElementException.class).ignoring(ElementClickInterceptedException.class).until(ExpectedConditions.elementToBeClickable(By.xpath("//input[@id='search-by']")));
         driver.findElement(By.xpath("//input[@id='search-by']")).clear();
         try {
             Thread.sleep(1500);

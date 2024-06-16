@@ -64,16 +64,16 @@ public class DataProvider {
         XSSFWorkbook wb = new XSSFWorkbook(excelFile);
         XSSFSheet sheet = wb.getSheetAt(0);
         Row row = sheet.getRow(findRowOfAnimalId(animalId));
-        Cell updatePregnancyDate = row.getCell(5);
-        Cell pdResult = row.getCell(6);
+        Cell updatePregnancyDate = row.getCell(1);
+        Cell pdResult = row.getCell(2);
         // Update pregnancy result
         if (updatePregnancyDate == null) {
-            updatePregnancyDate = row.createCell(5);
+            updatePregnancyDate = row.createCell(1);
         }
         updatePregnancyDate.setCellValue(pregnancyDate);
         // Update pregnancy result
         if (pdResult == null) {
-            pdResult = row.createCell(6);
+            pdResult = row.createCell(2);
         }
         pdResult.setCellValue(result);
         OutputStream outputStream = Files.newOutputStream(Paths.get(EXCEL_FILE_LOCATION));
