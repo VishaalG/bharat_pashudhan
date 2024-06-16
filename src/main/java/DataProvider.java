@@ -24,6 +24,8 @@ public class DataProvider {
     public static final String PASSWORD = "pdktait9_TN";
     public static String EXCEL_FILE_LOCATION = "/Users/vishag/Downloads/fmd vadavalam.xlsx";
     public static String VACCINATION_VILLAGE_NAME = "Mullur";
+    public static String VACCINATION_START_DATE_RANGE = "12/11/2023";
+    public static String VACCINATION_END_DATE_RANGE = "16/12/2023";
     // =TEXT(DATE(VALUE(MID(B1,7,4)), VALUE(MID(B1,4,2)), VALUE(LEFT(B1,2))), "dd/mm/yy")
 
     public static List<String> getAllAnimalTagId() throws IOException {
@@ -197,13 +199,13 @@ public class DataProvider {
     }
 
 
-    public static String getRandomDateInRange(String startDateStr, String endDateStr) {
+    public static String getRandomDateInRange() {
         // Define the date format
         SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
         try {
             // Parse the start and end dates
-            Date startDate = dateFormat.parse(startDateStr);
-            Date endDate = dateFormat.parse(endDateStr);
+            Date startDate = dateFormat.parse(VACCINATION_START_DATE_RANGE);
+            Date endDate = dateFormat.parse(VACCINATION_END_DATE_RANGE);
 
             // Generate a random date between startDate and endDate
             long randomMillis = ThreadLocalRandom.current().nextLong(startDate.getTime(), endDate.getTime());

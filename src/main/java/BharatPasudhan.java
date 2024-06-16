@@ -450,7 +450,7 @@ public class BharatPasudhan extends DataProvider {
                     driver.findElement(By.xpath("(//input[@id='filter-by'])[2]")).sendKeys(animalId);
                     driver.findElement(By.xpath("//table//td[normalize-space()='" + animalId + "']/ancestor::tr//td[1]//input")).click();
                     driver.findElement(By.xpath("//button[normalize-space()='Proceed']")).click();
-                    String vaccinationDate = getRandomDateInRange("08/11/2023", "18/12/2023");
+                    String vaccinationDate = getRandomDateInRange();
                     wait.ignoring(NoSuchElementException.class).until(ExpectedConditions.elementToBeClickable(By.xpath("//input[@formcontrolname='vaccinationDate']")));
                     WebElement vaccinationDateCalendar = driver.findElement(By.xpath("(//input[@id='mat-input-0'])[1]"));
                     new WebDriverWait(driver, Duration.ofSeconds(10)).ignoring(ElementClickInterceptedException.class).until(ExpectedConditions.elementToBeClickable(vaccinationDateCalendar));
