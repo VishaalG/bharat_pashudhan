@@ -10,18 +10,20 @@ import java.io.InputStream;
 import java.io.OutputStream;
 import java.nio.file.Files;
 import java.nio.file.Paths;
+import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
+import java.util.concurrent.ThreadLocalRandom;
 import java.util.stream.Collectors;
 
 public class DataProvider {
 
-    public static String EXCEL_FILE_LOCATION = "/Users/vishag/Downloads/Avanathankottai PD Calving.xlsx";
+    public static final String USERNAME = "pdktait9_TN";
+    public static final String PASSWORD = "pdktait9_TN";
+    public static String EXCEL_FILE_LOCATION = "/Users/vishag/Downloads/fmd vadavalam.xlsx";
+    public static String VACCINATION_VILLAGE_NAME = "Mullur";
     // =TEXT(DATE(VALUE(MID(B1,7,4)), VALUE(MID(B1,4,2)), VALUE(LEFT(B1,2))), "dd/mm/yy")
 
     public static List<String> getAllAnimalTagId() throws IOException {
@@ -34,9 +36,8 @@ public class DataProvider {
             if (animalTagIdColumn.getCellType().equals(CellType.STRING)) {
                 animalTagIdValues.add(animalTagIdColumn.getStringCellValue());
             } else if (animalTagIdColumn.getCellType().equals(CellType.NUMERIC)) {
-                Double animalNumericalValue = animalTagIdColumn.getNumericCellValue();
-                int animalValue = animalNumericalValue.intValue();
-                animalTagIdValues.add(String.valueOf(animalValue));
+                long animalNumericalValue = (long) animalTagIdColumn.getNumericCellValue();
+                animalTagIdValues.add(String.valueOf(animalNumericalValue));
             }
         }
         return animalTagIdValues;
@@ -195,6 +196,25 @@ public class DataProvider {
         return newDate.format(formatter);
     }
 
+
+    public static String getRandomDateInRange(String startDateStr, String endDateStr) {
+        // Define the date format
+        SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
+        try {
+            // Parse the start and end dates
+            Date startDate = dateFormat.parse(startDateStr);
+            Date endDate = dateFormat.parse(endDateStr);
+
+            // Generate a random date between startDate and endDate
+            long randomMillis = ThreadLocalRandom.current().nextLong(startDate.getTime(), endDate.getTime());
+            Date randomDate = new Date(randomMillis);
+            // Format and return the random date
+            return dateFormat.format(randomDate);
+        } catch (Exception e) {
+            e.printStackTrace();
+            return null;
+        }
+    }
 
     public static void main(String[] args) throws IOException {
     }
