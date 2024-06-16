@@ -171,7 +171,7 @@ public class BharatPasudhan extends DataProvider {
         for (int i = 0; i < getAllAnimalTagId().size(); i++) {
             // Get values from Excel
             String animalId = getAllAnimalTagId().get(i);
-            System.out.println("------------");
+            System.out.println("------" + i + "------");
             System.out.println("PD - Animal Id is " + animalId);
             new WebDriverWait(driver, Duration.ofSeconds(10)).ignoring(StaleElementReferenceException.class).until(ExpectedConditions.elementToBeClickable(By.xpath("//input[@id='search-by']")));
             retryingFindClick(By.xpath("//input[@id='search-by']"), animalId);
@@ -250,7 +250,7 @@ public class BharatPasudhan extends DataProvider {
         for (int i = 0; i < getAllAnimalTagId().size(); i++) {
             // Get values from Excel
             String animalId = getAllAnimalTagId().get(i);
-            System.out.println("------------");
+            System.out.println("------" + i + "------");
             System.out.println("Calving - Animal Id is " + animalId);
             new WebDriverWait(driver, Duration.ofSeconds(5)).ignoring(StaleElementReferenceException.class).until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//input[@id='search-by']")));
             retryingFindClick(By.xpath("//input[@id='search-by']"), animalId);
@@ -398,7 +398,6 @@ public class BharatPasudhan extends DataProvider {
     }
 
     public static void vaccination(String villageName) throws IOException {
-        System.out.println("------------");
         try {
             Thread.sleep(2000);
         } catch (InterruptedException e) {
@@ -406,6 +405,7 @@ public class BharatPasudhan extends DataProvider {
         }
         commonFlowForVaccination(villageName);
         for (int i = 0; i < getAllAnimalTagId().size(); i++) {
+            System.out.println("------" + i + "------");
             // Get values from Excel
             String animalId = getAllAnimalTagId().get(i);
             System.out.println("Vaccination - Animal Id is " + animalId);
