@@ -171,7 +171,7 @@ public class BharatPasudhan extends DataProvider {
         for (int i = 0; i < getAllAnimalTagId().size(); i++) {
             // Get values from Excel
             String animalId = getAllAnimalTagId().get(i);
-            System.out.println("------" + i + "------");
+            System.out.println("------ " + i + " ------");
             System.out.println("PD - Animal Id is " + animalId);
             new WebDriverWait(driver, Duration.ofSeconds(10)).ignoring(StaleElementReferenceException.class).until(ExpectedConditions.elementToBeClickable(By.xpath("//input[@id='search-by']")));
             retryingFindClick(By.xpath("//input[@id='search-by']"), animalId);
@@ -250,7 +250,7 @@ public class BharatPasudhan extends DataProvider {
         for (int i = 0; i < getAllAnimalTagId().size(); i++) {
             // Get values from Excel
             String animalId = getAllAnimalTagId().get(i);
-            System.out.println("------" + i + "------");
+            System.out.println("------ " + i + " ------");
             System.out.println("Calving - Animal Id is " + animalId);
             new WebDriverWait(driver, Duration.ofSeconds(5)).ignoring(StaleElementReferenceException.class).until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//input[@id='search-by']")));
             retryingFindClick(By.xpath("//input[@id='search-by']"), animalId);
@@ -405,7 +405,7 @@ public class BharatPasudhan extends DataProvider {
         }
         commonFlowForVaccination(villageName);
         for (int i = 0; i < getAllAnimalTagId().size(); i++) {
-            System.out.println("------" + i + "------");
+            System.out.println("------ " + i + " ------");
             // Get values from Excel
             String animalId = getAllAnimalTagId().get(i);
             System.out.println("Vaccination - Animal Id is " + animalId);
@@ -522,6 +522,12 @@ public class BharatPasudhan extends DataProvider {
         driver.findElement(By.xpath("//input[@id='search-by']")).sendKeys(animalId);
         new WebDriverWait(driver, Duration.ofSeconds(10)).ignoring(NoSuchElementException.class).until(ExpectedConditions.elementToBeClickable(By.xpath("//button[normalize-space()='Search']")));
         driver.findElement(By.xpath("//button[normalize-space()='Search']")).click();
+        try {
+            Thread.sleep(2000);
+        } catch (InterruptedException e) {
+            throw new RuntimeException(e);
+        }
+        new WebDriverWait(driver, Duration.ofSeconds(10)).ignoring(NoSuchElementException.class).until(ExpectedConditions.elementToBeClickable(By.xpath("//table[@role='table']")));
         if (retryingFindingElement(By.xpath("//table[@role='table']"))) {
             ableToFindAnimalByVillage = true;
             System.out.println("Able to find vaccination table details");
