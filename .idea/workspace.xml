@@ -5,10 +5,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="a2acd477-40e4-4272-a74d-bfcbb9bc97fa" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/sonarlint/issuestore/a/2/a258e8a07ec668938f5841112f64bae1eb7e2322" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/sonarlint/issuestore/a/2/a258e8a07ec668938f5841112f64bae1eb7e2322" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/BharatPasudhan.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/BharatPasudhan.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -134,7 +132,7 @@
       <workItem from="1718378125241" duration="4054000" />
       <workItem from="1718418618986" duration="6873000" />
       <workItem from="1718504887268" duration="609000" />
-      <workItem from="1718514089140" duration="6608000" />
+      <workItem from="1718514089140" duration="7284000" />
     </task>
     <servers />
   </component>

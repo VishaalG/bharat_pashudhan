@@ -228,12 +228,12 @@ public class BharatPasudhan extends DataProvider {
                             }
                         }
                         System.out.println("Pregnancy diagnosis updated for " + animalId + " with pregnancy date " + pregnancyDate);
-                        System.out.println("------------");
+                        System.out.println("---------------");
                         updateExcelSheetWithRunDetails(animalId, pregnancyDate, "Y");
                         clickOnPregnancyDiagnosisTab();
                     } else {
                         System.out.println("Pregnancy is 'NO' and status is '" + pregnancyStatus.getText() + "' for AnimalId " + animalId);
-                        System.out.println("------------");
+                        System.out.println("---------------");
                         updateExcelSheetWithRunDetails(animalId, pregnancyDate, "N");
                         clickOnPregnancyDiagnosisTab();
                     }
@@ -241,7 +241,7 @@ public class BharatPasudhan extends DataProvider {
             } else {
                 System.out.println("Animal pregnancy status is '" + isPregnant.getText() + "'.  Skipping " + getAllAnimalTagId().get(i));
                 updateExcelSheetWithRunDetails(animalId, "Pregnant", "N");
-                System.out.println("------------");
+                System.out.println("---------------");
             }
         }
     }
@@ -389,7 +389,7 @@ public class BharatPasudhan extends DataProvider {
                 clickOutside();
                 driver.get("https://bharatpashudhan.ndlm.co.in/dashboard/");
                 clickOnCalvingTab();
-                System.out.println("------------");
+                System.out.println("---------------");
             } else {
                 System.out.println("The gestation date range is out of bounds - " + gestationDays.getText());
                 clickOnCalvingTab();
@@ -433,7 +433,7 @@ public class BharatPasudhan extends DataProvider {
                         driver.findElement(By.xpath("//mat-icon[@role='img']")).click();
                         driver.findElement(By.xpath("//input[@id='search-by']")).clear();
                         updateExcelSheetWithRunDetails(animalId, "Already Vaccinated", "N");
-                        System.out.println("------------");
+                        System.out.println("---------------");
                         continue;
                     }
                 }
@@ -477,7 +477,7 @@ public class BharatPasudhan extends DataProvider {
                     }
                     clickOutside();
                     driver.get("https://bharatpashudhan.ndlm.co.in/dashboard/vaccination");
-                    System.out.println("------------");
+                    System.out.println("---------------");
                     commonFlowForVaccination(villageName);
                 }
             }
