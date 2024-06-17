@@ -328,7 +328,7 @@ public class BharatPasudhan extends DataProvider {
                 WebElement newCalvingButton = driver.findElement(By.xpath("//button[@class='btn btn-primary mr-2']"));
                 wait.until(ExpectedConditions.elementToBeClickable(newCalvingButton));
                 newCalvingButton.click();
-                if (i/10 == 0) {
+                if (i%10 == 0) {
                     commonFlowForCalving(animalId, CALVING_SEX.MALE);
                 } else {
                     commonFlowForCalving(animalId, CALVING_SEX.FEMALE);
@@ -341,7 +341,7 @@ public class BharatPasudhan extends DataProvider {
                 WebElement newCalvingButton = driver.findElement(By.xpath("//button[@class='btn btn-primary mr-2']"));
                 wait.until(ExpectedConditions.elementToBeClickable(newCalvingButton));
                 newCalvingButton.click();
-                if (i/10 == 0) {
+                if (i%10 == 0) {
                     commonFlowForCalving(animalId, CALVING_SEX.MALE);
                 } else {
                     commonFlowForCalving(animalId, CALVING_SEX.FEMALE);
@@ -371,7 +371,7 @@ public class BharatPasudhan extends DataProvider {
                 wait.until(ExpectedConditions.elementToBeClickable(submitMilkStatus));
                 submitMilkStatus.click();
                 driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(5));
-                if (i/10 == 0) {
+                if (i%10 == 0) {
                     commonFlowForCalving(animalId, CALVING_SEX.MALE);
                 } else {
                     commonFlowForCalving(animalId, CALVING_SEX.FEMALE);
