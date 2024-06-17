@@ -25,8 +25,8 @@ public class BharatPasudhan extends DataProvider {
 
     public static void main(String[] args) throws IOException, InterruptedException {
 
-        doArtificialInsemination();
-//        doPregnancyDiagnosis();
+//        doArtificialInsemination(); - Work in Progress
+        doPregnancyDiagnosis();
 //        doCalving();
 //        doVaccination(VACCINATION_VILLAGE_NAME);
     }
@@ -137,11 +137,11 @@ public class BharatPasudhan extends DataProvider {
     // Start of Artificial Insemination flow
 
     public static void artificialInsemination() throws IOException, RuntimeException, InterruptedException {
-        System.out.println("AI - Found total of " + getAllAnimalTagId().size() + "entries from excel");
+        System.out.println("AI - Total " + getAllAnimalTagId().size() + " entries from excel sheet");
         for (int i = 0; i < getAllAnimalTagId().size(); i++) {
             // Get values from Excel
             String animalId = getAllAnimalTagId().get(i);
-            System.out.println("------ " + i + 1 + " ------");
+            System.out.println("------ " + i + " ------");
             System.out.println("AI - Animal Id is " + animalId);
             new WebDriverWait(driver, Duration.ofSeconds(10)).ignoring(StaleElementReferenceException.class).until(ExpectedConditions.elementToBeClickable(By.xpath("//input[@id='search-by']")));
             retryingFindClick(By.xpath("//input[@id='search-by']"), animalId);
@@ -167,13 +167,15 @@ public class BharatPasudhan extends DataProvider {
                     WebElement aiDate = driver.findElement(By.xpath("//input[@formcontrolname='aiDate']"));
                     Thread.sleep(2000);
                     clearWebField(aiDate);
-                    aiDate.sendKeys("02/01/2014");
+                    if (getDatePlusSixMonths(successfulCalvingDate) == null ) {
+                        System.out.println("Insemination date is after current date. Skipping");
+                        driver.get("https://bharatpashudhan.ndlm.co.in/dashboard/animal-breeding/artificial-insemination");
+                        Thread.sleep(4000);
+                        continue;
+                    }
+                    aiDate.sendKeys(getDatePlusSixMonths(successfulCalvingDate));
                     clickOutside();
-                    driver.findElement(By.xpath("//input[@formcontrolname='aiTimestamp']"));
-                    driver.findElement(By.xpath("//input[@formcontrolname='bullId']")).sendKeys("DKDKDK");
-                    Select semenType = new Select(driver.findElement(By.xpath("//select[@name='selectSemen']")));
-                    semenType.selectByIndex(1);
-                    clickOutside();
+                    handleAiTimestampAndBullId(successfulCalvingDate);
                     driver.findElement(By.xpath("//button[normalize-space()='Submit']")).click();
                     System.out.println("AI - Updated for AnimalId " + animalId);
                     System.out.println("---------------");
@@ -203,16 +205,29 @@ public class BharatPasudhan extends DataProvider {
         return checkCandidatureForArtificialInsemination;
     }
 
+    public static void handleAiTimestampAndBullId(String aiDate) {
+        WebElement aiTimeStampField = driver.findElement(By.xpath("//input[@formcontrolname='aiTimestamp']"));
+        aiTimeStampField.click();
+        aiTimeStampField.clear();
+        aiTimeStampField.sendKeys("11:12:14");
+
+        driver.findElement(By.xpath("//input[@formcontrolname='bullId']")).sendKeys("DKDKDK");
+        Select semenType = new Select(driver.findElement(By.xpath("//select[@name='selectSemen']")));
+        semenType.selectByIndex(1);
+        clickOutside();
+
+    }
+
     // End of Artificial Insemination flow and it's methods
 
     // Start of Pregnancy Diagnosis flow
 
     public static void pregnancyDiagnosis() throws IOException, InterruptedException {
-        System.out.println("PD - Found total of " + getAllAnimalTagId().size() + "entries from excel");
+        System.out.println("PD - Found total of " + getAllAnimalTagId().size() + " entries from excel sheet");
         for (int i = 0; i < getAllAnimalTagId().size(); i++) {
             // Get values from Excel
             String animalId = getAllAnimalTagId().get(i);
-            System.out.println("------ " + i + 1 + " ------");
+            System.out.println("------ " + i + " ------");
             System.out.println("PD - Animal Id is " + animalId);
             new WebDriverWait(driver, Duration.ofSeconds(10)).ignoring(StaleElementReferenceException.class).until(ExpectedConditions.elementToBeClickable(By.xpath("//input[@id='search-by']")));
             retryingFindClick(By.xpath("//input[@id='search-by']"), animalId);
@@ -271,13 +286,13 @@ public class BharatPasudhan extends DataProvider {
                     } else {
                         System.out.println("Pregnancy is 'NO' and status is '" + pregnancyStatus.getText() + "' for AnimalId " + animalId);
                         System.out.println("---------------");
-                        updateExcelSheetWithRunDetails(animalId, pregnancyDate, "N");
+                        updateExcelSheetWithRunDetails(animalId, pregnancyStatus.getText(), "N");
                         clickOnPregnancyDiagnosisTab();
                     }
                 }
             } else {
                 System.out.println("Animal pregnancy status is '" + isPregnant.getText() + "'.  Skipping " + getAllAnimalTagId().get(i));
-                updateExcelSheetWithRunDetails(animalId, "Pregnant", "N");
+                updateExcelSheetWithRunDetails(animalId, "Already Pregnant", "N");
                 System.out.println("---------------");
             }
         }
@@ -288,11 +303,11 @@ public class BharatPasudhan extends DataProvider {
     // Start of calving
 
     public static void calving() throws IOException, InterruptedException {
-        System.out.println("Calving - Found total of " + getAllAnimalTagId().size() + "entries from excel");
+        System.out.println("Calving - Found total of " + getAllAnimalTagId().size() + " entries from excel sheet");
         for (int i = 0; i < getAllAnimalTagId().size(); i++) {
             // Get values from Excel
             String animalId = getAllAnimalTagId().get(i);
-            System.out.println("------ " + i + 1 + " ------");
+            System.out.println("------ " + i + " ------");
             System.out.println("Calving - Animal Id is " + animalId);
             new WebDriverWait(driver, Duration.ofSeconds(5)).ignoring(StaleElementReferenceException.class).until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//input[@id='search-by']")));
             retryingFindClick(By.xpath("//input[@id='search-by']"), animalId);
@@ -313,8 +328,11 @@ public class BharatPasudhan extends DataProvider {
                 WebElement newCalvingButton = driver.findElement(By.xpath("//button[@class='btn btn-primary mr-2']"));
                 wait.until(ExpectedConditions.elementToBeClickable(newCalvingButton));
                 newCalvingButton.click();
-                commonFlowForCalving(animalId);
-
+                if (i/10 == 0) {
+                    commonFlowForCalving(animalId, CALVING_SEX.MALE);
+                } else {
+                    commonFlowForCalving(animalId, CALVING_SEX.FEMALE);
+                }
             } else if (searchTable.isDisplayed() && isPregnant.getText().contains("Yes") && milkingStatus.getText().contains("NA")) {
                 System.out.println("Animal is pregnant and is in 'NA' state");
                 new WebDriverWait(driver, Duration.ofSeconds(10)).until(ExpectedConditions.elementToBeClickable(By.xpath("//table[@role='table']")));
@@ -323,12 +341,18 @@ public class BharatPasudhan extends DataProvider {
                 WebElement newCalvingButton = driver.findElement(By.xpath("//button[@class='btn btn-primary mr-2']"));
                 wait.until(ExpectedConditions.elementToBeClickable(newCalvingButton));
                 newCalvingButton.click();
-                commonFlowForCalving(animalId);
-
+                if (i/10 == 0) {
+                    commonFlowForCalving(animalId, CALVING_SEX.MALE);
+                } else {
+                    commonFlowForCalving(animalId, CALVING_SEX.FEMALE);
+                }
             } else if (searchTable.isDisplayed() && isPregnant.getText().contains("Yes") && milkingStatus.getText().contains("In Milk")) {
-                String calvingDate = getAnimalDatePlusSixMonths(getInseminationDateFromCalvingHistoryTable());
+                String calvingDate = getDatePlusSixMonths(getInseminationDateFromCalvingHistoryTable());
+                if (calvingDate == null) {
+                    System.out.println("Calving date is after current date. Skipping");
+                    continue;
+                }
                 System.out.println("Gestation date is added by 6 months from insemination date - " + calvingDate);
-                // Calving flow
                 wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//div[@class='back-arrow']")));
                 driver.findElement(By.xpath("//div[@class='back-arrow']")).click();
                 new WebDriverWait(driver, Duration.ofSeconds(10)).until(ExpectedConditions.elementToBeClickable(By.xpath("//table[@role='table']")));
@@ -338,6 +362,7 @@ public class BharatPasudhan extends DataProvider {
                 newCalvingButton.click();
                 WebElement dryOffDate = driver.findElement(By.xpath("//div[@class='ear-tag-detail']//input[@placeholder='dd-mm-yyyy']"));
                 wait.until(ExpectedConditions.elementToBeClickable(dryOffDate));
+                Thread.sleep(1000);
                 dryOffDate.sendKeys(calvingDate);
                 wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//select[@formcontrolname='milkingStatus']")));
                 Select milkingStatusDropdown = new Select(driver.findElement(By.xpath("//select[@formcontrolname='milkingStatus']")));
@@ -346,15 +371,20 @@ public class BharatPasudhan extends DataProvider {
                 wait.until(ExpectedConditions.elementToBeClickable(submitMilkStatus));
                 submitMilkStatus.click();
                 driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(5));
-                commonFlowForCalving(animalId);
+                if (i/10 == 0) {
+                    commonFlowForCalving(animalId, CALVING_SEX.MALE);
+                } else {
+                    commonFlowForCalving(animalId, CALVING_SEX.FEMALE);
+                }
             } else if (searchTable.isDisplayed() && isPregnant.getText().contains("No")) {
-                System.out.println("Animal is not pregnant");
+                System.out.println("Animal is not pregnant. Skipping");
                 updateExcelSheetWithRunDetails(animalId, "", "N");
             }
         }
     }
 
-    public static void commonFlowForCalving(String animalId) throws IOException, InterruptedException {
+    public static void commonFlowForCalving(String animalId, CALVING_SEX sex) throws IOException, InterruptedException {
+        System.out.println("Calving for sex type - " +  sex.toString());
         new WebDriverWait(driver, Duration.ofSeconds(10)).ignoring(NoSuchElementException.class).until(ExpectedConditions.elementToBeClickable(By.xpath("//span[@class='status-highlight']")));
         WebElement pregnancyStatus = driver.findElement(By.xpath("//span[@class='status-highlight']"));
         wait.until(ExpectedConditions.visibilityOf(pregnancyStatus));
@@ -362,7 +392,10 @@ public class BharatPasudhan extends DataProvider {
             WebElement calvingDate = driver.findElement(By.xpath("//input[@formcontrolname='calvingDate']"));
             clearWebField(calvingDate);
             String pregnancyDateFromTable = driver.findElement(By.xpath("//table[@class='mat-table cdk-table mat-elevation-z8']//td[2]")).getText();
-            String addedNineMonthsDate = getAnimalDatePlusNineMonths(pregnancyDateFromTable);
+            String addedNineMonthsDate = getDatePlusNineMonths(pregnancyDateFromTable);
+            if (addedNineMonthsDate == null) {
+                System.out.println("Gestation date is after current date. Skipping");
+            }
             WebElement gestationDays = driver.findElement(By.xpath("//table[@class='table animal-table m-0 ng-star-inserted']//td[5]"));
             String modifiedGestationDate = handleGestationDate(addedNineMonthsDate, pregnancyDateFromTable);
             System.out.println("Pregnancy date of animal is " + pregnancyDateFromTable);
@@ -395,8 +428,14 @@ public class BharatPasudhan extends DataProvider {
                         isEarTag.click();
                         WebElement male = driver.findElement(By.xpath("(//input[@id='sexOfCalf_0'])[1]"));
                         WebElement female = driver.findElement(By.xpath("(//input[@id='sexOfCalf_0'])[2]"));
-                        wait.until(ExpectedConditions.elementToBeClickable(female));
-                        female.click();
+                        if (sex.equals(CALVING_SEX.MALE)) {
+                            wait.until(ExpectedConditions.elementToBeClickable(male));
+                            male.click();
+                        }
+                        if (sex.equals(CALVING_SEX.FEMALE)) {
+                            wait.until(ExpectedConditions.elementToBeClickable(female));
+                            female.click();
+                        }
                         Select reasonForNotRegistering = new Select(driver.findElement(By.xpath("//select[@formcontrolname='reasonForNotRegistering']")));
                         int randomNumber = (int) (Math.random() * 2) + 1;
                         reasonForNotRegistering.selectByIndex(randomNumber);
@@ -430,11 +469,11 @@ public class BharatPasudhan extends DataProvider {
     // Start of vaccination flow
 
     public static void vaccination(String villageName) throws IOException, InterruptedException {
-        System.out.println("Vaccination - Found total of " + getAllAnimalTagId().size() + "entries from excel");
+        System.out.println("Vaccination - Found total of " + getAllAnimalTagId().size() + " entries from excel sheet");
         Thread.sleep(2000);
         commonFlowForVaccination(villageName);
         for (int i = 0; i < getAllAnimalTagId().size(); i++) {
-            System.out.println("------ " + i + 1 + " ------");
+            System.out.println("------ " + i + " ------");
             // Get values from Excel
             String animalId = getAllAnimalTagId().get(i);
             System.out.println("Vaccination - Animal Id is " + animalId);

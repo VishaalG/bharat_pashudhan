@@ -27,11 +27,20 @@ public class DataProvider {
     public static String VACCINATION_VILLAGE_NAME = "Mullur";
     public static String VACCINATION_START_DATE_RANGE = "12/11/2023";
     public static String VACCINATION_END_DATE_RANGE = "16/12/2023";
-    public static List<String> BULL_ID_TYPE = List.of("RS", "Jersey", "CBHF", "CBJ");
-    public static List<String> RS_BULL_IDS = List.of("SAG-RS-10006", "SAG-RS-10008");
-    public static List<String> JERSEY_BULL_IDS = List.of("ABC-JY-21032", "ABC-JY-21033");
-    public static List<String> CBHF_BULL_IDS = List.of("ALM-HX-40073", "ALM-HX-40074");
-    public static List<String> CBJ_BULL_IDS = List.of("ALM-JS-40282", "ALM-JS-40351");
+    public enum CALVING_SEX {
+        MALE,
+        FEMALE,
+    }
+    public enum BULL_TYPE {
+        RS,
+        JERSEY,
+        CBHF,
+        CBJ
+    }
+    public static List<String> RS = List.of("SAG-RS-10006", "SAG-RS-10008");
+    public static List<String> JERSEY = List.of("ABC-JY-21032", "ABC-JY-21033");
+    public static List<String> CBHF = List.of("ALM-HX-40073", "ALM-HX-40074");
+    public static List<String> CBJ = List.of("ALM-JS-40282", "ALM-JS-40351");
     // =TEXT(DATE(VALUE(MID(B1,7,4)), VALUE(MID(B1,4,2)), VALUE(LEFT(B1,2))), "dd/mm/yy")
 
     public static List<String> getAllAnimalTagId() throws IOException {
@@ -158,17 +167,6 @@ public class DataProvider {
         }
     }
 
-    public static String getAnimalDatePlusThreeMonths(String input) {
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
-        LocalDate date = LocalDate.parse(input, formatter);
-        // Add three months to the date
-        int randomNumber = (int) (Math.random() * 3) + 1;
-        LocalDate newDate = date.plusMonths(3).plusDays(randomNumber);
-        String formattedNewDate = newDate.format(formatter);
-        return formattedNewDate;
-
-    }
-
     public static String handleGestationDate(String addedDate, String initialDate) {
         String output;
         LocalDate currentDate = LocalDate.now();
@@ -195,7 +193,7 @@ public class DataProvider {
         return num >= 270 && num <= 280;
     }
 
-    public static String getAnimalDateFromExcelPlusNineMonths(String animalTagIdValues) throws IOException {
+    public static String getDateFromExcelPlusNineMonths(String animalTagIdValues) throws IOException {
         InputStream excelFile = new FileInputStream(EXCEL_FILE_LOCATION);
         XSSFWorkbook wb = new XSSFWorkbook(excelFile);
         XSSFSheet sheet = wb.getSheetAt(0);
@@ -219,22 +217,41 @@ public class DataProvider {
 
     }
 
-    public static String getAnimalDatePlusNineMonths(String input) {
+    public static String getDatePlusThreeMonths(String input) {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
         LocalDate date = LocalDate.parse(input, formatter);
-        // Add Nine months to the date
-        LocalDate newDate = date.plusMonths(9);
-        return newDate.format(formatter);
+        // Add three months to the date
+        int randomNumber = (int) (Math.random() * 3) + 1;
+        LocalDate newDate = date.plusMonths(3).plusDays(randomNumber);
+        String formattedNewDate = newDate.format(formatter);
+        if (newDate.isAfter(LocalDate.now())) {
+            return null;
+        }
+        return formattedNewDate;
+
     }
 
-    public static String getAnimalDatePlusSixMonths(String input) {
+    public static String getDatePlusSixMonths(String input) {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
         LocalDate date = LocalDate.parse(input, formatter);
         // Add three months to the date
         LocalDate newDate = date.plusMonths(6);
+        if (newDate.isAfter(LocalDate.now())) {
+            return null;
+        }
         return newDate.format(formatter);
     }
 
+    public static String getDatePlusNineMonths(String input) {
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+        LocalDate date = LocalDate.parse(input, formatter);
+        // Add Nine months to the date
+        LocalDate newDate = date.plusMonths(9);
+        if (newDate.isAfter(LocalDate.now())) {
+            return null;
+        }
+        return newDate.format(formatter);
+    }
 
     public static String getRandomDateInRange() {
         // Define the date format
