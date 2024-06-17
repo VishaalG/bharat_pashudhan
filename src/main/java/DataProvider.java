@@ -14,18 +14,24 @@ import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.time.temporal.ChronoUnit;
 import java.util.*;
 import java.util.concurrent.ThreadLocalRandom;
 import java.util.stream.Collectors;
 
 public class DataProvider {
 
-    public static final String USERNAME = "pdktait9_TN";
-    public static final String PASSWORD = "pdktait9_TN";
-    public static String EXCEL_FILE_LOCATION = "/Users/vishag/Downloads/fmd vadavalam.xlsx";
+    public static final String USERNAME = "pdktait31_TN";
+    public static final String PASSWORD = "Pdktait31*";
+    public static String EXCEL_FILE_LOCATION = "/Users/vishag/Downloads/Vadakadu AI.xlsx";
     public static String VACCINATION_VILLAGE_NAME = "Mullur";
     public static String VACCINATION_START_DATE_RANGE = "12/11/2023";
     public static String VACCINATION_END_DATE_RANGE = "16/12/2023";
+    public static List<String> BULL_ID_TYPE = List.of("RS", "Jersey", "CBHF", "CBJ");
+    public static List<String> RS_BULL_IDS = List.of("SAG-RS-10006", "SAG-RS-10008");
+    public static List<String> JERSEY_BULL_IDS = List.of("ABC-JY-21032", "ABC-JY-21033");
+    public static List<String> CBHF_BULL_IDS = List.of("ALM-HX-40073", "ALM-HX-40074");
+    public static List<String> CBJ_BULL_IDS = List.of("ALM-JS-40282", "ALM-JS-40351");
     // =TEXT(DATE(VALUE(MID(B1,7,4)), VALUE(MID(B1,4,2)), VALUE(LEFT(B1,2))), "dd/mm/yy")
 
     public static List<String> getAllAnimalTagId() throws IOException {
@@ -53,6 +59,12 @@ public class DataProvider {
             for (Cell cell : row) {
                 if (cell.getCellType() == CellType.STRING) {
                     if (cell.getRichStringCellValue().getString().trim().equals(animalId)) {
+                        return row.getRowNum();
+                    }
+                }
+                if (cell.getCellType() == CellType.NUMERIC) {
+                    long animalNumericalValue = (long) cell.getNumericCellValue();
+                    if (Long.valueOf(animalNumericalValue).equals(animalId)) {
                         return row.getRowNum();
                     }
                 }
@@ -157,6 +169,31 @@ public class DataProvider {
 
     }
 
+    public static String handleGestationDate(String addedDate, String initialDate) {
+        String output;
+        LocalDate currentDate = LocalDate.now();
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+        LocalDate initialDateParse = LocalDate.parse(initialDate, formatter);
+        LocalDate finalDateParse = LocalDate.parse(addedDate, formatter);
+        long daysBetween = ChronoUnit.DAYS.between(initialDateParse, finalDateParse);
+        int randomNumber = (int) (Math.random() * 2) + 1;
+        if (!(daysBetween >= 270 && daysBetween <= 280)) {
+            output = initialDateParse.plusMonths(9).plusDays(randomNumber).format(formatter);
+        } else {
+            if (finalDateParse.isAfter(currentDate)) {
+                output = currentDate.format(formatter);
+            } else {
+                output = finalDateParse.plusDays(randomNumber).format(formatter);
+            }
+        }
+        return output;
+    }
+
+    public static boolean checkGestationRange(String number) {
+        int num = Integer.parseInt(number);
+        System.out.println("Gestation days is - " + num);
+        return num >= 270 && num <= 280;
+    }
 
     public static String getAnimalDateFromExcelPlusNineMonths(String animalTagIdValues) throws IOException {
         InputStream excelFile = new FileInputStream(EXCEL_FILE_LOCATION);
@@ -218,6 +255,6 @@ public class DataProvider {
         }
     }
 
-    public static void main(String[] args) throws IOException {
+    public static void main(String[] args) throws IOException, InterruptedException {
     }
 }
