@@ -26,9 +26,9 @@ public class BharatPasudhan extends DataProvider {
     public static void main(String[] args) throws IOException, InterruptedException {
 
 //        doArtificialInsemination(); - Work in Progress
-        doPregnancyDiagnosis();
+//        doPregnancyDiagnosis();
 //        doCalving();
-//        doVaccination(VACCINATION_VILLAGE_NAME);
+        doVaccination(VACCINATION_VILLAGE_NAME);
     }
 
     public static void doArtificialInsemination() throws IOException, InterruptedException {
@@ -75,49 +75,49 @@ public class BharatPasudhan extends DataProvider {
 
     public static void clickOnArtificialInseminationTab() throws InterruptedException {
         if (retryingFindingElement(By.xpath("//a[@href='#submenu2'][@aria-expanded='true']"))) {
-            new WebDriverWait(driver, Duration.ofSeconds(5)).ignoring(ElementNotInteractableException.class).ignoring(StaleElementReferenceException.class).until(ExpectedConditions.elementToBeClickable(By.xpath("//ul[@id='submenu2']//li[1]//span[1]//a[1]")));
-            driver.findElement(By.xpath("//ul[@id='submenu2']//li[1]//span[1]//a[1]")).click();
+            new WebDriverWait(driver, Duration.ofSeconds(5)).ignoring(ElementNotInteractableException.class).ignoring(StaleElementReferenceException.class).until(ExpectedConditions.elementToBeClickable(By.xpath("//a[normalize-space()='Artificial Insemination']")));
+            driver.findElement(By.xpath("//a[normalize-space()='Artificial Insemination']")).click();
         } else {
             new WebDriverWait(driver, Duration.ofSeconds(5)).ignoring(ElementNotInteractableException.class).ignoring(StaleElementReferenceException.class).until(ExpectedConditions.elementToBeClickable(By.xpath("//div[contains(text(),'Animal Breeding')]")));
             driver.findElement(By.xpath("//div[contains(text(),'Animal Breeding')]")).click();
-            new WebDriverWait(driver, Duration.ofSeconds(5)).ignoring(ElementNotInteractableException.class).ignoring(StaleElementReferenceException.class).until(ExpectedConditions.elementToBeClickable(By.xpath("//ul[@id='submenu2']//li[1]//span[1]//a[1]")));
-            driver.findElement(By.xpath("//ul[@id='submenu2']//li[1]//span[1]//a[1]")).click();
+            new WebDriverWait(driver, Duration.ofSeconds(5)).ignoring(ElementNotInteractableException.class).ignoring(StaleElementReferenceException.class).until(ExpectedConditions.elementToBeClickable(By.xpath("//a[normalize-space()='Artificial Insemination']")));
+            driver.findElement(By.xpath("//a[normalize-space()='Artificial Insemination']")).click();
         }
     }
 
     public static void clickOnCalvingTab() throws InterruptedException {
         if (retryingFindingElement(By.xpath("//a[@href='#submenu2'][@aria-expanded='true']"))) {
-            new WebDriverWait(driver, Duration.ofSeconds(5)).ignoring(ElementNotInteractableException.class).ignoring(StaleElementReferenceException.class).until(ExpectedConditions.elementToBeClickable(By.xpath("//ul[@id='submenu2']//li[3]//span[1]//a[1]")));
-            driver.findElement(By.xpath("//ul[@id='submenu2']//li[3]//span[1]//a[1]")).click();
+            new WebDriverWait(driver, Duration.ofSeconds(5)).ignoring(ElementNotInteractableException.class).ignoring(StaleElementReferenceException.class).until(ExpectedConditions.elementToBeClickable(By.xpath("//a[normalize-space()='Calving']")));
+            driver.findElement(By.xpath("//a[normalize-space()='Calving']")).click();
         } else {
             new WebDriverWait(driver, Duration.ofSeconds(5)).ignoring(ElementNotInteractableException.class).ignoring(StaleElementReferenceException.class).until(ExpectedConditions.elementToBeClickable(By.xpath("//div[contains(text(),'Animal Breeding')]")));
             driver.findElement(By.xpath("//div[contains(text(),'Animal Breeding')]")).click();
-            new WebDriverWait(driver, Duration.ofSeconds(5)).ignoring(ElementNotInteractableException.class).ignoring(StaleElementReferenceException.class).until(ExpectedConditions.elementToBeClickable(By.xpath("//ul[@id='submenu2']//li[3]//span[1]//a[1]")));
-            driver.findElement(By.xpath("//ul[@id='submenu2']//li[3]//span[1]//a[1]")).click();
+            new WebDriverWait(driver, Duration.ofSeconds(5)).ignoring(ElementNotInteractableException.class).ignoring(StaleElementReferenceException.class).until(ExpectedConditions.elementToBeClickable(By.xpath("//a[normalize-space()='Calving']")));
+            driver.findElement(By.xpath("//a[normalize-space()='Calving']")).click();
         }
     }
 
     public static void clickOnPregnancyDiagnosisTab() throws InterruptedException {
         if (retryingFindingElement(By.xpath("//a[@href='#submenu2'][@aria-expanded='true']"))) {
-            new WebDriverWait(driver, Duration.ofSeconds(5)).ignoring(ElementNotInteractableException.class).ignoring(StaleElementReferenceException.class).until(ExpectedConditions.elementToBeClickable(By.xpath("//ul[@id='submenu2']//li[2]//span[1]//a[1]")));
-            driver.findElement(By.xpath("//ul[@id='submenu2']//li[2]//span[1]//a[1]")).click();
+            new WebDriverWait(driver, Duration.ofSeconds(5)).ignoring(ElementNotInteractableException.class).ignoring(StaleElementReferenceException.class).until(ExpectedConditions.elementToBeClickable(By.xpath("//a[normalize-space()='Pregnancy Diagnosis']")));
+            driver.findElement(By.xpath("//a[normalize-space()='Pregnancy Diagnosis']")).click();
         } else {
             new WebDriverWait(driver, Duration.ofSeconds(5)).ignoring(ElementNotInteractableException.class).ignoring(StaleElementReferenceException.class).until(ExpectedConditions.elementToBeClickable(By.xpath("//div[contains(text(),'Animal Breeding')]")));
             driver.findElement(By.xpath("//div[contains(text(),'Animal Breeding')]")).click();
-            new WebDriverWait(driver, Duration.ofSeconds(5)).ignoring(ElementNotInteractableException.class).ignoring(StaleElementReferenceException.class).until(ExpectedConditions.elementToBeClickable(By.xpath("//ul[@id='submenu2']//li[2]//span[1]//a[1]")));
-            driver.findElement(By.xpath("//ul[@id='submenu2']//li[2]//span[1]//a[1]")).click();
+            new WebDriverWait(driver, Duration.ofSeconds(5)).ignoring(ElementNotInteractableException.class).ignoring(StaleElementReferenceException.class).until(ExpectedConditions.elementToBeClickable(By.xpath("//a[normalize-space()='Pregnancy Diagnosis']")));
+            driver.findElement(By.xpath("//a[normalize-space()='Pregnancy Diagnosis']")).click();
         }
     }
 
     public static void clickOnVaccinationTab() throws InterruptedException {
         if (retryingFindingElement(By.xpath("//a[@href='#submenu1'][@aria-expanded='true']"))) {
-            new WebDriverWait(driver, Duration.ofSeconds(5)).ignoring(ElementNotInteractableException.class).ignoring(StaleElementReferenceException.class).until(ExpectedConditions.elementToBeClickable(By.xpath("//ul[@id='submenu1']//li[2]//span[1]//a[1]")));
-            driver.findElement(By.xpath("//ul[@id='submenu1']//li[2]//span[1]//a[1]")).click();
+            new WebDriverWait(driver, Duration.ofSeconds(5)).ignoring(ElementNotInteractableException.class).ignoring(StaleElementReferenceException.class).until(ExpectedConditions.elementToBeClickable(By.xpath("//a[normalize-space()='Vaccination']")));
+            driver.findElement(By.xpath("//a[normalize-space()='Vaccination']")).click();
         } else {
             new WebDriverWait(driver, Duration.ofSeconds(5)).ignoring(ElementNotInteractableException.class).ignoring(StaleElementReferenceException.class).until(ExpectedConditions.elementToBeClickable(By.xpath("//div[contains(text(),'Animal Health')]")));
             driver.findElement(By.xpath("//div[contains(text(),'Animal Health')]")).click();
-            new WebDriverWait(driver, Duration.ofSeconds(5)).ignoring(ElementNotInteractableException.class).ignoring(StaleElementReferenceException.class).until(ExpectedConditions.elementToBeClickable(By.xpath("//ul[@id='submenu1']//li[2]//span[1]//a[1]")));
-            driver.findElement(By.xpath("//ul[@id='submenu1']//li[2]//span[1]//a[1]")).click();
+            new WebDriverWait(driver, Duration.ofSeconds(5)).ignoring(ElementNotInteractableException.class).ignoring(StaleElementReferenceException.class).until(ExpectedConditions.elementToBeClickable(By.xpath("//a[normalize-space()='Vaccination']")));
+            driver.findElement(By.xpath("//a[normalize-space()='Vaccination']")).click();
         }
     }
 
@@ -445,7 +445,7 @@ public class BharatPasudhan extends DataProvider {
                         }
                         clickOutside();
                         updateExcelSheetWithRunDetails(animalId, modifiedGestationDate, "Y");
-                        Thread.sleep(4000);
+                        Thread.sleep(8000);
                         driver.get("https://bharatpashudhan.ndlm.co.in/dashboard/");
                         clickOnCalvingTab();
                     }
