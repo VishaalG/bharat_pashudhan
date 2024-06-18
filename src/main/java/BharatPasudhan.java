@@ -474,8 +474,14 @@ public class BharatPasudhan extends DataProvider {
                 driver.findElement(By.xpath("(//input[@id='filter-by'])[2]")).clear();
                 Thread.sleep(500);
                 driver.findElement(By.xpath("(//input[@id='filter-by'])[2]")).sendKeys(animalId);
-                Thread.sleep(500);
-                wait.ignoring(TimeoutException.class).until(ExpectedConditions.elementToBeClickable(By.xpath("//td[normalize-space()='" + animalId + "']/ancestor::tr//td[10]//a")));
+                Thread.sleep(800);
+                if (retryingFindingElement(By.xpath("//button[normalize-space()='Okay']"))) {
+                    System.out.println("Animal not found for selected village. Check Manually for AnimalId - " + animalId);
+                    updateExcelSheetWithRunDetails(animalId, "Animal not found", "N");
+                    clickOutside();
+                    continue;
+                }
+                wait.ignoring(TimeoutException.class).ignoring(TimeoutException.class).until(ExpectedConditions.elementToBeClickable(By.xpath("//td[normalize-space()='" + animalId + "']/ancestor::tr//td[10]//a")));
                 driver.findElement(By.xpath("//td[normalize-space()='" + animalId + "']/ancestor::tr//td[10]//a")).click();
                 Thread.sleep(500);
                 if (retryingFindingElement(By.xpath("//p[@class='timeline-heading']"))) {
@@ -555,6 +561,7 @@ public class BharatPasudhan extends DataProvider {
         driver.findElement(By.xpath("//button[@name='17534']")).click();
         Thread.sleep(2000);
         wait.ignoring(ElementClickInterceptedException.class).until(ExpectedConditions.elementToBeClickable(By.xpath("//div[@role='combobox']")));
+        retryingFindingElement(By.xpath("//div[@role='combobox']"));
         driver.findElement(By.xpath("//div[@role='combobox']")).click();
         Thread.sleep(500);
         driver.findElement(By.xpath("//span[normalize-space()='" + villageName + "']/..")).click();

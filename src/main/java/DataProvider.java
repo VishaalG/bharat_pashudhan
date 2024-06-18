@@ -15,7 +15,7 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.time.temporal.ChronoUnit;
-import java.util.*;
+import java.util.   *;
 import java.util.concurrent.ThreadLocalRandom;
 import java.util.stream.Collectors;
 
@@ -181,6 +181,9 @@ public class DataProvider {
             output = initialDateParse.plusMonths(9).plusDays(randomNumber).format(formatter);
         } else {
             if (finalDateParse.isAfter(currentDate)) {
+                output = currentDate.format(formatter);
+            }
+            else if (finalDateParse.isBefore(LocalDate.now().minusYears(1))) {
                 output = currentDate.format(formatter);
             } else {
                 output = finalDateParse.plusDays(randomNumber).format(formatter);
