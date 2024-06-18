@@ -50,11 +50,13 @@ public class DataProvider {
         List<String> animalTagIdValues = new ArrayList<>();
         for (Row r : sheet) {
             Cell animalTagIdColumn = r.getCell(0);
-            if (animalTagIdColumn.getCellType().equals(CellType.STRING)) {
-                animalTagIdValues.add(animalTagIdColumn.getStringCellValue());
-            } else if (animalTagIdColumn.getCellType().equals(CellType.NUMERIC)) {
-                long animalNumericalValue = (long) animalTagIdColumn.getNumericCellValue();
-                animalTagIdValues.add(String.valueOf(animalNumericalValue));
+            if(animalTagIdColumn != null) {
+                if (animalTagIdColumn.getCellType().equals(CellType.STRING)) {
+                    animalTagIdValues.add(animalTagIdColumn.getStringCellValue());
+                } else if (animalTagIdColumn.getCellType().equals(CellType.NUMERIC)) {
+                    long animalNumericalValue = (long) animalTagIdColumn.getNumericCellValue();
+                    animalTagIdValues.add(String.valueOf(animalNumericalValue));
+                }
             }
         }
         return animalTagIdValues;
