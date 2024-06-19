@@ -491,7 +491,7 @@ public class BharatPasudhan extends DataProvider {
                         System.out.println("Animal is already Vaccinated on " + vaccinationTimeline.getText());
                         driver.findElement(By.xpath("//mat-icon[@role='img']")).click();
                         driver.findElement(By.xpath("//input[@id='search-by']")).clear();
-                        updateExcelSheetWithRunDetails(animalId, "Already Vaccinated", "N");
+                        updateExcelSheetWithRunDetails(animalId, "Already vaccinated", "N");
                         System.out.println("---------------");
                         continue;
                     }
@@ -514,7 +514,7 @@ public class BharatPasudhan extends DataProvider {
                     Thread.sleep(500);
                     clearWebField(vaccinationDateCalendar);
                     vaccinationDateCalendar.sendKeys(vaccinationDate);
-                    Thread.sleep(1000);
+                    wait.ignoring(ElementClickInterceptedException.class).until(ExpectedConditions.elementToBeClickable(By.xpath("//button[normalize-space()='Submit']")));
                     driver.findElement(By.xpath("//button[normalize-space()='Submit']")).click();
                     System.out.println("Vaccinated animal on " + vaccinationDate);
                     updateExcelSheetWithRunDetails(animalId, "Vaccinated", "Y");
@@ -523,6 +523,8 @@ public class BharatPasudhan extends DataProvider {
                     System.out.println("---------------");
                     commonFlowForVaccination(villageName);
                 }
+            } else {
+                updateExcelSheetWithRunDetails(animalId, "Not found", "Run Again");
             }
         }
     }

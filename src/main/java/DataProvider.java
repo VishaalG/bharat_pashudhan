@@ -24,7 +24,7 @@ public class DataProvider {
     public static final String USERNAME = "pdktait175_TN";
     public static final String PASSWORD = "pdktait175_TN";
     public static String EXCEL_FILE_LOCATION = "/Users/vishag/Downloads/Thondaii FMD.xlsx";
-    public static String VACCINATION_VILLAGE_NAME = "Thennathirayanpatti";
+    public static String VACCINATION_VILLAGE_NAME = "Lakshmanapatti";
     public static String VACCINATION_START_DATE_RANGE = "12/11/2023";
     public static String VACCINATION_END_DATE_RANGE = "16/12/2023";
     public enum CALVING_SEX {
