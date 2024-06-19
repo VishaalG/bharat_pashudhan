@@ -68,24 +68,24 @@ public class BharatPasudhan extends DataProvider {
 
     public static void clickOnArtificialInseminationTab() throws InterruptedException {
         if (retryingFindingElement(By.xpath("//a[@href='#submenu2'][@aria-expanded='true']"))) {
-            new WebDriverWait(driver, Duration.ofSeconds(5)).ignoring(ElementNotInteractableException.class).ignoring(StaleElementReferenceException.class).until(ExpectedConditions.elementToBeClickable(By.xpath("//a[normalize-space()='Artificial Insemination']")));
+            wait.ignoring(ElementNotInteractableException.class).ignoring(StaleElementReferenceException.class).until(ExpectedConditions.elementToBeClickable(By.xpath("//a[normalize-space()='Artificial Insemination']")));
             driver.findElement(By.xpath("//a[normalize-space()='Artificial Insemination']")).click();
         } else {
-            new WebDriverWait(driver, Duration.ofSeconds(5)).ignoring(ElementNotInteractableException.class).ignoring(StaleElementReferenceException.class).until(ExpectedConditions.elementToBeClickable(By.xpath("//div[contains(text(),'Animal Breeding')]")));
+            wait.ignoring(ElementNotInteractableException.class).ignoring(StaleElementReferenceException.class).until(ExpectedConditions.elementToBeClickable(By.xpath("//div[contains(text(),'Animal Breeding')]")));
             driver.findElement(By.xpath("//div[contains(text(),'Animal Breeding')]")).click();
-            new WebDriverWait(driver, Duration.ofSeconds(5)).ignoring(ElementNotInteractableException.class).ignoring(StaleElementReferenceException.class).until(ExpectedConditions.elementToBeClickable(By.xpath("//a[normalize-space()='Artificial Insemination']")));
+            wait.ignoring(ElementNotInteractableException.class).ignoring(StaleElementReferenceException.class).until(ExpectedConditions.elementToBeClickable(By.xpath("//a[normalize-space()='Artificial Insemination']")));
             driver.findElement(By.xpath("//a[normalize-space()='Artificial Insemination']")).click();
         }
     }
 
     public static void clickOnCalvingTab() throws InterruptedException {
         if (retryingFindingElement(By.xpath("//a[@href='#submenu2'][@aria-expanded='true']"))) {
-            new WebDriverWait(driver, Duration.ofSeconds(5)).ignoring(ElementNotInteractableException.class).ignoring(StaleElementReferenceException.class).until(ExpectedConditions.elementToBeClickable(By.xpath("//a[normalize-space()='Calving']")));
+            wait.ignoring(ElementNotInteractableException.class).ignoring(StaleElementReferenceException.class).until(ExpectedConditions.elementToBeClickable(By.xpath("//a[normalize-space()='Calving']")));
             driver.findElement(By.xpath("//a[normalize-space()='Calving']")).click();
         } else {
-            new WebDriverWait(driver, Duration.ofSeconds(5)).ignoring(ElementNotInteractableException.class).ignoring(StaleElementReferenceException.class).until(ExpectedConditions.elementToBeClickable(By.xpath("//div[contains(text(),'Animal Breeding')]")));
+            wait.ignoring(ElementNotInteractableException.class).ignoring(StaleElementReferenceException.class).until(ExpectedConditions.elementToBeClickable(By.xpath("//div[contains(text(),'Animal Breeding')]")));
             driver.findElement(By.xpath("//div[contains(text(),'Animal Breeding')]")).click();
-            new WebDriverWait(driver, Duration.ofSeconds(5)).ignoring(ElementNotInteractableException.class).ignoring(StaleElementReferenceException.class).until(ExpectedConditions.elementToBeClickable(By.xpath("//a[normalize-space()='Calving']")));
+            wait.ignoring(ElementNotInteractableException.class).ignoring(StaleElementReferenceException.class).until(ExpectedConditions.elementToBeClickable(By.xpath("//a[normalize-space()='Calving']")));
             driver.findElement(By.xpath("//a[normalize-space()='Calving']")).click();
         }
     }
@@ -97,7 +97,7 @@ public class BharatPasudhan extends DataProvider {
         } else {
             wait.ignoring(ElementNotInteractableException.class).ignoring(StaleElementReferenceException.class).until(ExpectedConditions.elementToBeClickable(By.xpath("//div[contains(text(),'Animal Breeding')]")));
             driver.findElement(By.xpath("//div[contains(text(),'Animal Breeding')]")).click();
-            new WebDriverWait(driver, Duration.ofSeconds(5)).ignoring(ElementNotInteractableException.class).ignoring(StaleElementReferenceException.class).until(ExpectedConditions.elementToBeClickable(By.xpath("//a[normalize-space()='Pregnancy Diagnosis']")));
+            wait.ignoring(ElementNotInteractableException.class).ignoring(StaleElementReferenceException.class).until(ExpectedConditions.elementToBeClickable(By.xpath("//a[normalize-space()='Pregnancy Diagnosis']")));
             driver.findElement(By.xpath("//a[normalize-space()='Pregnancy Diagnosis']")).click();
         }
     }
@@ -107,7 +107,7 @@ public class BharatPasudhan extends DataProvider {
             wait.ignoring(ElementNotInteractableException.class).ignoring(StaleElementReferenceException.class).until(ExpectedConditions.elementToBeClickable(By.xpath("//a[normalize-space()='Vaccination']")));
             driver.findElement(By.xpath("//a[normalize-space()='Vaccination']")).click();
         } else {
-            new WebDriverWait(driver, Duration.ofSeconds(5)).ignoring(ElementNotInteractableException.class).ignoring(StaleElementReferenceException.class).until(ExpectedConditions.elementToBeClickable(By.xpath("//div[contains(text(),'Animal Health')]")));
+            wait.ignoring(ElementNotInteractableException.class).ignoring(StaleElementReferenceException.class).until(ExpectedConditions.elementToBeClickable(By.xpath("//div[contains(text(),'Animal Health')]")));
             driver.findElement(By.xpath("//div[contains(text(),'Animal Health')]")).click();
             wait.ignoring(ElementNotInteractableException.class).ignoring(StaleElementReferenceException.class).until(ExpectedConditions.elementToBeClickable(By.xpath("//a[normalize-space()='Vaccination']")));
             driver.findElement(By.xpath("//a[normalize-space()='Vaccination']")).click();
@@ -302,9 +302,9 @@ public class BharatPasudhan extends DataProvider {
             String animalId = getAllAnimalTagId().get(i);
             System.out.println("------ " + i + " ------");
             System.out.println("Calving - Animal Id is " + animalId);
-            new WebDriverWait(driver, Duration.ofSeconds(5)).ignoring(StaleElementReferenceException.class).until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//input[@id='search-by']")));
+            wait.ignoring(StaleElementReferenceException.class).until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//input[@id='search-by']")));
             retryingFindClick(By.xpath("//input[@id='search-by']"), animalId);
-            new WebDriverWait(driver, Duration.ofSeconds(5)).ignoring(ElementClickInterceptedException.class).until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("button[type=' submit']")));
+            wait.ignoring(ElementClickInterceptedException.class).until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("button[type=' submit']")));
             driver.findElement(By.cssSelector("button[type=' submit']")).click();
             driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(5));
 //            handleOwnerNotFound();
@@ -488,7 +488,7 @@ public class BharatPasudhan extends DataProvider {
                     WebElement vaccinationDetails = driver.findElement(By.xpath("//p[@class='timeline-heading']"));
                     WebElement vaccinationTimeline = driver.findElement(By.xpath("//span[@class='timeline-date']"));
                     if (vaccinationDetails.getText().equals("Vaccination")) {
-                        System.out.println("Animal is already Vaccinated on " + vaccinationTimeline.getText());
+                        System.out.println("Animal history shows it's already vaccinated on " + vaccinationTimeline.getText());
                         driver.findElement(By.xpath("//mat-icon[@role='img']")).click();
                         driver.findElement(By.xpath("//input[@id='search-by']")).clear();
                         updateExcelSheetWithRunDetails(animalId, "Already vaccinated", "N");
@@ -497,7 +497,7 @@ public class BharatPasudhan extends DataProvider {
                     }
                 }
                 if (retryingFindingElement(By.xpath("//h3[normalize-space()='No history record found']"))) {
-                    System.out.println("Animal is not vaccinated");
+                    System.out.println("Animal history shows it's not vaccinated");
                     wait.ignoring(ElementClickInterceptedException.class).until(ExpectedConditions.elementToBeClickable(By.xpath("//mat-icon[@role='img']")));
                     driver.findElement(By.xpath("//mat-icon[@role='img']")).click();
                     wait.ignoring(NoSuchElementException.class).until(ExpectedConditions.elementToBeClickable(By.xpath("(//input[@id='filter-by'])[2]")));
@@ -511,7 +511,7 @@ public class BharatPasudhan extends DataProvider {
                     wait.ignoring(NoSuchElementException.class).until(ExpectedConditions.elementToBeClickable(By.xpath("//input[@formcontrolname='vaccinationDate']")));
                     WebElement vaccinationDateCalendar = driver.findElement(By.xpath("(//input[@id='mat-input-0'])[1]"));
                     wait.ignoring(ElementClickInterceptedException.class).until(ExpectedConditions.elementToBeClickable(vaccinationDateCalendar));
-                    Thread.sleep(500);
+                    Thread.sleep(1000);
                     clearWebField(vaccinationDateCalendar);
                     vaccinationDateCalendar.sendKeys(vaccinationDate);
                     wait.ignoring(ElementClickInterceptedException.class).until(ExpectedConditions.elementToBeClickable(By.xpath("//button[normalize-space()='Submit']")));
@@ -536,8 +536,7 @@ public class BharatPasudhan extends DataProvider {
         Thread.sleep(500);
         driver.findElement(By.xpath("//input[@id='search-by']")).sendKeys(animalId);
         clickOutside();
-        wait.ignoring(ElementClickInterceptedException.class).until(ExpectedConditions.elementToBeClickable(By.xpath("//button[normalize-space()='Search']")));
-        Thread.sleep(1500);
+        retryingFindingElement(By.xpath("//button[normalize-space()='Search']"));
         driver.findElement(By.xpath("//button[normalize-space()='Search']")).click();
         if (retryingFindingElement(By.xpath("//table[@role='table']"))) {
             ableToFindAnimalByVillage = true;

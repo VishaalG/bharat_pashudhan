@@ -28,6 +28,10 @@
   <component name="GitToolBoxStore">
     <option name="projectConfigVersion" value="5" />
   </component>
+  <component name="KubernetesApiPersistence">{}</component>
+  <component name="KubernetesApiProvider">{
+  &quot;isMigrated&quot;: true
+}</component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
   </component>
@@ -142,7 +146,8 @@
       <workItem from="1718643425995" duration="994000" />
       <workItem from="1718682052418" duration="22631000" />
       <workItem from="1718718701595" duration="6150000" />
-      <workItem from="1718758184569" duration="2779000" />
+      <workItem from="1718758184569" duration="7694000" />
+      <workItem from="1718775703110" duration="11668000" />
     </task>
     <servers />
   </component>
