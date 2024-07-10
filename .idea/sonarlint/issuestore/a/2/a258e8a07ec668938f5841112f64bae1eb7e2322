@@ -1,126 +1,130 @@
 
-h	java:S112„"FDefine and throw a dedicated exception instead of using a generic one.(… óÎÿÿÿÿÿ8ÎıĞú‚2
-›	java:S135Ó"YReduce the total number of break and continue statements in this loop to use at most one.(Öµ• 8ğ©»ö‚2J$9c7b15fb-fc1c-48fa-90eb-df77c8073126
-k
-java:S1192‰"HDefine a constant instead of duplicating this literal " ------" 4 times.(Ù¹–âùÿÿÿÿ8ÎıĞú‚2
-“
-java:S1192G"qDefine a constant instead of duplicating this literal "//a[normalize-space()='Artificial Insemination']" 4 times.(Š‡®şøÿÿÿÿ8ÎıĞú‚2
+	java:S112„"FDefine and throw a dedicated exception instead of using a generic one.(… óÎÿÿÿÿÿ8Øú³Ş‰2J$b8a79fe2-26d2-4576-b986-2bc552eb12bd
+›	java:S135Û"YReduce the total number of break and continue statements in this loop to use at most one.(Öµ• 8Ùú³Ş‰2J$958daa9a-32fd-4003-bf3c-851842179448
+›	java:S135å"YReduce the total number of break and continue statements in this loop to use at most one.(Öµ• 8Ùú³Ş‰2J$544ca6f4-5f67-462c-a850-84d9b443b563
+‘
+java:S1192‰"HDefine a constant instead of duplicating this literal " ------" 4 times.(Ù¹–âùÿÿÿÿ8Ùú³Ş‰2J$7331cfe1-7e86-4733-b1fa-a2dcb76a69be
+¹
+java:S1192G"qDefine a constant instead of duplicating this literal "//a[normalize-space()='Artificial Insemination']" 4 times.(Š‡®şøÿÿÿÿ8Ùú³Ş‰2J$ed24468d-6c36-4921-ac6f-59c0a584e73a
 Æ
-java:S1192ˆ"Define a constant instead of duplicating this literal "//table[@class='table animal-table m-0 ng-star-inserted']//td[5]" 3 times.(åÒõ›8ğ©»ö‚2J$1494f6fa-9294-4ab9-b7a1-74e4852b1216
-–
-java:S1192™"sDefine a constant instead of duplicating this literal "//i[@class='fa fa-chevron-left mr-2 back-section']" 5 times.(ş™œÓşÿÿÿÿ8ÏıĞú‚2
-}
-java:S1192›"_Define a constant instead of duplicating this literal "//input[@name='selectedTagId']" 8 times.(Î‹‰ã8ÏıĞú‚2
-†
-java:S1192ì"hDefine a constant instead of duplicating this literal "//button[@class='btn btn-primary mr-2']" 7 times.(×Ã‘Õ8ÏıĞú‚2
-ˆ
-java:S1192¬"eDefine a constant instead of duplicating this literal "//button[normalize-space()='Submit']" 6 times.(¦úüÿÿÿÿÿ8ÏıĞú‚2
+java:S1192š"Define a constant instead of duplicating this literal "//table[@class='table animal-table m-0 ng-star-inserted']//td[5]" 3 times.(åÒõ›8Ùú³Ş‰2J$8911fffa-8c4b-4b67-a384-11f339edc61c
+¼
+java:S1192™"sDefine a constant instead of duplicating this literal "//i[@class='fa fa-chevron-left mr-2 back-section']" 9 times.(ş™œÓşÿÿÿÿ8Ùú³Ş‰2J$697a9059-b547-48f7-aeab-2dd8b02fb88f
+£
+java:S1192›"_Define a constant instead of duplicating this literal "//input[@name='selectedTagId']" 8 times.(Î‹‰ã8Ùú³Ş‰2J$9902efe0-ef5a-4a40-bf66-333cff2189d5
+¬
+java:S1192ì"hDefine a constant instead of duplicating this literal "//button[@class='btn btn-primary mr-2']" 7 times.(×Ã‘Õ8Úú³Ş‰2J$4a33e345-35ca-42f4-86aa-c695c208009f
+®
+java:S1192¬"eDefine a constant instead of duplicating this literal "//button[normalize-space()='Submit']" 6 times.(¦úüÿÿÿÿÿ8Úú³Ş‰2J$04c614fe-045b-4281-8b7b-6c8d425ecb9f
 §
-java:S1192Ù"^Define a constant instead of duplicating this literal "(//input[@id='filter-by'])[2]" 6 times.(£ßŒáüÿÿÿÿ8ğ©»ö‚2J$e948d47a-5800-43c2-b691-d2e8679703ca
-w
-java:S1192“"YDefine a constant instead of duplicating this literal "//td[normalize-space()='" 3 times.(œŞÑ‚8ÏıĞú‚2
-u
-java:S1192"WDefine a constant instead of duplicating this literal "button[type=' submit']" 8 times.(¡Ñ»Ø8ÏıĞú‚2
+java:S1192ë"^Define a constant instead of duplicating this literal "(//input[@id='filter-by'])[2]" 6 times.(£ßŒáüÿÿÿÿ8Úú³Ş‰2J$68e491c7-3d96-48c6-afda-28cae00151ec
+
+java:S1192“"YDefine a constant instead of duplicating this literal "//td[normalize-space()='" 3 times.(œŞÑ‚8Úú³Ş‰2J$58b78090-73c8-4d1e-9664-317c1deb890a
+›
+java:S1192"WDefine a constant instead of duplicating this literal "button[type=' submit']" 8 times.(¡Ñ»Ø8Úú³Ş‰2J$93c8bc99-e9c0-4eeb-9377-9f862a8487b8
 ¡
-java:S1192ì"XDefine a constant instead of duplicating this literal "//mat-icon[@role='img']" 3 times.(œá½“úÿÿÿÿ8ğ©»ö‚2J$1918a58b-c306-44aa-a4b9-936c274be8fa
-Œ
-java:S1192ƒ"iDefine a constant instead of duplicating this literal "//select[@formcontrolname='serviceType']" 3 times.(’€üéøÿÿÿÿ8ĞıĞú‚2
-‚
-java:S1192k"eDefine a constant instead of duplicating this literal "//a[normalize-space()='Vaccination']" 4 times.(‘Õ”„8ĞıĞú‚2
-}
-java:S1192‹"ZDefine a constant instead of duplicating this literal "//input[@id='search-by']" 12 times.(ıÛäØÿÿÿÿÿ8ĞıĞú‚2
-k
-java:S1192‰"HDefine a constant instead of duplicating this literal "------ " 4 times.(Ù¹–âùÿÿÿÿ8ĞıĞú‚2
-n
-java:S1192®"PDefine a constant instead of duplicating this literal "---------------" 8 times.(ĞÛâï8ĞıĞú‚2
-Š
-java:S1192_"mDefine a constant instead of duplicating this literal "//a[normalize-space()='Pregnancy Diagnosis']" 4 times.(ğƒäş8ĞıĞú‚2
-Œ
-java:S1192J"jDefine a constant instead of duplicating this literal "//div[contains(text(),'Animal Breeding')]" 6 times.(™®Ò·şÿÿÿÿ8ĞıĞú‚2
-ª
-java:S1192¬"fDefine a constant instead of duplicating this literal "//button[@id='carousel-control-next']" 3 times.(êà«”8ñ©»ö‚2J$b5d82ecf-fd3e-4c26-a643-72e5b51d8f05
-Ã
-java:S1192§"zDefine a constant instead of duplicating this literal "//label[normalize-space()='Include Data Entry Campaigns']" 3 times.(Š¿¼”úÿÿÿÿ8ñ©»ö‚2J$b511fb6b-e4f8-4a6a-9f8c-7cb4911a5caa
-œ
-java:S1192´"XDefine a constant instead of duplicating this literal "//div[@role='combobox']" 3 times.(„ˆĞ8ñ©»ö‚2J$003fe9f7-28c6-4537-9667-0a6c9f23a600
-}
-java:S1192…"ZDefine a constant instead of duplicating this literal " entries from excel sheet" 4 times.(íâõµúÿÿÿÿ8ĞıĞú‚2
-œ
-java:S1192ğ"~Define a constant instead of duplicating this literal "//table[@class='mat-table cdk-table mat-elevation-z8']//td[2]" 5 times.(ÂË€—8ÑıĞú‚2
+java:S1192ş"XDefine a constant instead of duplicating this literal "//mat-icon[@role='img']" 3 times.(œá½“úÿÿÿÿ8Úú³Ş‰2J$6feb92bd-f8fb-4d3b-b546-a9fcec25482d
+²
+java:S1192•"iDefine a constant instead of duplicating this literal "//select[@formcontrolname='serviceType']" 3 times.(’€üéøÿÿÿÿ8Úú³Ş‰2J$d0c7847f-2290-4f8c-8b3d-3b605fbc5121
+¨
+java:S1192k"eDefine a constant instead of duplicating this literal "//a[normalize-space()='Vaccination']" 4 times.(‘Õ”„8Úú³Ş‰2J$decb64de-193a-46ea-a5bf-d2524887177d
+£
+java:S1192‹"ZDefine a constant instead of duplicating this literal "//input[@id='search-by']" 12 times.(ıÛäØÿÿÿÿÿ8Úú³Ş‰2J$bab40efc-e0bf-41bd-942a-83feafbf8a7f
+‘
+java:S1192‰"HDefine a constant instead of duplicating this literal "------ " 4 times.(Ù¹–âùÿÿÿÿ8Úú³Ş‰2J$afd21b41-bb90-4159-a9ca-5212200926ec
+”
+java:S1192®"PDefine a constant instead of duplicating this literal "---------------" 8 times.(ĞÛâï8Úú³Ş‰2J$d1fbe505-f81e-4bbe-b92d-44e01b4a601c
 °
-java:S1192F"nDefine a constant instead of duplicating this literal "//a[@href='#submenu2'][@aria-expanded='true']" 3 times.(£†­a8ñ©»ö‚2J$1e8cf7fb-d8f4-48f2-97d4-5474446fa1d1
-ƒ
-java:S1192S"aDefine a constant instead of duplicating this literal "//a[normalize-space()='Calving']" 4 times.(ü”ÿÉúÿÿÿÿ8ÑıĞú‚2
-z
-java:S1192’"WDefine a constant instead of duplicating this literal "//table[@role='table']" 7 times.(şı˜ñıÿÿÿÿ8ÑıĞú‚2
-€
-java:S1192ò"bDefine a constant instead of duplicating this literal "//span[@class='status-highlight']" 3 times.(ñ²ûŠ8ÑıĞú‚2
-ƒ	java:S125"<This block of commented-out lines of code should be removed.(ûÈÌ¾ûÿÿÿÿ8÷©»ö‚2J$4911037b-1a60-49cf-880b-db9138fab9e8
-m	java:S106w"+Replace this use of System.out by a logger.(Ï§½Ó8Šª»ö‚2J$075f7b58-33ec-4092-92f2-7160470f19b6
-r	java:S106|"+Replace this use of System.out by a logger.(¼Ğéïüÿÿÿÿ8‹ª»ö‚2J$4098aeea-478d-4e73-9a8a-ab1146e66bff
-s	java:S106…"+Replace this use of System.out by a logger.(íâõµúÿÿÿÿ8Œª»ö‚2J$4391e0a0-d553-4cd7-94a2-139f0781cda6
-s	java:S106‰"+Replace this use of System.out by a logger.(Ù¹–âùÿÿÿÿ8Œª»ö‚2J$d611fd93-1947-4960-95b4-417e8d16320a
-s	java:S106Š"+Replace this use of System.out by a logger.(˜¿½‹ÿÿÿÿÿ8ª»ö‚2J$7a0f938f-fe38-4e61-a30c-b18ce4539ec6
-s	java:S106¤"+Replace this use of System.out by a logger.(ÊóôÏşÿÿÿÿ8ª»ö‚2J$539dbf63-9f69-4afc-8d74-499d0aec3f71
-n	java:S106­"+Replace this use of System.out by a logger.(§ó8ª»ö‚2J$1aa3c593-3671-40c7-881e-3edc6eb6ddf2
-n	java:S106®"+Replace this use of System.out by a logger.(ĞÛâï8ª»ö‚2J$9757919c-745b-4937-b756-7a5279154944
-s	java:S106»"+Replace this use of System.out by a logger.(Ù‘É³ùÿÿÿÿ8ª»ö‚2J$55a23808-3085-4847-941d-27990c1c2997
-n	java:S106À"+Replace this use of System.out by a logger.(ÁûÆã8’ª»ö‚2J$dcb47902-39e5-4a8e-8c25-49e8006baeba
-n	java:S106Ã"+Replace this use of System.out by a logger.(ĞÛâï8’ª»ö‚2J$62fd9a75-7e9f-4782-9be5-c11686ca63c7
-P
-java:S1172É"-Remove this unused method parameter "aiDate".(ÕÒƒ†üÿÿÿÿ8êıĞú‚2
-s	java:S106Û"+Replace this use of System.out by a logger.(íĞ®Âøÿÿÿÿ8’ª»ö‚2J$d3252ddf-a1ef-44eb-83b6-28df0170983d
-s	java:S106ß"+Replace this use of System.out by a logger.(Ù¹–âùÿÿÿÿ8’ª»ö‚2J$9f560e72-19e7-4ab2-ba54-b3eaa51f194b
-s	java:S106à"+Replace this use of System.out by a logger.(šØùøûÿÿÿÿ8’ª»ö‚2J$58fdacc3-aabb-4d89-8686-5a120f188438
-s	java:S106õ"+Replace this use of System.out by a logger.(ŒÛå½ıÿÿÿÿ8“ª»ö‚2J$f1115f6c-a9a2-4478-9c76-62940593e856
-s	java:S106ö"+Replace this use of System.out by a logger.(ğİìÚøÿÿÿÿ8“ª»ö‚2J$2f291049-c4c4-42a3-b08e-45c90406f3bc
-n	java:S106ş"+Replace this use of System.out by a logger.(‰Ñóó8“ª»ö‚2J$b26104f5-9145-4a95-abcf-d412f11a1330
-n	java:S106“"+Replace this use of System.out by a logger.(Ì»åÌ8”ª»ö‚2J$669dccc3-8365-453e-aa3a-661d2bb8e159
-n	java:S106”"+Replace this use of System.out by a logger.(ĞÛâï8”ª»ö‚2J$21ac9c87-bc8a-46d4-b467-9306cad38b0b
-s	java:S106˜"+Replace this use of System.out by a logger.(…Ù˜şÿÿÿÿ8•ª»ö‚2J$9647033a-e809-489e-ae8f-32041c7f8a69
-n	java:S106™"+Replace this use of System.out by a logger.(ĞÛâï8–ª»ö‚2J$e1872f70-2167-4632-b60b-a7293c1b1c27
-s	java:S106Ÿ"+Replace this use of System.out by a logger.(†©˜ªıÿÿÿÿ8–ª»ö‚2J$74b36c5b-b41c-4044-b6ba-09d579f7b5ff
-n	java:S106¡"+Replace this use of System.out by a logger.(ĞÛâï8—ª»ö‚2J$32021478-d70f-4af5-b860-c1e11c227fcc
-s	java:S106«"+Replace this use of System.out by a logger.(´Ö³üÿÿÿÿ8—ª»ö‚2J$71d8e692-f08d-4f67-a351-98d034f02116
-s	java:S106¯"+Replace this use of System.out by a logger.(Ù¹–âùÿÿÿÿ8™ª»ö‚2J$2571eaea-30a9-47df-90f8-1c4739722c1d
-n	java:S106°"+Replace this use of System.out by a logger.(Ô¤¾š8›ª»ö‚2J$52a8ad80-a32d-4198-a29c-0f80f1bf9f0d
-	java:S125¶"<This block of commented-out lines of code should be removed.(Íäœù8‰ª»ö‚2J$b776b5e2-f3fd-43b7-b0c7-e2fa43987b75
-M	java:S106¾"+Replace this use of System.out by a logger.(¿üÇ¦ÿÿÿÿÿ8ôıĞú‚2
-M	java:S106Ê"+Replace this use of System.out by a logger.(•Ò’ÿÿÿÿÿ8şıĞú‚2
-H	java:S106Ù"+Replace this use of System.out by a logger.(‹€ˆ8ÿıĞú‚2
-H	java:S106Ü"+Replace this use of System.out by a logger.(Ñõ¤8ÿıĞú‚2
-H	java:S106õ"+Replace this use of System.out by a logger.(·Æ‚È8şĞú‚2
-M	java:S106ü"+Replace this use of System.out by a logger.(Ôº¿ûÿÿÿÿ8‚şĞú‚2
-H	java:S106†"+Replace this use of System.out by a logger.(¸¯’8ƒşĞú‚2
-M	java:S106Š"+Replace this use of System.out by a logger.(¹Ã¥Öúÿÿÿÿ8ƒşĞú‚2
-M	java:S106‹"+Replace this use of System.out by a logger.(‹²îÿÿÿÿÿ8ƒşĞú‚2
+java:S1192_"mDefine a constant instead of duplicating this literal "//a[normalize-space()='Pregnancy Diagnosis']" 4 times.(ğƒäş8Úú³Ş‰2J$bf097d7c-518c-46b5-a94b-3312f300e858
+²
+java:S1192J"jDefine a constant instead of duplicating this literal "//div[contains(text(),'Animal Breeding')]" 6 times.(™®Ò·şÿÿÿÿ8Úú³Ş‰2J$4781cf2a-fa9d-4402-a3dd-d42ac7371cc6
+ª
+java:S1192¾"fDefine a constant instead of duplicating this literal "//button[@id='carousel-control-next']" 3 times.(êà«”8Úú³Ş‰2J$580a3ee2-ca31-4c3b-a4e9-463515a207c9
+Ã
+java:S1192¹"zDefine a constant instead of duplicating this literal "//label[normalize-space()='Include Data Entry Campaigns']" 3 times.(Š¿¼”úÿÿÿÿ8Úú³Ş‰2J$e4be95c3-7a8d-426b-aa6f-207de3c4edbe
+œ
+java:S1192Æ"XDefine a constant instead of duplicating this literal "//div[@role='combobox']" 3 times.(„ˆĞ8Úú³Ş‰2J$86febc9f-7ba6-4fe4-91d4-3dd6722fd72b
+£
+java:S1192…"ZDefine a constant instead of duplicating this literal " entries from excel sheet" 4 times.(íâõµúÿÿÿÿ8Úú³Ş‰2J$c3cd092c-f20f-48af-92e7-7992025a311a
+Â
+java:S1192ğ"~Define a constant instead of duplicating this literal "//table[@class='mat-table cdk-table mat-elevation-z8']//td[2]" 5 times.(ÂË€—8Úú³Ş‰2J$330f595d-d5be-43f7-a0bc-21885f4cb987
+°
+java:S1192F"nDefine a constant instead of duplicating this literal "//a[@href='#submenu2'][@aria-expanded='true']" 3 times.(£†­a8Úú³Ş‰2J$fbc0b507-9a2f-4273-bd47-503e46d26fec
+©
+java:S1192S"aDefine a constant instead of duplicating this literal "//a[normalize-space()='Calving']" 4 times.(ü”ÿÉúÿÿÿÿ8Úú³Ş‰2J$98cc4b69-f111-4db6-991f-39d56bc84f0a
+ 
+java:S1192’"WDefine a constant instead of duplicating this literal "//table[@role='table']" 7 times.(şı˜ñıÿÿÿÿ8Úú³Ş‰2J$df242be6-f2b0-444d-8f1c-0af7387e4950
+¦
+java:S1192ò"bDefine a constant instead of duplicating this literal "//span[@class='status-highlight']" 3 times.(ñ²ûŠ8Úú³Ş‰2J$db0b23cc-d256-426e-97a4-6cb510397514
+ƒ	java:S125"<This block of commented-out lines of code should be removed.(„ã‘îÿÿÿÿÿ8Şú³Ş‰2J$9138e6b2-cc8f-48ed-ad74-9f5be90ebc8e
+m	java:S106w"+Replace this use of System.out by a logger.(Ï§½Ó8ãú³Ş‰2J$c701248b-5052-4e19-9298-e8eda592c29c
+r	java:S106|"+Replace this use of System.out by a logger.(¼Ğéïüÿÿÿÿ8äú³Ş‰2J$5a8a662b-48af-436a-aa1a-971b7fe52b6d
+s	java:S106…"+Replace this use of System.out by a logger.(íâõµúÿÿÿÿ8äú³Ş‰2J$aea36332-52ed-4aee-80c0-7c8ec9075c0b
+s	java:S106‰"+Replace this use of System.out by a logger.(Ù¹–âùÿÿÿÿ8äú³Ş‰2J$9cdeef59-8f05-40e8-b063-1cdc4f6b24f2
+s	java:S106Š"+Replace this use of System.out by a logger.(˜¿½‹ÿÿÿÿÿ8äú³Ş‰2J$f2f7b9ed-75c5-429c-8f2d-835ff6c2929e
+s	java:S106¤"+Replace this use of System.out by a logger.(ÊóôÏşÿÿÿÿ8æú³Ş‰2J$4cc3367d-2da6-49a1-a496-6f55cad84cf3
+n	java:S106­"+Replace this use of System.out by a logger.(§ó8çú³Ş‰2J$20911dbb-aa1f-42fd-b718-28ee7d4d0b8e
+n	java:S106®"+Replace this use of System.out by a logger.(ĞÛâï8çú³Ş‰2J$b0669085-c3dd-4029-9100-cee668a2366a
+s	java:S106»"+Replace this use of System.out by a logger.(Ù‘É³ùÿÿÿÿ8çú³Ş‰2J$3acc2e0c-34a1-4b12-bc57-67b54190081f
+n	java:S106¿"+Replace this use of System.out by a logger.(ÁûÆã8çú³Ş‰2J$ca271151-f618-479a-a8a4-2d8e8acffbff
+n	java:S106Â"+Replace this use of System.out by a logger.(ĞÛâï8èú³Ş‰2J$2f287cbd-ea88-49a2-87f7-b3c4d986e8ef
+v
+java:S1172È"-Remove this unused method parameter "aiDate".(ÕÒƒ†üÿÿÿÿ8èú³Ş‰2J$460e5c96-6698-476a-a307-e6df33819f61
+s	java:S106Ú"+Replace this use of System.out by a logger.(íĞ®Âøÿÿÿÿ8éú³Ş‰2J$8b09256c-6bd1-46cd-af13-3fe470d7e0ab
+s	java:S106Ş"+Replace this use of System.out by a logger.(Ù¹–âùÿÿÿÿ8éú³Ş‰2J$2f8b0967-b377-465e-bac3-af3938a5306c
+s	java:S106ß"+Replace this use of System.out by a logger.(šØùøûÿÿÿÿ8éú³Ş‰2J$31f4693e-f99a-4484-8926-14d666aa86c7
+s	java:S106ö"+Replace this use of System.out by a logger.(“²ç§ÿÿÿÿÿ8ëú³Ş‰2J$4d0972ae-13a6-48ee-a758-ceffa6b146ac
+s	java:S106÷"+Replace this use of System.out by a logger.(ğİìÚøÿÿÿÿ8ëú³Ş‰2J$7660b28e-283b-4086-99d2-6d0a5c242962
+n	java:S106ù"+Replace this use of System.out by a logger.(•ÊÓü8ëú³Ş‰2J$8d21425c-c9f0-4d74-83b1-98b35ad68750
+s	java:S106ş"+Replace this use of System.out by a logger.(µÎé»şÿÿÿÿ8ìú³Ş‰2J$e8086f0a-ca39-4685-a51a-761b17b0efb4
+s	java:S106†"+Replace this use of System.out by a logger.(¬Ÿüìşÿÿÿÿ8ìú³Ş‰2J$8b9e0d46-ef4a-4519-9157-360d314f70ca
+n	java:S106"+Replace this use of System.out by a logger.(‰Ñóó8íú³Ş‰2J$3bd59e90-df2f-4a8a-bbf5-b7afcf018008
+n	java:S106¥"+Replace this use of System.out by a logger.(Ì»åÌ8îú³Ş‰2J$1a6d2ea8-6e77-4ac7-bd16-929f01f53188
+n	java:S106¦"+Replace this use of System.out by a logger.(ĞÛâï8îú³Ş‰2J$c7ef2979-4645-42b8-91cf-512234631fcd
+s	java:S106ª"+Replace this use of System.out by a logger.(Ğ¬ùùûÿÿÿÿ8îú³Ş‰2J$c0b00886-ba31-44ba-acda-5d68bc11a8aa
+n	java:S106«"+Replace this use of System.out by a logger.(ĞÛâï8îú³Ş‰2J$8e76ad28-7b16-4b8f-8c89-1f71e62fea73
+s	java:S106±"+Replace this use of System.out by a logger.(†©˜ªıÿÿÿÿ8îú³Ş‰2J$36b17917-1179-4a60-9aa2-8ddb86f001f2
+n	java:S106³"+Replace this use of System.out by a logger.(ĞÛâï8ïú³Ş‰2J$14e41d79-2aed-46f6-8021-faf87b95d12d
+s	java:S106½"+Replace this use of System.out by a logger.(´Ö³üÿÿÿÿ8ïú³Ş‰2J$122ac1a4-9a7e-4645-8cce-d226a987f7f3
+s	java:S106Á"+Replace this use of System.out by a logger.(Ù¹–âùÿÿÿÿ8ïú³Ş‰2J$9289ede8-3b97-4b92-950d-761e8af874e1
+n	java:S106Â"+Replace this use of System.out by a logger.(Ô¤¾š8ğú³Ş‰2J$2ec4068e-e642-4792-85cf-d882033955a8
+	java:S125È"<This block of commented-out lines of code should be removed.(Íäœù8ğú³Ş‰2J$9420a4e4-c8c0-419b-b941-1a27bf596a50
+s	java:S106Ğ"+Replace this use of System.out by a logger.(¿üÇ¦ÿÿÿÿÿ8ñú³Ş‰2J$af4c203a-dd65-4cf6-8b9c-986e01972c16
+s	java:S106Ü"+Replace this use of System.out by a logger.(•Ò’ÿÿÿÿÿ8òú³Ş‰2J$b5e651ce-a061-4e29-a945-cb16be238fb4
+n	java:S106ë"+Replace this use of System.out by a logger.(‹€ˆ8òú³Ş‰2J$be0f0180-470d-4d4e-9b27-794c7c79a5dd
+n	java:S106î"+Replace this use of System.out by a logger.(Ñõ¤8óú³Ş‰2J$67e760aa-37f8-4d83-823f-3356c9b5f89a
+n	java:S106‡"+Replace this use of System.out by a logger.(·Æ‚È8ôú³Ş‰2J$5cf70f58-8e1a-4072-b14a-89c214990206
+s	java:S106"+Replace this use of System.out by a logger.(Ôº¿ûÿÿÿÿ8õú³Ş‰2J$ee3ceb16-3dc7-4849-87d8-f0e38509374d
+n	java:S106˜"+Replace this use of System.out by a logger.(¸¯’8õú³Ş‰2J$46e36f74-d146-49ea-87c2-908eab493e16
+s	java:S106œ"+Replace this use of System.out by a logger.(¹Ã¥Öúÿÿÿÿ8õú³Ş‰2J$205ec2b7-97b8-4f21-8171-612845dc14f3
+s	java:S106"+Replace this use of System.out by a logger.(‹²îÿÿÿÿÿ8øú³Ş‰2J$85d63d15-d6d3-4f35-be73-84cf0889d221
 r
-java:S2140±")Use "java.util.Random.nextInt()" instead.(ÍÿèÕøÿÿÿÿ8‘ª»ö‚2J$2a3e6506-b2f2-4dea-8e16-1ad47f78b520
-G	java:S106¾"+Replace this use of System.out by a logger.(»´‰X8‡şĞú‚2
-M	java:S106À"+Replace this use of System.out by a logger.(Ÿ²˜ºûÿÿÿÿ8‡şĞú‚2
-H	java:S106Ä"+Replace this use of System.out by a logger.(ĞÛâï8‡şĞú‚2
-M	java:S106Æ"+Replace this use of System.out by a logger.(Ğº¹òşÿÿÿÿ8‡şĞú‚2
-M	java:S106Ñ"+Replace this use of System.out by a logger.(÷ëç´ùÿÿÿÿ8ˆşĞú‚2
-M	java:S106Ô"+Replace this use of System.out by a logger.(Ù¹–âùÿÿÿÿ8ˆşĞú‚2
-G	java:S106×"+Replace this use of System.out by a logger.(ı›²18ˆşĞú‚2
-H	java:S106ß"+Replace this use of System.out by a logger.(¨»µŠ8‰şĞú‚2
-H	java:S106ë"+Replace this use of System.out by a logger.(ªéÃ¨8ŠşĞú‚2
-H	java:S106ï"+Replace this use of System.out by a logger.(ĞÛâï8ŠşĞú‚2
-H	java:S106ô"+Replace this use of System.out by a logger.(ŸæÑÁ8ŠşĞú‚2
-M	java:S106‡"+Replace this use of System.out by a logger.(¾–…Êşÿÿÿÿ8ŒşĞú‚2
-H	java:S106‹"+Replace this use of System.out by a logger.(ĞÛâï8ŒşĞú‚2
-H	java:S106Ÿ"+Replace this use of System.out by a logger.(¯¦êî8şĞú‚2
-M	java:S106¢"+Replace this use of System.out by a logger.(¶Ó¾ıùÿÿÿÿ8şĞú‚2
-H	java:S106Â"+Replace this use of System.out by a logger.(Ï§½Ó8şĞú‚2
-H	java:S106×"+Replace this use of System.out by a logger.(¾Ÿü‚8’şĞú‚2
-„	java:S125Û"<This block of commented-out lines of code should be removed.(ªŸåŞşÿÿÿÿ8›ª»ö‚2J$0851b8ba-8004-44c5-b8be-2595e85b596e
+java:S2140Ã")Use "java.util.Random.nextInt()" instead.(ÍÿèÕøÿÿÿÿ8÷ú³Ş‰2J$4df6037d-5de6-40c7-8477-9225c8a5af58
+m	java:S106Ğ"+Replace this use of System.out by a logger.(»´‰X8øú³Ş‰2J$01a7518d-17fe-480e-92d6-8ccd84a77d49
+s	java:S106Ò"+Replace this use of System.out by a logger.(Ÿ²˜ºûÿÿÿÿ8øú³Ş‰2J$6ef9f839-8445-41b4-ab48-582eb295b846
+n	java:S106Ö"+Replace this use of System.out by a logger.(ĞÛâï8øú³Ş‰2J$1b4dbd06-bb51-4192-bd36-b7bfc5b65747
+s	java:S106Ø"+Replace this use of System.out by a logger.(Ğº¹òşÿÿÿÿ8øú³Ş‰2J$21aefaf7-0b16-4f43-8c0d-4c028db27343
+s	java:S106ã"+Replace this use of System.out by a logger.(÷ëç´ùÿÿÿÿ8ùú³Ş‰2J$3bbcf696-57e8-4216-a095-3cca7b8f058a
+s	java:S106æ"+Replace this use of System.out by a logger.(Ù¹–âùÿÿÿÿ8ùú³Ş‰2J$a16559b9-2d77-42cd-8f51-68f404488e89
+m	java:S106é"+Replace this use of System.out by a logger.(ı›²18úú³Ş‰2J$d51e0b34-f952-45b5-94f0-f89de77fb8fd
+n	java:S106ñ"+Replace this use of System.out by a logger.(¨»µŠ8úú³Ş‰2J$5548bf40-477b-4887-833a-81cebaa99c13
+n	java:S106ı"+Replace this use of System.out by a logger.(ªéÃ¨8ûú³Ş‰2J$c3f1d658-f1d5-4870-b17f-e2525e8b9c26
+n	java:S106"+Replace this use of System.out by a logger.(ĞÛâï8ûú³Ş‰2J$6f3d205f-3b32-47bd-b246-13d5aa51cddf
+n	java:S106†"+Replace this use of System.out by a logger.(ŸæÑÁ8üú³Ş‰2J$819076b5-feb4-4c44-ac7e-b60e88f95201
+s	java:S106™"+Replace this use of System.out by a logger.(¾–…Êşÿÿÿÿ8üú³Ş‰2J$e315990f-0392-4182-9b7c-3def83ea3e54
+n	java:S106"+Replace this use of System.out by a logger.(ĞÛâï8ıú³Ş‰2J$a215cdfa-cac8-4c8a-8e94-19e66a06f647
+n	java:S106±"+Replace this use of System.out by a logger.(¯¦êî8ıú³Ş‰2J$486ba0a1-e9a2-42ef-8d52-385cb1c5ca67
+s	java:S106´"+Replace this use of System.out by a logger.(¶Ó¾ıùÿÿÿÿ8ÿú³Ş‰2J$814e8ad2-6e28-48ad-a65b-4671750d1ea7
+n	java:S106Ô"+Replace this use of System.out by a logger.(Ï§½Ó8û³Ş‰2J$8b19c1ed-af4d-49e7-b757-456ee3d9aacc
+n	java:S106é"+Replace this use of System.out by a logger.(¾Ÿü‚8õ‡»Ş‰2J$6bcb1132-87e3-47bb-b5f1-1be406199c43
+„	java:S125í"<This block of commented-out lines of code should be removed.(ªŸåŞşÿÿÿÿ8û³Ş‰2J$6b9586f9-6603-48d1-bf9f-307bc19e5c04
 
-java:S2147õ"ECombine this catch with the one at line 628, which has the same body.(‰ÜÏÂüÿÿÿÿ8œª»ö‚2J$d77ec4cf-7694-4202-8d21-730455a29be4
-l	java:S108ô")Either remove or fill this block of code.(ÀŒÂã8œª»ö‚2J$e50aa129-aa1d-4cc6-87ec-5a9f599ebc4e
-q	java:S108õ")Either remove or fill this block of code.(‰ÜÏÂüÿÿÿÿ8œª»ö‚2J$a6d25ea4-fc50-488d-ba1f-0101bb14f69b
+java:S2147‡"ECombine this catch with the one at line 646, which has the same body.(‰ÜÏÂüÿÿÿÿ8‚û³Ş‰2J$4460ccb7-97a1-48b0-97ba-69270a739aa3
+l	java:S108†")Either remove or fill this block of code.(ÀŒÂã8‚û³Ş‰2J$9eb22dfd-c2da-4675-a6b8-460e1db4571b
+q	java:S108‡")Either remove or fill this block of code.(‰ÜÏÂüÿÿÿÿ8‚û³Ş‰2J$a307f164-64eb-4c2b-937f-2cb4fc5cc70e
 
-java:S2147†"ECombine this catch with the one at line 645, which has the same body.(‰ÜÏÂüÿÿÿÿ8œª»ö‚2J$d6097958-7466-4d19-a0dc-5cecd50d6d14
-l	java:S108…")Either remove or fill this block of code.(ÀŒÂã8œª»ö‚2J$edcb6df8-916a-48ed-8c77-98fb524cad52
-q	java:S108†")Either remove or fill this block of code.(‰ÜÏÂüÿÿÿÿ8œª»ö‚2J$1f579b09-eda7-4bb0-9eb3-958527a80579
-é
-java:S6541ª"ÅA "Brain Method" was detected. Refactor it to reduce at least one of the following metrics: LOC from 78 to 64, Complexity from 17 to 14, Nesting Level from 3 to 2, Number of Variables from 12 to 6.(Â®ñ§ÿÿÿÿÿ8•şĞú‚2
+java:S2147˜"ECombine this catch with the one at line 663, which has the same body.(‰ÜÏÂüÿÿÿÿ8‚û³Ş‰2J$ab149ace-5d22-40ce-b419-8858d0c3fccd
+l	java:S108—")Either remove or fill this block of code.(ÀŒÂã8‚û³Ş‰2J$deaffcb9-93e1-4108-ada9-9c3681fef53b
+q	java:S108˜")Either remove or fill this block of code.(‰ÜÏÂüÿÿÿÿ8‚û³Ş‰2J$dd5ceece-67ee-4102-b322-567f2d8a815b
+
+java:S6541¼"ÅA "Brain Method" was detected. Refactor it to reduce at least one of the following metrics: LOC from 78 to 64, Complexity from 17 to 14, Nesting Level from 3 to 2, Number of Variables from 12 to 6.(Â®ñ§ÿÿÿÿÿ8ƒû³Ş‰2J$826f2628-86c1-4b8a-9744-3df3c5b74094

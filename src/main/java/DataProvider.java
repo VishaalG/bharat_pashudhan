@@ -21,12 +21,13 @@ import java.util.stream.Collectors;
 
 public class DataProvider {
 
-    public static final String USERNAME = "pdktait175_TN";
-    public static final String PASSWORD = "pdktait175_TN";
-    public static String EXCEL_FILE_LOCATION = "/Users/vishag/Downloads/Thondaii FMD.xlsx";
+    public static final String USERNAME = "pdktait31_TN";
+    public static final String PASSWORD = "Pdktait31*";
+    public static String EXCEL_FILE_LOCATION = "/Users/vishag/Downloads/Vada pd.xlsx";
     public static String VACCINATION_VILLAGE_NAME = "Lakshmanapatti";
     public static String VACCINATION_START_DATE_RANGE = "12/11/2023";
     public static String VACCINATION_END_DATE_RANGE = "16/12/2023";
+    public static String VACCINATION_BULK_RUN = "Yes";
     public enum CALVING_SEX {
         MALE,
         FEMALE,
@@ -106,25 +107,22 @@ public class DataProvider {
         outputStream.close();
     }
 
-    public static String getDescDateOfAnimalTagId(String inseminationDate) {
-
+    public static String getPregnancyDateOfAnimalTagId(String inseminationDate) {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
         LocalDate inputDate = LocalDate.parse(inseminationDate, formatter);
         // Add three months to the date
-        int randomNumber = (int) (Math.random() * 3) + 1;
+        int randomNumber = (int) (Math.random() * 2) + 1;
         LocalDate threeMonthsAddedDate = inputDate.plusMonths(3).plusDays(randomNumber);
         LocalDate currentDate = LocalDate.now();
         LocalDate oneYearBeforeToday = currentDate.minusYears(1);
 
-
         if (threeMonthsAddedDate.isBefore(oneYearBeforeToday)) {
-            return oneYearBeforeToday.plusDays(1).format(formatter);
+            return "Before one year";
         } else if (threeMonthsAddedDate.isAfter(currentDate)) {
-            return currentDate.format(formatter);
+            return "After current date";
         } else {
             return threeMonthsAddedDate.format(formatter);
         }
-
     }
 
     public static String getDuplicateDescDateOfAnimalTagId(String animalTagIdValues) throws IOException {
