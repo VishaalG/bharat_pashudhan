@@ -7,6 +7,8 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.io.IOException;
 import java.time.Duration;
+import java.util.Arrays;
+import java.util.List;
 import java.util.Objects;
 
 
@@ -18,10 +20,10 @@ public class BharatPasudhan extends DataProvider {
 
     public static void main(String[] args) throws IOException, InterruptedException {
 
-//        doArtificialInsemination(); - Work in Progress
-        doPregnancyDiagnosis();
+//        doArtificialInsemination();
+//        doPregnancyDiagnosis();
 //        doCalving();
-//        doVaccination(VACCINATION_VILLAGE_NAME);
+        doVaccination();
     }
 
     public static void doArtificialInsemination() throws IOException, InterruptedException {
@@ -46,10 +48,10 @@ public class BharatPasudhan extends DataProvider {
     }
 
 
-    public static void doVaccination(String villageName) throws IOException, InterruptedException {
+    public static void doVaccination() throws IOException, InterruptedException {
         loginToPortal();
         clickOnVaccinationTab();
-        vaccination(villageName);
+        vaccination();
         closeAll();
     }
 
@@ -167,8 +169,9 @@ public class BharatPasudhan extends DataProvider {
                         continue;
                     }
                     aiDate.sendKeys(getDatePlusSixMonths(successfulCalvingDate));
+                    System.out.println("AI - Insemination date is set as " + getDatePlusSixMonths(successfulCalvingDate));
                     clickOutside();
-                    handleAiTimestampAndBullId(successfulCalvingDate);
+                    handleAiTimestampAndBullId();
                     driver.findElement(By.xpath("//button[normalize-space()='Submit']")).click();
                     System.out.println("AI - Updated for AnimalId " + animalId);
                     System.out.println("---------------");
@@ -197,17 +200,24 @@ public class BharatPasudhan extends DataProvider {
         return checkCandidatureForArtificialInsemination;
     }
 
-    public static void handleAiTimestampAndBullId(String aiDate) {
+    public static void handleAiTimestampAndBullId() throws InterruptedException {
+        if (BULL_ID.isEmpty()) {
+            driver.close();
+        }
+        System.out.println("AI - Bull ID is " + BULL_ID);
         WebElement aiTimeStampField = driver.findElement(By.xpath("//input[@formcontrolname='aiTimestamp']"));
         aiTimeStampField.click();
         aiTimeStampField.clear();
-        aiTimeStampField.sendKeys("11:12:14");
-
-        driver.findElement(By.xpath("//input[@formcontrolname='bullId']")).sendKeys("DKDKDK");
+        List<String> randomTime = Arrays.asList("08:32:01", "09:12:14", "10:28:35", "11:38:22", "12:23:45", "13:32:11");
+        int randomNumber = (int) (Math.random() * 3) + 1;
+        aiTimeStampField.sendKeys(randomTime.get(randomNumber));
+        driver.findElement(By.xpath("//input[@formcontrolname='bullId']")).sendKeys(BULL_ID);
+        clickOutside();
+        Thread.sleep(1000);
+        wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//select[@name='selectSemen']")));
         Select semenType = new Select(driver.findElement(By.xpath("//select[@name='selectSemen']")));
         semenType.selectByIndex(1);
         clickOutside();
-
     }
 
     // End of Artificial Insemination flow and it's methods
@@ -479,9 +489,9 @@ public class BharatPasudhan extends DataProvider {
 
     // Start of vaccination flow
 
-    public static void vaccination(String villageName) throws IOException, InterruptedException {
+    public static void vaccination() throws IOException, InterruptedException {
         System.out.println("Vaccination - Found total of " + getAllAnimalTagId().size() + " entries from excel sheet");
-        commonFlowForVaccination(villageName);
+        commonFlowForVaccination();
         for (int i = 0; i < getAllAnimalTagId().size(); i++) {
             System.out.println("------ " + i + " ------");
             // Get values from Excel
@@ -539,7 +549,7 @@ public class BharatPasudhan extends DataProvider {
                     Thread.sleep(5000);
                     driver.get("https://bharatpashudhan.ndlm.co.in/dashboard/vaccination");
                     System.out.println("---------------");
-                    commonFlowForVaccination(villageName);
+                    commonFlowForVaccination();
                 }
             } else {
                 updateExcelSheetWithRunDetails(animalId, "Not found", "Run Again");
@@ -565,7 +575,7 @@ public class BharatPasudhan extends DataProvider {
         return ableToFindAnimalByVillage;
     }
 
-    public static void commonFlowForVaccination(String villageName) throws InterruptedException {
+    public static void commonFlowForVaccination() throws InterruptedException {
         wait.ignoring(ElementClickInterceptedException.class).until(ExpectedConditions.elementToBeClickable(By.xpath("//label[normalize-space()='Include Data Entry Campaigns']")));
         Thread.sleep(1000);
         retryingFindingElement(By.xpath("//label[normalize-space()='Include Data Entry Campaigns']"));
@@ -583,7 +593,7 @@ public class BharatPasudhan extends DataProvider {
         retryingFindingElement(By.xpath("//div[@role='combobox']"));
         driver.findElement(By.xpath("//div[@role='combobox']")).click();
         Thread.sleep(500);
-        driver.findElement(By.xpath("//span[normalize-space()='" + villageName + "']/..")).click();
+        driver.findElement(By.xpath("//span[normalize-space()='" + VACCINATION_VILLAGE_NAME + "']/..")).click();
         clickOutside();
     }
 

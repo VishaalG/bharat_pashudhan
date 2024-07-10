@@ -21,22 +21,16 @@ import java.util.stream.Collectors;
 
 public class DataProvider {
 
-    public static final String USERNAME = "pdktait31_TN";
-    public static final String PASSWORD = "Pdktait31*";
-    public static String EXCEL_FILE_LOCATION = "/Users/vishag/Downloads/Vada pd.xlsx";
+    public static final String USERNAME = "pdktait77_TN";
+    public static final String PASSWORD = "pdktait77_TN";
+    public static String EXCEL_FILE_LOCATION = "/Users/vishag/Downloads/Vaithur AI.xlsx";
     public static String VACCINATION_VILLAGE_NAME = "Lakshmanapatti";
     public static String VACCINATION_START_DATE_RANGE = "12/11/2023";
     public static String VACCINATION_END_DATE_RANGE = "16/12/2023";
-    public static String VACCINATION_BULK_RUN = "Yes";
+    public static String BULL_ID = "SAG-RS-10006";
     public enum CALVING_SEX {
         MALE,
         FEMALE,
-    }
-    public enum BULL_TYPE {
-        RS,
-        JERSEY,
-        CBHF,
-        CBJ
     }
     public static List<String> RS = List.of("SAG-RS-10006", "SAG-RS-10008");
     public static List<String> JERSEY = List.of("ABC-JY-21032", "ABC-JY-21033");
