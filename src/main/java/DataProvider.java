@@ -79,7 +79,7 @@ public class DataProvider {
         return 0;
     }
 
-    public static void updateExcelSheetWithRunDetails(String animalId, String pregnancyDate, String result) throws IOException {
+    public static void updateExcelSheetWithRunDetails(String animalId, String status, String result) throws IOException {
         InputStream excelFile = Files.newInputStream(Paths.get(EXCEL_FILE_LOCATION));
         XSSFWorkbook wb = new XSSFWorkbook(excelFile);
         XSSFSheet sheet = wb.getSheetAt(0);
@@ -90,7 +90,7 @@ public class DataProvider {
         if (updatePregnancyDate == null) {
             updatePregnancyDate = row.createCell(1);
         }
-        updatePregnancyDate.setCellValue(pregnancyDate);
+        updatePregnancyDate.setCellValue(status);
         // Update pregnancy result
         if (pdResult == null) {
             pdResult = row.createCell(2);

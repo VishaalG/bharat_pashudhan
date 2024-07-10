@@ -20,10 +20,10 @@ public class BharatPasudhan extends DataProvider {
 
     public static void main(String[] args) throws IOException, InterruptedException {
 
-//        doArtificialInsemination();
+        doArtificialInsemination();
 //        doPregnancyDiagnosis();
 //        doCalving();
-        doVaccination();
+//        doVaccination();
     }
 
     public static void doArtificialInsemination() throws IOException, InterruptedException {
@@ -140,7 +140,7 @@ public class BharatPasudhan extends DataProvider {
             System.out.println("AI - Animal Id is " + animalId);
             wait.ignoring(StaleElementReferenceException.class).until(ExpectedConditions.elementToBeClickable(By.xpath("//input[@id='search-by']")));
             retryingFindClick(By.xpath("//input[@id='search-by']"), animalId);
-            Thread.sleep(500);
+            Thread.sleep(1500);
             wait.ignoring(StaleElementReferenceException.class).ignoring(ElementClickInterceptedException.class).until(ExpectedConditions.elementToBeClickable(By.cssSelector("button[type=' submit']")));
             driver.findElement(By.cssSelector("button[type=' submit']")).click();
 
@@ -173,25 +173,30 @@ public class BharatPasudhan extends DataProvider {
                     clickOutside();
                     handleAiTimestampAndBullId();
                     driver.findElement(By.xpath("//button[normalize-space()='Submit']")).click();
+                    updateExcelSheetWithRunDetails(animalId, "Inseminated", "Y");
+                    Thread.sleep(5000);
                     System.out.println("AI - Updated for AnimalId " + animalId);
+                    clickOutside();
                     System.out.println("---------------");
                 }
             }
         }
     }
 
-    public static boolean checkCandidatureForArtificialInsemination(String animalId) {
+    public static boolean checkCandidatureForArtificialInsemination(String animalId) throws InterruptedException {
         boolean checkCandidatureForArtificialInsemination = false;
         WebElement checkAiHistoryTable = driver.findElement(By.xpath("(//div[@class='table-responsive custom-view-table'])[1]"));
         wait.until(ExpectedConditions.elementToBeClickable(checkAiHistoryTable));
         if (driver.findElement(By.xpath("(//div[@class='table-responsive custom-view-table'])[1]")).isDisplayed()) {
+            Thread.sleep(1000);
             WebElement checkSuccessfulCalving = driver.findElement(By.xpath("(//table[@role='table']//td[8])[1]//span"));
             if (checkSuccessfulCalving.getText().contains("Successful Calving")) {
-                System.out.println("AI - Candidate for " + animalId);
+                System.out.println("AI - Successful calving found for " + animalId);
                 wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//i[@class='fa fa-chevron-left mr-2 back-section']")));
                 checkCandidatureForArtificialInsemination = true;
             } else {
                 System.out.println("History shows '" + checkSuccessfulCalving.getText() + "' for " + animalId + ".  Skipping..");
+                Thread.sleep(1000);
                 wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//i[@class='fa fa-chevron-left mr-2 back-section']")));
                 driver.findElement(By.xpath("//i[@class='fa fa-chevron-left mr-2 back-section']")).click();
                 System.out.println("---------------");
@@ -206,6 +211,7 @@ public class BharatPasudhan extends DataProvider {
         }
         System.out.println("AI - Bull ID is " + BULL_ID);
         WebElement aiTimeStampField = driver.findElement(By.xpath("//input[@formcontrolname='aiTimestamp']"));
+        Thread.sleep(1000);
         aiTimeStampField.click();
         aiTimeStampField.clear();
         List<String> randomTime = Arrays.asList("08:32:01", "09:12:14", "10:28:35", "11:38:22", "12:23:45", "13:32:11");
