@@ -23,10 +23,11 @@ public class DataProvider {
 
     public static final String USERNAME = "pdktait77_TN";
     public static final String PASSWORD = "pdktait77_TN";
-    public static String EXCEL_FILE_LOCATION = "/Users/vishag/Downloads/Vaithur AI.xlsx";
+    public static String EXCEL_FILE_LOCATION = "/Users/vishag/Downloads/Vaithur AI (1).xlsx";
     public static String VACCINATION_VILLAGE_NAME = "Lakshmanapatti";
     public static String VACCINATION_START_DATE_RANGE = "12/11/2023";
     public static String VACCINATION_END_DATE_RANGE = "16/12/2023";
+    public static String RUN_IN_R1 = "Yes";
     public static String BULL_ID = "SAG-RS-10006";
     public enum CALVING_SEX {
         MALE,

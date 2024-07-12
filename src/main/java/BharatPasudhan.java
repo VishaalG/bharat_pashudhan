@@ -136,6 +136,7 @@ public class BharatPasudhan extends DataProvider {
         for (int i = 0; i < getAllAnimalTagId().size(); i++) {
             // Get values from Excel
             String animalId = getAllAnimalTagId().get(i);
+            String calvingDateFromAIHistoryTable;
             System.out.println("------ " + i + " ------");
             System.out.println("AI - Animal Id is " + animalId);
             wait.ignoring(StaleElementReferenceException.class).until(ExpectedConditions.elementToBeClickable(By.xpath("//input[@id='search-by']")));
@@ -151,7 +152,11 @@ public class BharatPasudhan extends DataProvider {
                 aiHistoryViewButton.click();
                 Thread.sleep(1000);
                 if (checkCandidatureForArtificialInsemination(animalId)) {
-                    String successfulCalvingDate = driver.findElement(By.xpath("//td[normalize-space()='Successful Calving']/ancestor::tr//td[5]")).getText();
+                    if (RUN_IN_R1.equalsIgnoreCase("Yes")) {
+                         calvingDateFromAIHistoryTable = driver.findElement(By.xpath("//td[normalize-space()='PD Due']/ancestor::tr//td[5]")).getText();
+                    } else {
+                         calvingDateFromAIHistoryTable = driver.findElement(By.xpath("//td[normalize-space()='Successful Calving']/ancestor::tr//td[5]")).getText();
+                    }
                     wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//i[@class='fa fa-chevron-left mr-2 back-section']")));
                     driver.findElement(By.xpath("//i[@class='fa fa-chevron-left mr-2 back-section']")).click();
                     wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//input[@name='selectedTagId']")));
@@ -162,14 +167,14 @@ public class BharatPasudhan extends DataProvider {
                     WebElement aiDate = driver.findElement(By.xpath("//input[@formcontrolname='aiDate']"));
                     Thread.sleep(1000);
                     clearWebField(aiDate);
-                    if (getDatePlusSixMonths(successfulCalvingDate) == null) {
+                    if (getDatePlusSixMonths(calvingDateFromAIHistoryTable) == null) {
                         System.out.println("Insemination date is after current date. Skipping");
                         driver.get("https://bharatpashudhan.ndlm.co.in/dashboard/animal-breeding/artificial-insemination");
                         Thread.sleep(2000);
                         continue;
                     }
-                    aiDate.sendKeys(getDatePlusSixMonths(successfulCalvingDate));
-                    System.out.println("AI - Insemination date is set as " + getDatePlusSixMonths(successfulCalvingDate));
+                    aiDate.sendKeys(getDatePlusSixMonths(calvingDateFromAIHistoryTable));
+                    System.out.println("AI - Insemination date is set as " + getDatePlusSixMonths(calvingDateFromAIHistoryTable));
                     clickOutside();
                     handleAiTimestampAndBullId();
                     driver.findElement(By.xpath("//button[normalize-space()='Submit']")).click();
@@ -189,13 +194,17 @@ public class BharatPasudhan extends DataProvider {
         wait.until(ExpectedConditions.elementToBeClickable(checkAiHistoryTable));
         if (driver.findElement(By.xpath("(//div[@class='table-responsive custom-view-table'])[1]")).isDisplayed()) {
             Thread.sleep(1000);
-            WebElement checkSuccessfulCalving = driver.findElement(By.xpath("(//table[@role='table']//td[8])[1]//span"));
-            if (checkSuccessfulCalving.getText().contains("Successful Calving")) {
+            WebElement aiHistoryLatestTableEntry = driver.findElement(By.xpath("(//table[@role='table']//td[8])[1]//span"));
+            if (aiHistoryLatestTableEntry.getText().contains("Successful Calving")) {
                 System.out.println("AI - Successful calving found for " + animalId);
                 wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//i[@class='fa fa-chevron-left mr-2 back-section']")));
                 checkCandidatureForArtificialInsemination = true;
+            } else if (aiHistoryLatestTableEntry.getText().contains("PD Due") && RUN_IN_R1.equalsIgnoreCase("Yes")) {
+                System.out.println("AI in R1 - PD Due found for " + animalId);
+                wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//i[@class='fa fa-chevron-left mr-2 back-section']")));
+                checkCandidatureForArtificialInsemination = true;
             } else {
-                System.out.println("History shows '" + checkSuccessfulCalving.getText() + "' for " + animalId + ".  Skipping..");
+                System.out.println("History shows '" + aiHistoryLatestTableEntry.getText() + "' for " + animalId + ".  Skipping..");
                 Thread.sleep(1000);
                 wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//i[@class='fa fa-chevron-left mr-2 back-section']")));
                 driver.findElement(By.xpath("//i[@class='fa fa-chevron-left mr-2 back-section']")).click();
@@ -222,7 +231,7 @@ public class BharatPasudhan extends DataProvider {
         Thread.sleep(1000);
         wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//select[@name='selectSemen']")));
         Select semenType = new Select(driver.findElement(By.xpath("//select[@name='selectSemen']")));
-        semenType.selectByIndex(1);
+        semenType.selectByValue("2");
         clickOutside();
     }
 
@@ -552,7 +561,7 @@ public class BharatPasudhan extends DataProvider {
                     driver.findElement(By.xpath("//button[normalize-space()='Submit']")).click();
                     System.out.println("Vaccinated animal on " + vaccinationDate);
                     updateExcelSheetWithRunDetails(animalId, "Vaccinated", "Y");
-                    Thread.sleep(5000);
+                    Thread.sleep(3000);
                     driver.get("https://bharatpashudhan.ndlm.co.in/dashboard/vaccination");
                     System.out.println("---------------");
                     commonFlowForVaccination();
