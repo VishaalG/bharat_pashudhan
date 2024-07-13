@@ -1,77 +1,76 @@
 
-	java:S112"FDefine and throw a dedicated exception instead of using a generic one.(… óÎÿÿÿÿÿ8ÂáºâŠ2J$af23c539-d04b-41b6-a6f0-4ce2f21c1126
-›	java:S135ı"YReduce the total number of break and continue statements in this loop to use at most one.(Öµ• 8Î¶·âŠ2J$acda446e-d6e9-4600-8b7c-36a0b50f13f4
-›	java:S135‡"YReduce the total number of break and continue statements in this loop to use at most one.(Öµ• 8Î¶·âŠ2J$8d2c2f7b-d38b-47fd-b031-ce0bd6655697
+›	java:S135€"YReduce the total number of break and continue statements in this loop to use at most one.(Öµ• 8í§éâŠ2J$093365e9-4bfd-4f74-8e57-2b59762e1ab3
+›	java:S135Š"YReduce the total number of break and continue statements in this loop to use at most one.(Öµ• 8í§éâŠ2J$3efdc85c-2f9d-4586-af70-cfa947b07e18
 ‘
-java:S1192“"HDefine a constant instead of duplicating this literal " ------" 4 times.(Ù¹–âùÿÿÿÿ8Î¶·âŠ2J$b06fafb5-e242-4bd9-a81e-7fdfa54fc5e9
+java:S1192“"HDefine a constant instead of duplicating this literal " ------" 4 times.(Ù¹–âùÿÿÿÿ8í§éâŠ2J$bc607f62-dbe9-49c4-bfc9-2382e9a9f772
 ¹
-java:S1192Q"qDefine a constant instead of duplicating this literal "//a[normalize-space()='Artificial Insemination']" 4 times.(Š‡®şøÿÿÿÿ8Î¶·âŠ2J$0602dc5e-d522-4dde-a858-dd2f06d0c5ec
+java:S1192Q"qDefine a constant instead of duplicating this literal "//a[normalize-space()='Artificial Insemination']" 4 times.(Š‡®şøÿÿÿÿ8í§éâŠ2J$ef1f811b-8c80-414d-95d6-260e3709d935
 Æ
-java:S1192¼"Define a constant instead of duplicating this literal "//table[@class='table animal-table m-0 ng-star-inserted']//td[5]" 3 times.(åÒõ›8Î¶·âŠ2J$b7858cdb-6d17-406f-b062-4ef49afdf714
+java:S1192¿"Define a constant instead of duplicating this literal "//table[@class='table animal-table m-0 ng-star-inserted']//td[5]" 3 times.(åÒõ›8í§éâŠ2J$594fa3d1-73d2-4c83-87d5-2791e2d6b97f
 ½
-java:S1192Å"tDefine a constant instead of duplicating this literal "//i[@class='fa fa-chevron-left mr-2 back-section']" 12 times.(ş™œÓşÿÿÿÿ8Ï¶·âŠ2J$90f239e2-73d0-46b7-9fa1-5475d7cfb145
+java:S1192È"tDefine a constant instead of duplicating this literal "//i[@class='fa fa-chevron-left mr-2 back-section']" 12 times.(ş™œÓşÿÿÿÿ8í§éâŠ2J$edb9633c-4e61-4a4d-b436-7af94f7907d6
 £
-java:S1192¢"_Define a constant instead of duplicating this literal "//input[@name='selectedTagId']" 8 times.(Î‹‰ã8Ï¶·âŠ2J$3459b707-0303-440d-b540-d5b3cc455373
+java:S1192¦"_Define a constant instead of duplicating this literal "//input[@name='selectedTagId']" 8 times.(Î‹‰ã8í§éâŠ2J$cf88a0c2-5762-417c-8ba4-366d1bd0d1a9
 ¬
-java:S1192"hDefine a constant instead of duplicating this literal "//button[@class='btn btn-primary mr-2']" 7 times.(×Ã‘Õ8Ï¶·âŠ2J$a86f9f39-5e07-41f1-b5bf-b57d51156fa3
+java:S1192‘"hDefine a constant instead of duplicating this literal "//button[@class='btn btn-primary mr-2']" 7 times.(×Ã‘Õ8í§éâŠ2J$3393240e-a0da-4775-97c7-1781778ee421
 ®
-java:S1192®"eDefine a constant instead of duplicating this literal "//button[normalize-space()='Submit']" 6 times.(¦úüÿÿÿÿÿ8Ï¶·âŠ2J$e4e3d00b-904f-4e40-8802-b8afdfb666b4
+java:S1192²"eDefine a constant instead of duplicating this literal "//button[normalize-space()='Submit']" 6 times.(¦úüÿÿÿÿÿ8í§éâŠ2J$8d820cf0-0482-44f7-9950-dc4b967ec77c
 §
-java:S1192"^Define a constant instead of duplicating this literal "(//input[@id='filter-by'])[2]" 6 times.(£ßŒáüÿÿÿÿ8Ï¶·âŠ2J$7e185aba-d122-47e6-b8ad-2ebb956ef402
+java:S1192"^Define a constant instead of duplicating this literal "(//input[@id='filter-by'])[2]" 6 times.(£ßŒáüÿÿÿÿ8í§éâŠ2J$e907fbd7-7297-44a0-9583-684e1f35c681
 
-java:S1192"YDefine a constant instead of duplicating this literal "//td[normalize-space()='" 3 times.(œŞÑ‚8Ï¶·âŠ2J$878df03b-4966-4ced-9765-4e08d7e8fb7a
+java:S1192"YDefine a constant instead of duplicating this literal "//td[normalize-space()='" 3 times.(œŞÑ‚8í§éâŠ2J$b32c37f1-ba58-4d78-a798-9ff42411825f
 ›
-java:S1192˜"WDefine a constant instead of duplicating this literal "button[type=' submit']" 8 times.(¡Ñ»Ø8Ï¶·âŠ2J$f7cfd59b-6e96-4484-9779-6a39e0f0dede
+java:S1192˜"WDefine a constant instead of duplicating this literal "button[type=' submit']" 8 times.(¡Ñ»Ø8í§éâŠ2J$ddb89516-e417-4106-ad32-cac61e7d3a2b
 ¡
-java:S1192 "XDefine a constant instead of duplicating this literal "//mat-icon[@role='img']" 3 times.(œá½“úÿÿÿÿ8Ï¶·âŠ2J$e2487971-ffc0-4308-9218-de2f3c6238e4
+java:S1192£"XDefine a constant instead of duplicating this literal "//mat-icon[@role='img']" 3 times.(œá½“úÿÿÿÿ8í§éâŠ2J$6a4bdbbc-7730-41a0-a1df-a3ae168ccda0
 ²
-java:S1192·"iDefine a constant instead of duplicating this literal "//select[@formcontrolname='serviceType']" 3 times.(’€üéøÿÿÿÿ8Ï¶·âŠ2J$a1ed10c1-e8fd-4462-963d-60cac70786a2
+java:S1192º"iDefine a constant instead of duplicating this literal "//select[@formcontrolname='serviceType']" 3 times.(’€üéøÿÿÿÿ8í§éâŠ2J$707eca33-d082-427a-b5a1-1c438cbdfff4
 ¨
-java:S1192u"eDefine a constant instead of duplicating this literal "//a[normalize-space()='Vaccination']" 4 times.(‘Õ”„8Ï¶·âŠ2J$743f9bea-1a29-4633-9b2e-a6da8e188cf7
+java:S1192u"eDefine a constant instead of duplicating this literal "//a[normalize-space()='Vaccination']" 4 times.(‘Õ”„8í§éâŠ2J$1da3cc7d-7ce2-4276-97f3-4939120fbdcf
 £
-java:S1192•"ZDefine a constant instead of duplicating this literal "//input[@id='search-by']" 12 times.(ıÛäØÿÿÿÿÿ8Ï¶·âŠ2J$1bcf8211-f25e-43f0-9e57-5294417b44f5
+java:S1192•"ZDefine a constant instead of duplicating this literal "//input[@id='search-by']" 12 times.(ıÛäØÿÿÿÿÿ8í§éâŠ2J$d1d295de-e904-402b-ac81-cc23c8085da2
 ‘
-java:S1192“"HDefine a constant instead of duplicating this literal "------ " 4 times.(Ù¹–âùÿÿÿÿ8Ï¶·âŠ2J$07f32cdc-b9ae-4711-855e-c301cad07d3e
+java:S1192“"HDefine a constant instead of duplicating this literal "------ " 4 times.(Ù¹–âùÿÿÿÿ8í§éâŠ2J$3c5dc024-8451-4a41-add8-1804e5083e16
 ”
-java:S1192³"PDefine a constant instead of duplicating this literal "---------------" 8 times.(ĞÛâï8Ï¶·âŠ2J$3eec9c87-0a8c-41c8-9b16-c8a21d22f09b
+java:S1192·"PDefine a constant instead of duplicating this literal "---------------" 8 times.(ĞÛâï8í§éâŠ2J$678da26c-1585-4253-b2ee-deaef4ddce33
 °
-java:S1192i"mDefine a constant instead of duplicating this literal "//a[normalize-space()='Pregnancy Diagnosis']" 4 times.(ğƒäş8Ï¶·âŠ2J$c3f156cc-8a62-4ae6-bc50-aa8f0595ef37
+java:S1192i"mDefine a constant instead of duplicating this literal "//a[normalize-space()='Pregnancy Diagnosis']" 4 times.(ğƒäş8í§éâŠ2J$8c510a6a-2751-4330-9f35-20f54835ba71
 ²
-java:S1192T"jDefine a constant instead of duplicating this literal "//div[contains(text(),'Animal Breeding')]" 6 times.(™®Ò·şÿÿÿÿ8Ï¶·âŠ2J$913ca74d-f037-41de-be18-41f686e91a9b
+java:S1192T"jDefine a constant instead of duplicating this literal "//div[contains(text(),'Animal Breeding')]" 6 times.(™®Ò·şÿÿÿÿ8í§éâŠ2J$1f03e99f-209e-47f7-97f0-41989274f2f7
 ª
-java:S1192à"fDefine a constant instead of duplicating this literal "//button[@id='carousel-control-next']" 3 times.(êà«”8Ï¶·âŠ2J$bc73cac0-016d-4020-b174-d04b148451d8
+java:S1192ã"fDefine a constant instead of duplicating this literal "//button[@id='carousel-control-next']" 3 times.(êà«”8í§éâŠ2J$15f2ecb3-6c2c-4ff3-bad0-ce0ea2236d3c
 Ã
-java:S1192Û"zDefine a constant instead of duplicating this literal "//label[normalize-space()='Include Data Entry Campaigns']" 3 times.(Š¿¼”úÿÿÿÿ8Ï¶·âŠ2J$3b61da23-f9d1-4873-b9f1-50c59d284a94
+java:S1192Ş"zDefine a constant instead of duplicating this literal "//label[normalize-space()='Include Data Entry Campaigns']" 3 times.(Š¿¼”úÿÿÿÿ8í§éâŠ2J$9580ea64-be6b-4395-9f5a-5ac953a9775d
 œ
-java:S1192è"XDefine a constant instead of duplicating this literal "//div[@role='combobox']" 3 times.(„ˆĞ8Ï¶·âŠ2J$16d53026-ce62-40c8-be0e-002f2d8fce2a
+java:S1192ë"XDefine a constant instead of duplicating this literal "//div[@role='combobox']" 3 times.(„ˆĞ8í§éâŠ2J$395ccfd2-1342-43c5-b11f-2c4df1f436ed
 £
-java:S1192"ZDefine a constant instead of duplicating this literal " entries from excel sheet" 4 times.(Ç±šÎùÿÿÿÿ8Ï¶·âŠ2J$edd11c03-3f42-4cdd-a0ec-109349217cf8
+java:S1192"ZDefine a constant instead of duplicating this literal " entries from excel sheet" 4 times.(Ç±šÎùÿÿÿÿ8í§éâŠ2J$9d32800f-4fe5-411c-92dc-54427649165c
 Â
-java:S1192’"~Define a constant instead of duplicating this literal "//table[@class='mat-table cdk-table mat-elevation-z8']//td[2]" 5 times.(ÂË€—8Ï¶·âŠ2J$8bc2be2b-6194-4e83-9cdc-f2210c051e1a
+java:S1192•"~Define a constant instead of duplicating this literal "//table[@class='mat-table cdk-table mat-elevation-z8']//td[2]" 5 times.(ÂË€—8í§éâŠ2J$e3956731-9e9c-4146-8438-0db4ce0037a9
 °
-java:S1192P"nDefine a constant instead of duplicating this literal "//a[@href='#submenu2'][@aria-expanded='true']" 3 times.(£†­a8Ï¶·âŠ2J$17b49aaa-413f-43ee-9120-18954c3b707b
+java:S1192P"nDefine a constant instead of duplicating this literal "//a[@href='#submenu2'][@aria-expanded='true']" 3 times.(£†­a8í§éâŠ2J$4851049b-1cbf-4720-b8ae-c7491824aeac
 ©
-java:S1192]"aDefine a constant instead of duplicating this literal "//a[normalize-space()='Calving']" 4 times.(ü”ÿÉúÿÿÿÿ8Ï¶·âŠ2J$fdb8d4de-56b3-4979-ba40-f02b42a8d53a
+java:S1192]"aDefine a constant instead of duplicating this literal "//a[normalize-space()='Calving']" 4 times.(ü”ÿÉúÿÿÿÿ8í§éâŠ2J$4f09c41c-005c-4581-bffa-7a3d29774a6f
  
-java:S1192œ"WDefine a constant instead of duplicating this literal "//table[@role='table']" 7 times.(şı˜ñıÿÿÿÿ8Ï¶·âŠ2J$df9eaed7-b292-4a2a-bb2d-35a6023f6c64
+java:S1192œ"WDefine a constant instead of duplicating this literal "//table[@role='table']" 7 times.(şı˜ñıÿÿÿÿ8í§éâŠ2J$d204a3b9-99d2-4a9f-a9d3-e5f3c0550682
 ¦
-java:S1192”"bDefine a constant instead of duplicating this literal "//span[@class='status-highlight']" 3 times.(ñ²ûŠ8Ï¶·âŠ2J$5cfae89e-c403-4043-9f26-dae695419eaf
-ƒ	java:S125 "<This block of commented-out lines of code should be removed.(ûÈÌ¾ûÿÿÿÿ8Ö¶·âŠ2J$969669d2-fd21-43d1-91c4-ed3d3d46ffd2
-e
-java:S1116Ø"Remove this empty statement.(œì€´ûÿÿÿÿ8à¶·âŠ2J$54e18009-358e-40fa-9e41-bbad38747af2
+java:S1192—"bDefine a constant instead of duplicating this literal "//span[@class='status-highlight']" 3 times.(ñ²ûŠ8í§éâŠ2J$676b7d78-f750-445d-a041-80024b402651
+ƒ	java:S125 "<This block of commented-out lines of code should be removed.(ûÈÌ¾ûÿÿÿÿ8ó§éâŠ2J$fb625857-394a-4da7-8add-e39fa07b3dd1
+`
+java:S1116Û"Remove this empty statement.(™Ù±Ã8ı§éâŠ2J$4fe481f5-858a-4f54-ac0f-4d1fc843f24b
 m
-java:S2140ì")Use "java.util.Random.nextInt()" instead.(’­ô8á¶·âŠ2J$e7769c17-5f7e-4aa0-a9c5-10422a463cb4
-	java:S125ê"<This block of commented-out lines of code should be removed.(Íäœù8ğ¶·âŠ2J$b9dcbd9f-4931-476f-aa5b-0b530f7997e6
+java:S2140ï")Use "java.util.Random.nextInt()" instead.(’­ô8ş§éâŠ2J$36bb6a33-e48a-428f-a6b7-9cdaaf3a9752
+	java:S125í"<This block of commented-out lines of code should be removed.(Íäœù8†¨éâŠ2J$2b351f72-7fdf-49fb-b768-b6d49cde8307
 r
-java:S2140å")Use "java.util.Random.nextInt()" instead.(ÍÿèÕøÿÿÿÿ8ı¶·âŠ2J$34f68bd9-ff17-4084-91ab-acb5c5f03295
-„	java:S125"<This block of commented-out lines of code should be removed.(ªŸåŞşÿÿÿÿ8Š··âŠ2J$7d19e6ca-228a-46b0-ac34-28fc335569c6
+java:S2140è")Use "java.util.Random.nextInt()" instead.(ÍÿèÕøÿÿÿÿ8¨éâŠ2J$49547679-e973-49f1-8197-22c8b3a87f5d
+„	java:S125’"<This block of commented-out lines of code should be removed.(ªŸåŞşÿÿÿÿ8—¨éâŠ2J$cc019e7c-8b1b-45b9-bcb3-df636a065533
 
-java:S2147©"ECombine this catch with the one at line 680, which has the same body.(‰ÜÏÂüÿÿÿÿ8‹··âŠ2J$dfa9aefc-6923-463c-8c95-86950bc64ee1
-l	java:S108¨")Either remove or fill this block of code.(ÀŒÂã8‹··âŠ2J$3af7868f-cdd0-428c-a839-0df8bffee88f
-q	java:S108©")Either remove or fill this block of code.(‰ÜÏÂüÿÿÿÿ8‹··âŠ2J$8a36f880-ace7-4054-8ec1-399c608c5e89
+java:S2147¬"ECombine this catch with the one at line 683, which has the same body.(‰ÜÏÂüÿÿÿÿ8˜¨éâŠ2J$53b60436-e2d2-4828-b780-2ee334929ff3
+l	java:S108«")Either remove or fill this block of code.(ÀŒÂã8˜¨éâŠ2J$8f06c1bd-61b6-4f76-8c4d-52527509a1b1
+q	java:S108¬")Either remove or fill this block of code.(‰ÜÏÂüÿÿÿÿ8˜¨éâŠ2J$b0b1fae2-618c-4e2b-a536-a7b50729ff74
 
-java:S2147º"ECombine this catch with the one at line 697, which has the same body.(‰ÜÏÂüÿÿÿÿ8‹··âŠ2J$dcc765bd-849b-4360-83b3-7e012c4f57f9
-l	java:S108¹")Either remove or fill this block of code.(ÀŒÂã8‹··âŠ2J$f168fe90-2a85-42e6-a309-22e6c40872a6
-q	java:S108º")Either remove or fill this block of code.(‰ÜÏÂüÿÿÿÿ8Œ··âŠ2J$00af3540-d2cc-43a0-bc65-3ff9301116d0
+java:S2147½"ECombine this catch with the one at line 700, which has the same body.(‰ÜÏÂüÿÿÿÿ8˜¨éâŠ2J$8260f1b3-a973-4020-96cf-352ce2d63fb2
+l	java:S108¼")Either remove or fill this block of code.(ÀŒÂã8˜¨éâŠ2J$9c56f94f-b090-4332-a274-55ae413f4655
+q	java:S108½")Either remove or fill this block of code.(‰ÜÏÂüÿÿÿÿ8˜¨éâŠ2J$6da1cc85-dc81-49c5-9c80-e656652427fb
 
-java:S6541Ş"ÅA "Brain Method" was detected. Refactor it to reduce at least one of the following metrics: LOC from 78 to 64, Complexity from 17 to 14, Nesting Level from 3 to 2, Number of Variables from 12 to 6.(Â®ñ§ÿÿÿÿÿ8Œ··âŠ2J$0a40660f-1449-439c-9127-a98a959ed08d
+java:S6541á"ÅA "Brain Method" was detected. Refactor it to reduce at least one of the following metrics: LOC from 78 to 64, Complexity from 17 to 14, Nesting Level from 3 to 2, Number of Variables from 12 to 6.(Â®ñ§ÿÿÿÿÿ8™¨éâŠ2J$516072e1-5387-4431-b01d-ccc2d58442fd

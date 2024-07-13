@@ -159,6 +159,10 @@ public class BharatPasudhan extends DataProvider {
                 aiHistoryViewButton.click();
                 Thread.sleep(1000);
                 String finalAiDateToEnter = checkCandidatureForArtificialInsemination(animalId);
+                if (!checkIfDateIsInRange(finalAiDateToEnter)) {
+                    System.out.println("AI - AI date is not in range for " + animalId);
+                    continue;
+                }
                 wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//input[@name='selectedTagId']")));
                 driver.findElement(By.xpath("//input[@name='selectedTagId']")).click();
                 wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//button[normalize-space()='New AI']")));
@@ -192,8 +196,7 @@ public class BharatPasudhan extends DataProvider {
             if (aiHistoryLatestTableEntry.getText().contains("Successful Calving")) {
                 System.out.println("AI History - Successful calving found for " + animalId);
                 String calvingDate = driver.findElement(By.xpath("//td[normalize-space()='Successful Calving']/ancestor::tr//td[5]")).getText();
-                String aiDate = getDatePlusFiveMonths(calvingDate);
-                result = aiDate;
+                result = getDatePlusFiveMonths(calvingDate);
                 wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//i[@class='fa fa-chevron-left mr-2 back-section']")));
                 driver.findElement(By.xpath("//i[@class='fa fa-chevron-left mr-2 back-section']")).click();
                 Thread.sleep(1000);
@@ -213,7 +216,7 @@ public class BharatPasudhan extends DataProvider {
             }
         } else if (checkElementExists(By.xpath("//td[normalize-space()='No data matching the filter.']"))) {
             System.out.println("AI History - No data matching the filter for " + animalId);
-            result = getFourMonthsBeforeCurrentDate();;
+            result = getDateMinusFourMonths();;
             wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//i[@class='fa fa-chevron-left mr-2 back-section']")));
             driver.findElement(By.xpath("//i[@class='fa fa-chevron-left mr-2 back-section']")).click();
             Thread.sleep(1000);

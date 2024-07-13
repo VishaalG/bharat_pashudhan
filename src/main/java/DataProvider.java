@@ -23,7 +23,7 @@ public class DataProvider {
     // Mandatory Fields for all runs.
     public static final String USERNAME = "pdktait77_TN";
     public static final String PASSWORD = "pdktait77_TN";
-    public static final String EXCEL_FILE_LOCATION = "/Users/vishag/Downloads/VAithur Ai 2.xlsx";
+    public static final String EXCEL_FILE_LOCATION = "/Users/vishag/Downloads/Vaithur AI.xlsx";
 
     // Vaccination
     public static final String VACCINATION_VILLAGE_NAME = "Lakshmanapatti";
@@ -195,7 +195,18 @@ public class DataProvider {
         return newDate.format(formatter);
     }
 
-    public static String getFourMonthsBeforeCurrentDate() {
+    public static boolean checkIfDateIsInRange(String input) {
+        boolean result = false;
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+        LocalDate inputDate = LocalDate.parse(input, formatter);
+        if (inputDate.isBefore(LocalDate.now()) && inputDate.isAfter(LocalDate.now().minusYears(1))) {
+            result = true;
+        }
+        System.out.println("Invalid date range");
+        return result;
+    }
+
+    public static String getDateMinusFourMonths() {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
         LocalDate date = LocalDate.parse(LocalDate.now().toString(), formatter);
         LocalDate newDate = date.minusMonths(4);
@@ -212,7 +223,6 @@ public class DataProvider {
             // Parse the start and end dates
             Date startDate = dateFormat.parse(VACCINATION_START_DATE_RANGE);
             Date endDate = dateFormat.parse(VACCINATION_END_DATE_RANGE);
-
             // Generate a random date between startDate and endDate
             long randomMillis = ThreadLocalRandom.current().nextLong(startDate.getTime(), endDate.getTime());
             Date randomDate = new Date(randomMillis);
