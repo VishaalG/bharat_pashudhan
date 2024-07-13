@@ -12,31 +12,46 @@ import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
-import java.time.LocalDateTime;
+import java.time.YearMonth;
 import java.time.format.DateTimeFormatter;
 import java.time.temporal.ChronoUnit;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
+import java.util.Random;
 import java.util.concurrent.ThreadLocalRandom;
-import java.util.stream.Collectors;
 
 public class DataProvider {
 
+    // Mandatory Fields for all runs.
     public static final String USERNAME = "pdktait77_TN";
     public static final String PASSWORD = "pdktait77_TN";
-    public static String EXCEL_FILE_LOCATION = "/Users/vishag/Downloads/Vaithur AI (1).xlsx";
-    public static String VACCINATION_VILLAGE_NAME = "Lakshmanapatti";
-    public static String VACCINATION_START_DATE_RANGE = "12/11/2023";
-    public static String VACCINATION_END_DATE_RANGE = "16/12/2023";
-    public static String RUN_IN_R1 = "Yes";
-    public static String BULL_ID = "SAG-RS-10006";
+    public static final String EXCEL_FILE_LOCATION = "/Users/vishag/Downloads/VAithur Ai 2.xlsx";
+
+    // Vaccination
+    public static final String VACCINATION_VILLAGE_NAME = "Lakshmanapatti";
+    public static final String VACCINATION_START_DATE_RANGE = "12/11/2023";
+    public static final String VACCINATION_END_DATE_RANGE = "16/12/2023";
+
+    // Artificial Insemination
+    public static final String BULL_ID = "SAG-RS-10006";
+    // Note : Both R1 and FRESH AI RUN cannot be 'Yes' at same time.
+    public static final String RUN_IN_R1 = "No";
+    public static final String FRESH_AI_RUNS = "Yes";
+    public static final int FRESH_AI_RUN_YEAR = 2023;
+    public static final int FRESH_AI_RUN_MONTH = 4;
+    public static final List<String> RS = List.of("SAG-RS-10006", "SAG-RS-10008");
+    public static final List<String> JERSEY = List.of("ABC-JY-21032", "ABC-JY-21033");
+    public static final List<String> CBHF = List.of("ALM-HX-40073", "ALM-HX-40074");
+    public static final List<String> CBJ = List.of("ALM-JS-40282", "ALM-JS-40351");
+
+    // Calving
     public enum CALVING_SEX {
         MALE,
         FEMALE,
     }
-    public static List<String> RS = List.of("SAG-RS-10006", "SAG-RS-10008");
-    public static List<String> JERSEY = List.of("ABC-JY-21032", "ABC-JY-21033");
-    public static List<String> CBHF = List.of("ALM-HX-40073", "ALM-HX-40074");
-    public static List<String> CBJ = List.of("ALM-JS-40282", "ALM-JS-40351");
+
+    // Script to convert the date from Excel.
     // =TEXT(DATE(VALUE(MID(B1,7,4)), VALUE(MID(B1,4,2)), VALUE(LEFT(B1,2))), "dd/mm/yy")
 
     public static List<String> getAllAnimalTagId() throws IOException {
@@ -46,7 +61,7 @@ public class DataProvider {
         List<String> animalTagIdValues = new ArrayList<>();
         for (Row r : sheet) {
             Cell animalTagIdColumn = r.getCell(0);
-            if(animalTagIdColumn != null) {
+            if (animalTagIdColumn != null) {
                 if (animalTagIdColumn.getCellType().equals(CellType.STRING)) {
                     animalTagIdValues.add(animalTagIdColumn.getStringCellValue());
                 } else if (animalTagIdColumn.getCellType().equals(CellType.NUMERIC)) {
@@ -120,48 +135,6 @@ public class DataProvider {
         }
     }
 
-    public static String getDuplicateDescDateOfAnimalTagId(String animalTagIdValues) throws IOException {
-        InputStream excelFile = Files.newInputStream(Paths.get(EXCEL_FILE_LOCATION));
-        XSSFWorkbook wb = new XSSFWorkbook(excelFile);
-        XSSFSheet sheet = wb.getSheetAt(0);
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm:ss");
-        List<String> dates = new ArrayList<>();
-        Map<String, String> map = new HashMap<>();
-        for (Row r : sheet) {
-            Cell animalId = r.getCell(0);
-            if (animalId.getStringCellValue().contentEquals(animalTagIdValues)) {
-                dates.add(r.getCell(1).getStringCellValue());
-                List<String> sortedDateTimeStrings = dates.stream()
-                        .sorted((s1, s2) -> {
-                            LocalDateTime dateTime1 = LocalDateTime.parse(s1, formatter);
-                            LocalDateTime dateTime2 = LocalDateTime.parse(s2, formatter);
-                            return dateTime2.compareTo(dateTime1); // For descending order
-                        })
-                        .collect(Collectors.toList());
-
-                map.put(animalId.getStringCellValue(), sortedDateTimeStrings.get(0));
-            }
-        }
-
-        DateTimeFormatter inputFormatter = DateTimeFormatter.ofPattern("dd-MMM-yyyy");
-        // Remove the square brackets and parse the input date
-        LocalDate date = LocalDate.parse(dates.get(0), inputFormatter);
-        // Add three months to the date
-        LocalDate newDate = date.plusMonths(3);
-
-        LocalDate currentDate = LocalDate.now();
-        LocalDate oneYearBefore = currentDate.minusYears(1);
-
-        // Format the new date back to the original format
-        String formattedNewDate = newDate.format(formatter);
-
-        if (newDate.isBefore(oneYearBefore)) {
-            return oneYearBefore.plusDays(1).format(formatter);
-        } else {
-            return formattedNewDate;
-        }
-    }
-
     public static String handleGestationDate(String addedDate, String initialDate) {
         String output;
         LocalDate currentDate = LocalDate.now();
@@ -175,8 +148,7 @@ public class DataProvider {
         } else {
             if (finalDateParse.isAfter(currentDate)) {
                 output = currentDate.format(formatter);
-            }
-            else if (finalDateParse.isBefore(LocalDate.now().minusYears(1))) {
+            } else if (finalDateParse.isBefore(LocalDate.now().minusYears(1))) {
                 output = currentDate.format(formatter);
             } else {
                 output = finalDateParse.plusDays(randomNumber).format(formatter);
@@ -205,11 +177,8 @@ public class DataProvider {
             }
         }
         DateTimeFormatter inputFormatter = DateTimeFormatter.ofPattern("dd-MMM-yyyy");
-        // Remove the square brackets and parse the input date
         LocalDate date = LocalDate.parse(dates.get(0), inputFormatter);
-        // Add three months to the date
         LocalDate newDate = date.plusMonths(9).minusDays(2);
-
         String formattedNewDate = newDate.format(formatter);
         return formattedNewDate;
 
@@ -218,7 +187,6 @@ public class DataProvider {
     public static String getDatePlusThreeMonths(String input) {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
         LocalDate date = LocalDate.parse(input, formatter);
-        // Add three months to the date
         int randomNumber = (int) (Math.random() * 3) + 1;
         LocalDate newDate = date.plusMonths(3).plusDays(randomNumber);
         String formattedNewDate = newDate.format(formatter);
@@ -232,7 +200,6 @@ public class DataProvider {
     public static String getDatePlusSixMonths(String input) {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
         LocalDate date = LocalDate.parse(input, formatter);
-        // Add three months to the date
         LocalDate newDate = date.plusMonths(6);
         if (newDate.isAfter(LocalDate.now())) {
             return null;
@@ -243,7 +210,6 @@ public class DataProvider {
     public static String getDatePlusNineMonths(String input) {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
         LocalDate date = LocalDate.parse(input, formatter);
-        // Add Nine months to the date
         LocalDate newDate = date.plusMonths(9);
         if (newDate.isAfter(LocalDate.now())) {
             return null;
@@ -270,6 +236,12 @@ public class DataProvider {
         }
     }
 
-    public static void main(String[] args) throws IOException, InterruptedException {
+    public static String getRandomDateForAGivenYearAndMonth(int year, int month) {
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+        YearMonth yearMonth = YearMonth.of(year, month);
+        int daysInMonth = yearMonth.lengthOfMonth();
+        Random random = new Random();
+        int randomDay = random.nextInt(daysInMonth) + 1;
+        return LocalDate.of(year, month, randomDay).format(formatter);
     }
 }

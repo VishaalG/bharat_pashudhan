@@ -132,11 +132,11 @@ public class BharatPasudhan extends DataProvider {
     // Start of Artificial Insemination flow
 
     public static void artificialInsemination() throws IOException, RuntimeException, InterruptedException {
-        System.out.println("AI - Total " + getAllAnimalTagId().size() + " entries from excel sheet");
+        System.out.println("AI - Found total of " + getAllAnimalTagId().size() + " entries from excel sheet");
         for (int i = 0; i < getAllAnimalTagId().size(); i++) {
             // Get values from Excel
             String animalId = getAllAnimalTagId().get(i);
-            String calvingDateFromAIHistoryTable;
+            String calvingDate = "";
             System.out.println("------ " + i + " ------");
             System.out.println("AI - Animal Id is " + animalId);
             wait.ignoring(StaleElementReferenceException.class).until(ExpectedConditions.elementToBeClickable(By.xpath("//input[@id='search-by']")));
@@ -152,10 +152,12 @@ public class BharatPasudhan extends DataProvider {
                 aiHistoryViewButton.click();
                 Thread.sleep(1000);
                 if (checkCandidatureForArtificialInsemination(animalId)) {
-                    if (RUN_IN_R1.equalsIgnoreCase("Yes")) {
-                         calvingDateFromAIHistoryTable = driver.findElement(By.xpath("//td[normalize-space()='PD Due']/ancestor::tr//td[5]")).getText();
-                    } else {
-                         calvingDateFromAIHistoryTable = driver.findElement(By.xpath("//td[normalize-space()='Successful Calving']/ancestor::tr//td[5]")).getText();
+                    if (RUN_IN_R1.equalsIgnoreCase("Yes") && FRESH_AI_RUNS.equalsIgnoreCase("No")) {
+                        calvingDate = driver.findElement(By.xpath("//td[normalize-space()='PD Due']/ancestor::tr//td[5]")).getText();
+                    } else if (RUN_IN_R1.equalsIgnoreCase("No") && FRESH_AI_RUNS.equalsIgnoreCase("No")) {
+                        calvingDate = driver.findElement(By.xpath("//td[normalize-space()='Successful Calving']/ancestor::tr//td[5]")).getText();
+                    } else if (FRESH_AI_RUNS.equalsIgnoreCase("Yes") && RUN_IN_R1.equalsIgnoreCase("No")) {
+                        calvingDate = getRandomDateForAGivenYearAndMonth(FRESH_AI_RUN_YEAR, FRESH_AI_RUN_MONTH).toString();
                     }
                     wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//i[@class='fa fa-chevron-left mr-2 back-section']")));
                     driver.findElement(By.xpath("//i[@class='fa fa-chevron-left mr-2 back-section']")).click();
@@ -167,14 +169,14 @@ public class BharatPasudhan extends DataProvider {
                     WebElement aiDate = driver.findElement(By.xpath("//input[@formcontrolname='aiDate']"));
                     Thread.sleep(1000);
                     clearWebField(aiDate);
-                    if (getDatePlusSixMonths(calvingDateFromAIHistoryTable) == null) {
+                    if (getDatePlusSixMonths(calvingDate) == null) {
                         System.out.println("Insemination date is after current date. Skipping");
                         driver.get("https://bharatpashudhan.ndlm.co.in/dashboard/animal-breeding/artificial-insemination");
                         Thread.sleep(2000);
                         continue;
                     }
-                    aiDate.sendKeys(getDatePlusSixMonths(calvingDateFromAIHistoryTable));
-                    System.out.println("AI - Insemination date is set as " + getDatePlusSixMonths(calvingDateFromAIHistoryTable));
+                    aiDate.sendKeys(getDatePlusSixMonths(calvingDate));
+                    System.out.println("AI - Insemination date is set as " + getDatePlusSixMonths(calvingDate));
                     clickOutside();
                     handleAiTimestampAndBullId();
                     driver.findElement(By.xpath("//button[normalize-space()='Submit']")).click();
@@ -190,11 +192,13 @@ public class BharatPasudhan extends DataProvider {
 
     public static boolean checkCandidatureForArtificialInsemination(String animalId) throws InterruptedException {
         boolean checkCandidatureForArtificialInsemination = false;
+        WebElement aiHistoryLatestTableEntry = null;
         WebElement checkAiHistoryTable = driver.findElement(By.xpath("(//div[@class='table-responsive custom-view-table'])[1]"));
         wait.until(ExpectedConditions.elementToBeClickable(checkAiHistoryTable));
-        if (driver.findElement(By.xpath("(//div[@class='table-responsive custom-view-table'])[1]")).isDisplayed()) {
-            Thread.sleep(1000);
-            WebElement aiHistoryLatestTableEntry = driver.findElement(By.xpath("(//table[@role='table']//td[8])[1]//span"));
+        wait.until(ExpectedConditions.elementToBeClickable(By.xpath("(//div[@class='table-responsive custom-view-table'])[1]")));
+        Thread.sleep(1000);
+        if (FRESH_AI_RUNS.equalsIgnoreCase("No")) {
+            aiHistoryLatestTableEntry = driver.findElement(By.xpath("(//table[@role='table']//td[8])[1]//span"));
             if (aiHistoryLatestTableEntry.getText().contains("Successful Calving")) {
                 System.out.println("AI - Successful calving found for " + animalId);
                 wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//i[@class='fa fa-chevron-left mr-2 back-section']")));
@@ -210,6 +214,12 @@ public class BharatPasudhan extends DataProvider {
                 driver.findElement(By.xpath("//i[@class='fa fa-chevron-left mr-2 back-section']")).click();
                 System.out.println("---------------");
             }
+        } else if (FRESH_AI_RUNS.equalsIgnoreCase("Yes")) {
+            System.out.println("AI - No history found in AI table for " + animalId);
+            wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//i[@class='fa fa-chevron-left mr-2 back-section']")));
+            checkCandidatureForArtificialInsemination = true;
+        } else {
+            checkCandidatureForArtificialInsemination = false;
         }
         return checkCandidatureForArtificialInsemination;
     }

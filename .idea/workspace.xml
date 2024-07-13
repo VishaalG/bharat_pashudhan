@@ -161,7 +161,8 @@
       <workItem from="1720667796610" duration="2808000" />
       <workItem from="1720750742292" duration="2938000" />
       <workItem from="1720788457842" duration="962000" />
-      <workItem from="1720790947578" duration="1085000" />
+      <workItem from="1720790947578" duration="1740000" />
+      <workItem from="1720839105958" duration="8973000" />
     </task>
     <servers />
   </component>
@@ -172,37 +173,6 @@
     <option featureType="dependencySupport" implementationName="executable:docker" />
     <option featureType="dependencySupport" implementationName="java:org.seleniumhq.selenium:selenium-java" />
     <option featureType="dependencySupport" implementationName="executable:kubectl" />
-  </component>
-  <component name="XDebuggerManager">
-    <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/BharatPasudhan.java</url>
-          <line>274</line>
-          <option name="timeStamp" value="15" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/BharatPasudhan.java</url>
-          <line>201</line>
-          <option name="timeStamp" value="19" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/BharatPasudhan.java</url>
-          <line>232</line>
-          <option name="timeStamp" value="21" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/BharatPasudhan.java</url>
-          <line>154</line>
-          <option name="timeStamp" value="22" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/BharatPasudhan.java</url>
-          <line>168</line>
-          <option name="timeStamp" value="23" />
-        </line-breakpoint>
-      </breakpoints>
-    </breakpoint-manager>
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />
