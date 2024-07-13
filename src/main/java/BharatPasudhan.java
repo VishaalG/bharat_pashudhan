@@ -172,7 +172,7 @@ public class BharatPasudhan extends DataProvider {
                 Thread.sleep(1000);
                 clearWebField(aiDate);
                 aiDate.sendKeys(finalAiDateToEnter);
-                System.out.println("AI - Insemination date is set as " + finalAiDateToEnter);
+                System.out.println("AI - Inseminated date is " + finalAiDateToEnter);
                 clickOutside();
                 handleAiTimestampAndBullId();
                 driver.findElement(By.xpath("//button[normalize-space()='Submit']")).click();
@@ -209,14 +209,14 @@ public class BharatPasudhan extends DataProvider {
                 Thread.sleep(1000);
             } else {
                 System.out.println("AI History shows '" + aiHistoryLatestTableEntry.getText() + "' for " + animalId + ".  Skipping..");
-                Thread.sleep(1000);
                 wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//i[@class='fa fa-chevron-left mr-2 back-section']")));
                 driver.findElement(By.xpath("//i[@class='fa fa-chevron-left mr-2 back-section']")).click();
+                Thread.sleep(1000);
                 System.out.println("---------------");
             }
         } else if (checkElementExists(By.xpath("//td[normalize-space()='No data matching the filter.']"))) {
             System.out.println("AI History - No data matching the filter for " + animalId);
-            result = getDateMinusFourMonths();;
+            result = getDateMinusFourMonths();
             wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//i[@class='fa fa-chevron-left mr-2 back-section']")));
             driver.findElement(By.xpath("//i[@class='fa fa-chevron-left mr-2 back-section']")).click();
             Thread.sleep(1000);
