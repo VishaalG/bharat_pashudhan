@@ -35,11 +35,6 @@ public class DataProvider {
 
     // Artificial Insemination
     public static final String BULL_ID = "SAG-RS-10006";
-    // Note : Both R1 and FRESH AI RUN cannot be 'Yes' at same time.
-    public static final String RUN_IN_R1 = "Yes";
-    public static final String FRESH_AI_RUNS = "No";
-    public static final int FRESH_AI_RUN_YEAR = 2023;
-    public static final int FRESH_AI_RUN_MONTH = 4;
     public static final List<String> RS = List.of("SAG-RS-10006", "SAG-RS-10008");
     public static final List<String> JERSEY = List.of("ABC-JY-21032", "ABC-JY-21033");
     public static final List<String> CBHF = List.of("ALM-HX-40073", "ALM-HX-40074");
@@ -163,38 +158,14 @@ public class DataProvider {
         return num >= 270 && num <= 280;
     }
 
-    public static String getDateFromExcelPlusNineMonths(String animalTagIdValues) throws IOException {
-        InputStream excelFile = new FileInputStream(EXCEL_FILE_LOCATION);
-        XSSFWorkbook wb = new XSSFWorkbook(excelFile);
-        XSSFSheet sheet = wb.getSheetAt(0);
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
-        List<String> dates = new ArrayList<>();
-        for (Row r : sheet) {
-            Cell animalId = r.getCell(0);
-            Cell animalDate = r.getCell(1);
-            if (animalId.getStringCellValue().contains(animalTagIdValues)) {
-                dates.add(animalDate.toString());
-            }
-        }
-        DateTimeFormatter inputFormatter = DateTimeFormatter.ofPattern("dd-MMM-yyyy");
-        LocalDate date = LocalDate.parse(dates.get(0), inputFormatter);
-        LocalDate newDate = date.plusMonths(9).minusDays(2);
-        String formattedNewDate = newDate.format(formatter);
-        return formattedNewDate;
-
-    }
-
-    public static String getDatePlusThreeMonths(String input) {
+    public static String getDatePlusFiveMonths(String input) {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
         LocalDate date = LocalDate.parse(input, formatter);
-        int randomNumber = (int) (Math.random() * 3) + 1;
-        LocalDate newDate = date.plusMonths(3).plusDays(randomNumber);
-        String formattedNewDate = newDate.format(formatter);
+        LocalDate newDate = date.plusMonths(5);
         if (newDate.isAfter(LocalDate.now())) {
             return null;
         }
-        return formattedNewDate;
-
+        return newDate.format(formatter);
     }
 
     public static String getDatePlusSixMonths(String input) {
@@ -217,10 +188,20 @@ public class DataProvider {
         return newDate.format(formatter);
     }
 
-    public static String getDatePlusTwentyOneDays(String input) {
+    public static String getDatePlusSevenDays(String input) {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
         LocalDate date = LocalDate.parse(input, formatter);
-        LocalDate newDate = date.plusDays(21);
+        LocalDate newDate = date.plusDays(7);
+        if (newDate.isAfter(LocalDate.now())) {
+            return null;
+        }
+        return newDate.format(formatter);
+    }
+
+    public static String getFourMonthsBeforeCurrentDate() {
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+        LocalDate date = LocalDate.parse(LocalDate.now().toString(), formatter);
+        LocalDate newDate = date.minusMonths(4);
         if (newDate.isAfter(LocalDate.now())) {
             return null;
         }
@@ -244,14 +225,5 @@ public class DataProvider {
             e.printStackTrace();
             return null;
         }
-    }
-
-    public static String getRandomDateForAGivenYearAndMonth(int year, int month) {
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
-        YearMonth yearMonth = YearMonth.of(year, month);
-        int daysInMonth = yearMonth.lengthOfMonth();
-        Random random = new Random();
-        int randomDay = random.nextInt(daysInMonth) + 1;
-        return LocalDate.of(year, month, randomDay).format(formatter);
     }
 }
