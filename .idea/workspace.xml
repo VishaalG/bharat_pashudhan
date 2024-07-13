@@ -8,7 +8,6 @@
       <change beforePath="$PROJECT_DIR$/.idea/sonarlint/issuestore/a/2/a258e8a07ec668938f5841112f64bae1eb7e2322" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/sonarlint/issuestore/a/2/a258e8a07ec668938f5841112f64bae1eb7e2322" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/BharatPasudhan.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/BharatPasudhan.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/DataProvider.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/DataProvider.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -163,7 +162,7 @@
       <workItem from="1720788457842" duration="962000" />
       <workItem from="1720790947578" duration="1740000" />
       <workItem from="1720839105958" duration="9177000" />
-      <workItem from="1720871600917" duration="378000" />
+      <workItem from="1720871600917" duration="1321000" />
     </task>
     <servers />
   </component>
@@ -174,6 +173,17 @@
     <option featureType="dependencySupport" implementationName="executable:docker" />
     <option featureType="dependencySupport" implementationName="java:org.seleniumhq.selenium:selenium-java" />
     <option featureType="dependencySupport" implementationName="executable:kubectl" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/BharatPasudhan.java</url>
+          <line>154</line>
+          <option name="timeStamp" value="1" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

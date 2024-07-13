@@ -155,7 +155,7 @@ public class BharatPasudhan extends DataProvider {
                     if (RUN_IN_R1.equalsIgnoreCase("Yes") && FRESH_AI_RUNS.equalsIgnoreCase("No")) {
                         calvingDate = driver.findElement(By.xpath("//td[normalize-space()='PD Due']/ancestor::tr//td[2]")).getText();
                     } else if (FRESH_AI_RUNS.equalsIgnoreCase("Yes") && RUN_IN_R1.equalsIgnoreCase("No")) {
-                        calvingDate = getRandomDateForAGivenYearAndMonth(FRESH_AI_RUN_YEAR, FRESH_AI_RUN_MONTH).toString();
+                        calvingDate = getRandomDateForAGivenYearAndMonth(FRESH_AI_RUN_YEAR, FRESH_AI_RUN_MONTH);
                     } else if (RUN_IN_R1.equalsIgnoreCase("No") && FRESH_AI_RUNS.equalsIgnoreCase("No")) {
                         calvingDate = driver.findElement(By.xpath("//td[normalize-space()='Successful Calving']/ancestor::tr//td[5]")).getText();
                     }
@@ -177,6 +177,8 @@ public class BharatPasudhan extends DataProvider {
                     }
                     if (RUN_IN_R1.equalsIgnoreCase("Yes")) {
                         aiDate.sendKeys(getDatePlusTwentyOneDays(calvingDate));
+                    } else if (FRESH_AI_RUNS.equalsIgnoreCase("Yes")) {
+                        aiDate.sendKeys(calvingDate);
                     } else {
                         aiDate.sendKeys(getDatePlusSixMonths(calvingDate));
                     }
