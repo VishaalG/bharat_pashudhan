@@ -153,11 +153,11 @@ public class BharatPasudhan extends DataProvider {
                 Thread.sleep(1000);
                 if (checkCandidatureForArtificialInsemination(animalId)) {
                     if (RUN_IN_R1.equalsIgnoreCase("Yes") && FRESH_AI_RUNS.equalsIgnoreCase("No")) {
-                        calvingDate = driver.findElement(By.xpath("//td[normalize-space()='PD Due']/ancestor::tr//td[5]")).getText();
-                    } else if (RUN_IN_R1.equalsIgnoreCase("No") && FRESH_AI_RUNS.equalsIgnoreCase("No")) {
-                        calvingDate = driver.findElement(By.xpath("//td[normalize-space()='Successful Calving']/ancestor::tr//td[5]")).getText();
+                        calvingDate = driver.findElement(By.xpath("//td[normalize-space()='PD Due']/ancestor::tr//td[2]")).getText();
                     } else if (FRESH_AI_RUNS.equalsIgnoreCase("Yes") && RUN_IN_R1.equalsIgnoreCase("No")) {
                         calvingDate = getRandomDateForAGivenYearAndMonth(FRESH_AI_RUN_YEAR, FRESH_AI_RUN_MONTH).toString();
+                    } else if (RUN_IN_R1.equalsIgnoreCase("No") && FRESH_AI_RUNS.equalsIgnoreCase("No")) {
+                        calvingDate = driver.findElement(By.xpath("//td[normalize-space()='Successful Calving']/ancestor::tr//td[5]")).getText();
                     }
                     wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//i[@class='fa fa-chevron-left mr-2 back-section']")));
                     driver.findElement(By.xpath("//i[@class='fa fa-chevron-left mr-2 back-section']")).click();
@@ -175,7 +175,11 @@ public class BharatPasudhan extends DataProvider {
                         Thread.sleep(2000);
                         continue;
                     }
-                    aiDate.sendKeys(getDatePlusSixMonths(calvingDate));
+                    if (RUN_IN_R1.equalsIgnoreCase("Yes")) {
+                        aiDate.sendKeys(getDatePlusTwentyOneDays(calvingDate));
+                    } else {
+                        aiDate.sendKeys(getDatePlusSixMonths(calvingDate));
+                    }
                     System.out.println("AI - Insemination date is set as " + getDatePlusSixMonths(calvingDate));
                     clickOutside();
                     handleAiTimestampAndBullId();

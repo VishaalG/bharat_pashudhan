@@ -36,8 +36,8 @@ public class DataProvider {
     // Artificial Insemination
     public static final String BULL_ID = "SAG-RS-10006";
     // Note : Both R1 and FRESH AI RUN cannot be 'Yes' at same time.
-    public static final String RUN_IN_R1 = "No";
-    public static final String FRESH_AI_RUNS = "Yes";
+    public static final String RUN_IN_R1 = "Yes";
+    public static final String FRESH_AI_RUNS = "No";
     public static final int FRESH_AI_RUN_YEAR = 2023;
     public static final int FRESH_AI_RUN_MONTH = 4;
     public static final List<String> RS = List.of("SAG-RS-10006", "SAG-RS-10008");
@@ -211,6 +211,16 @@ public class DataProvider {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
         LocalDate date = LocalDate.parse(input, formatter);
         LocalDate newDate = date.plusMonths(9);
+        if (newDate.isAfter(LocalDate.now())) {
+            return null;
+        }
+        return newDate.format(formatter);
+    }
+
+    public static String getDatePlusTwentyOneDays(String input) {
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+        LocalDate date = LocalDate.parse(input, formatter);
+        LocalDate newDate = date.plusDays(21);
         if (newDate.isAfter(LocalDate.now())) {
             return null;
         }
