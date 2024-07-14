@@ -185,10 +185,10 @@ public class DataProvider {
         return newDate.format(formatter);
     }
 
-    public static String getDatePlusSevenDays(String input) {
+    public static String getDatePlusOneMonth(String input) {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
         LocalDate date = LocalDate.parse(input, formatter);
-        LocalDate newDate = date.plusDays(7);
+        LocalDate newDate = date.plusMonths(1);
         if (newDate.isAfter(LocalDate.now())) {
             return null;
         }

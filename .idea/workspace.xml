@@ -5,10 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="a2acd477-40e4-4272-a74d-bfcbb9bc97fa" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/sonarlint/issuestore/a/2/a258e8a07ec668938f5841112f64bae1eb7e2322" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/sonarlint/issuestore/a/2/a258e8a07ec668938f5841112f64bae1eb7e2322" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/BharatPasudhan.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/BharatPasudhan.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/DataProvider.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/DataProvider.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -165,7 +162,7 @@
       <workItem from="1720839105958" duration="9177000" />
       <workItem from="1720871600917" duration="6572000" />
       <workItem from="1720886236765" duration="405000" />
-      <workItem from="1720901679656" duration="1994000" />
+      <workItem from="1720901679656" duration="3374000" />
     </task>
     <servers />
   </component>
