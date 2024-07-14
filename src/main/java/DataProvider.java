@@ -21,9 +21,9 @@ import java.util.concurrent.ThreadLocalRandom;
 public class DataProvider {
 
     // Mandatory Fields for all runs.
-    public static final String USERNAME = "pdktait77_TN";
-    public static final String PASSWORD = "pdktait77_TN";
-    public static final String EXCEL_FILE_LOCATION = "/Users/vishag/Downloads/Vaithur AI.xlsx";
+    public static final String USERNAME = "pdktait175_TN";
+    public static final String PASSWORD = "pdktait175_TN";
+    public static final String EXCEL_FILE_LOCATION = "/Users/vishag/Downloads/Thondai AI2.xlsx";
 
     // Vaccination
     public static final String VACCINATION_VILLAGE_NAME = "Lakshmanapatti";
@@ -201,8 +201,9 @@ public class DataProvider {
         LocalDate inputDate = LocalDate.parse(input, formatter);
         if (inputDate.isBefore(LocalDate.now()) && inputDate.isAfter(LocalDate.now().minusYears(1))) {
             result = true;
+        } else {
+            System.out.println("Date is not within range");
         }
-        System.out.println("Invalid date range");
         return result;
     }
 

@@ -159,7 +159,11 @@ public class BharatPasudhan extends DataProvider {
                 aiHistoryViewButton.click();
                 Thread.sleep(1000);
                 String finalAiDateToEnter = checkCandidatureForArtificialInsemination(animalId);
-                if (!checkIfDateIsInRange(finalAiDateToEnter)) {
+                if (finalAiDateToEnter == null) {
+                    updateExcelSheetWithRunDetails(animalId, "PD Due", "N");
+                    continue;
+                } else if (!checkIfDateIsInRange(finalAiDateToEnter)) {
+                    updateExcelSheetWithRunDetails(animalId, "Date not in range", "N");
                     System.out.println("AI - AI date is not in range for " + animalId);
                     continue;
                 }
@@ -172,16 +176,15 @@ public class BharatPasudhan extends DataProvider {
                 Thread.sleep(1000);
                 clearWebField(aiDate);
                 aiDate.sendKeys(finalAiDateToEnter);
-                System.out.println("AI - Inseminated date is " + finalAiDateToEnter);
+                System.out.println("AI - Inseminated date is set as " + finalAiDateToEnter);
                 clickOutside();
                 handleAiTimestampAndBullId();
                 driver.findElement(By.xpath("//button[normalize-space()='Submit']")).click();
                 updateExcelSheetWithRunDetails(animalId, "Inseminated", "Y");
-                Thread.sleep(5000);
+                Thread.sleep(3500);
                 System.out.println("AI - Updated for AnimalId " + animalId);
                 clickOutside();
                 System.out.println("---------------");
-
             }
         }
     }
@@ -194,7 +197,7 @@ public class BharatPasudhan extends DataProvider {
         if (checkElementExists(By.xpath("(//table[@role='table']//td[8])[1]//span"))) {
             WebElement aiHistoryLatestTableEntry = driver.findElement(By.xpath("(//table[@role='table']//td[8])[1]//span"));
             if (aiHistoryLatestTableEntry.getText().contains("Successful Calving")) {
-                System.out.println("AI History - Successful calving found for " + animalId);
+                System.out.println("AI History - Successful Calving found for " + animalId);
                 String calvingDate = driver.findElement(By.xpath("//td[normalize-space()='Successful Calving']/ancestor::tr//td[5]")).getText();
                 result = getDatePlusFiveMonths(calvingDate);
                 wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//i[@class='fa fa-chevron-left mr-2 back-section']")));
@@ -228,6 +231,7 @@ public class BharatPasudhan extends DataProvider {
 
     public static void handleAiTimestampAndBullId() throws InterruptedException {
         if (BULL_ID.isEmpty()) {
+            System.out.println("AI - Bull ID is empty");
             driver.close();
         }
         System.out.println("AI - Bull ID is " + BULL_ID);
