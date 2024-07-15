@@ -205,7 +205,7 @@ public class BharatPasudhan extends DataProvider {
                 Thread.sleep(1000);
             } else if (aiHistoryLatestTableEntry.getText().contains("Pregnancy Failed")) {
                 System.out.println("AI History - Pregnancy Failed found for " + animalId);
-                String aiDate = driver.findElement(By.xpath("//td[normalize-space()='Pregnancy Failed']/ancestor::tr//td[2]")).getText();
+                String aiDate = driver.findElement(By.xpath("//td[normalize-space()='Pregnancy Failed']/ancestor::tr//td[4]")).getText();
                 result = getDatePlusOneMonth(aiDate);
                 wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//i[@class='fa fa-chevron-left mr-2 back-section']")));
                 driver.findElement(By.xpath("//i[@class='fa fa-chevron-left mr-2 back-section']")).click();
