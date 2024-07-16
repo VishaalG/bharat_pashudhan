@@ -151,7 +151,14 @@ public class BharatPasudhan extends DataProvider {
             Thread.sleep(1500);
             wait.ignoring(StaleElementReferenceException.class).ignoring(ElementClickInterceptedException.class).until(ExpectedConditions.elementToBeClickable(By.cssSelector("button[type=' submit']")));
             driver.findElement(By.cssSelector("button[type=' submit']")).click();
-
+            Thread.sleep(500);
+            if (checkElementExists(By.xpath("//p[normalize-space()='Breeding services not applicable for male animals.']"))) {
+                System.out.println("AI - Male animal found. Skipping for " + animalId);
+                clickOutside();
+                updateExcelSheetWithRunDetails(animalId, "Male Animal", "N");
+                System.out.println("---------------");
+                continue;
+            }
             // Data table
             wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//table[@role='table']")));
             WebElement aiHistoryViewButton = driver.findElement(By.xpath("//td[normalize-space()='" + animalId + "']/ancestor::tr//td[12]/a"));
@@ -210,6 +217,12 @@ public class BharatPasudhan extends DataProvider {
                 wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//i[@class='fa fa-chevron-left mr-2 back-section']")));
                 driver.findElement(By.xpath("//i[@class='fa fa-chevron-left mr-2 back-section']")).click();
                 Thread.sleep(1000);
+            } else if (aiHistoryLatestTableEntry.getText().contains("Abortion")) {
+                System.out.println("AI History - Pregnancy Failed found for " + animalId);
+                result = getCurrentDateMinusFourMonths();
+                wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//i[@class='fa fa-chevron-left mr-2 back-section']")));
+                driver.findElement(By.xpath("//i[@class='fa fa-chevron-left mr-2 back-section']")).click();
+                Thread.sleep(1000);
             } else {
                 System.out.println("AI History shows '" + aiHistoryLatestTableEntry.getText() + "' for " + animalId + ".  Skipping..");
                 wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//i[@class='fa fa-chevron-left mr-2 back-section']")));
@@ -219,7 +232,7 @@ public class BharatPasudhan extends DataProvider {
             }
         } else if (checkElementExists(By.xpath("//td[normalize-space()='No data matching the filter.']"))) {
             System.out.println("AI History - No data matching the filter for " + animalId);
-            result = getDateMinusFourMonths();
+            result = getCurrentDateMinusFourMonths();
             wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//i[@class='fa fa-chevron-left mr-2 back-section']")));
             driver.findElement(By.xpath("//i[@class='fa fa-chevron-left mr-2 back-section']")).click();
             Thread.sleep(1000);
@@ -251,9 +264,9 @@ public class BharatPasudhan extends DataProvider {
         clickOutside();
     }
 
-    // End of Artificial Insemination flow and it's methods
+// End of Artificial Insemination flow and it's methods
 
-    // Start of Pregnancy Diagnosis flow
+// Start of Pregnancy Diagnosis flow
 
     public static void pregnancyDiagnosis() throws IOException, InterruptedException {
         System.out.println("PD - Found total of " + getAllAnimalTagId().size() + " entries from excel sheet");
@@ -350,9 +363,9 @@ public class BharatPasudhan extends DataProvider {
         }
     }
 
-    // End of pregnancy diagnosis flow and it's methods
+// End of pregnancy diagnosis flow and it's methods
 
-    // Start of calving
+// Start of calving
 
     public static void calving() throws IOException, InterruptedException {
         System.out.println("Calving - Found total of " + getAllAnimalTagId().size() + " entries from excel sheet");
@@ -516,9 +529,9 @@ public class BharatPasudhan extends DataProvider {
         }
     }
 
-    // End of calving flow and it's methods
+// End of calving flow and it's methods
 
-    // Start of vaccination flow
+// Start of vaccination flow
 
     public static void vaccination() throws IOException, InterruptedException {
         System.out.println("Vaccination - Found total of " + getAllAnimalTagId().size() + " entries from excel sheet");
@@ -628,9 +641,9 @@ public class BharatPasudhan extends DataProvider {
         clickOutside();
     }
 
-    // End of vaccination flow and it's methods
+// End of vaccination flow and it's methods
 
-    // Archives
+// Archives
 
     public static String getInseminationDateFromPregnancyDiagnosis(String animalId) throws InterruptedException {
         String inseminationDate = null;
@@ -663,7 +676,7 @@ public class BharatPasudhan extends DataProvider {
         }
     }
 
-    // Start of web utility methods
+// Start of web utility methods
 
     public static void clearWebField(WebElement element) {
         while (!element.getAttribute("value").equals("")) {

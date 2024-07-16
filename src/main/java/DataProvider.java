@@ -207,14 +207,14 @@ public class DataProvider {
         return result;
     }
 
-    public static String getDateMinusFourMonths() {
+    public static String getCurrentDateMinusFourMonths() {
+        LocalDate currentDate = LocalDate.now();
+        LocalDate dateMinusFourMonths = currentDate.minusMonths(4);
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
-        LocalDate date = LocalDate.parse(LocalDate.now().toString(), formatter);
-        LocalDate newDate = date.minusMonths(4);
-        if (newDate.isAfter(LocalDate.now())) {
+        if(dateMinusFourMonths.isAfter(LocalDate.now())) {
             return null;
         }
-        return newDate.format(formatter);
+        return dateMinusFourMonths.format(formatter);
     }
 
     public static String getRandomDateInRange() {
@@ -230,7 +230,6 @@ public class DataProvider {
             // Format and return the random date
             return dateFormat.format(randomDate);
         } catch (Exception e) {
-            e.printStackTrace();
             return null;
         }
     }
