@@ -146,8 +146,8 @@ public class BharatPasudhan extends DataProvider {
             String animalId = getAllAnimalTagId().get(i);
             System.out.println("------ " + i + " ------");
             System.out.println("AI - Animal Id is " + animalId);
-            wait.ignoring(StaleElementReferenceException.class).until(ExpectedConditions.elementToBeClickable(By.xpath("//input[@id='search-by']")));
-            retryingFindClick(By.xpath("//input[@id='search-by']"), animalId);
+            wait.ignoring(StaleElementReferenceException.class).until(ExpectedConditions.elementToBeClickable(By.xpath("//input[@id='searchBy']")));
+            retryingFindClick(By.xpath("//input[@id='searchBy']"), animalId);
             Thread.sleep(1500);
             wait.ignoring(StaleElementReferenceException.class).ignoring(ElementClickInterceptedException.class).until(ExpectedConditions.elementToBeClickable(By.cssSelector("button[type=' submit']")));
             driver.findElement(By.cssSelector("button[type=' submit']")).click();
@@ -275,8 +275,8 @@ public class BharatPasudhan extends DataProvider {
             String animalId = getAllAnimalTagId().get(i);
             System.out.println("------ " + i + " ------");
             System.out.println("PD - Animal Id is " + animalId);
-            wait.ignoring(StaleElementReferenceException.class).until(ExpectedConditions.elementToBeClickable(By.xpath("//input[@id='search-by']")));
-            retryingFindClick(By.xpath("//input[@id='search-by']"), animalId);
+            wait.ignoring(StaleElementReferenceException.class).until(ExpectedConditions.elementToBeClickable(By.xpath("//input[@id='searchBy']")));
+            retryingFindClick(By.xpath("//input[@id='searchBy']"), animalId);
             wait.ignoring(StaleElementReferenceException.class).ignoring(ElementClickInterceptedException.class).until(ExpectedConditions.elementToBeClickable(By.cssSelector("button[type=' submit']")));
             Thread.sleep(1000);
             driver.findElement(By.cssSelector("button[type=' submit']")).click();
@@ -374,8 +374,8 @@ public class BharatPasudhan extends DataProvider {
             String animalId = getAllAnimalTagId().get(i);
             System.out.println("------ " + i + " ------");
             System.out.println("Calving - Animal Id is " + animalId);
-            wait.ignoring(StaleElementReferenceException.class).until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//input[@id='search-by']")));
-            retryingFindClick(By.xpath("//input[@id='search-by']"), animalId);
+            wait.ignoring(StaleElementReferenceException.class).until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//input[@id='searchBy']")));
+            retryingFindClick(By.xpath("//input[@id='searchBy']"), animalId);
             wait.ignoring(ElementClickInterceptedException.class).until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("button[type=' submit']")));
             driver.findElement(By.cssSelector("button[type=' submit']")).click();
             driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(5));
@@ -562,7 +562,7 @@ public class BharatPasudhan extends DataProvider {
                     if (vaccinationDetails.getText().equals("Vaccination")) {
                         System.out.println("Animal history shows it's already vaccinated on " + vaccinationTimeline.getText());
                         driver.findElement(By.xpath("//mat-icon[@role='img']")).click();
-                        driver.findElement(By.xpath("//input[@id='search-by']")).clear();
+                        driver.findElement(By.xpath("//input[@id='searchBy']")).clear();
                         updateExcelSheetWithRunDetails(animalId, "Already vaccinated", "N");
                         System.out.println("---------------");
                         continue;
@@ -603,10 +603,10 @@ public class BharatPasudhan extends DataProvider {
 
     public static boolean verifyAnimalVaccinationDetailsByVillageSearch(String animalId) throws InterruptedException {
         boolean ableToFindAnimalByVillage = false;
-        wait.ignoring(NoSuchElementException.class).ignoring(ElementClickInterceptedException.class).until(ExpectedConditions.elementToBeClickable(By.xpath("//input[@id='search-by']")));
-        driver.findElement(By.xpath("//input[@id='search-by']")).clear();
+        wait.ignoring(NoSuchElementException.class).ignoring(ElementClickInterceptedException.class).until(ExpectedConditions.elementToBeClickable(By.xpath("//input[@id='searchBy']")));
+        driver.findElement(By.xpath("//input[@id='searchBy']")).clear();
         Thread.sleep(500);
-        driver.findElement(By.xpath("//input[@id='search-by']")).sendKeys(animalId);
+        driver.findElement(By.xpath("//input[@id='searchBy']")).sendKeys(animalId);
         clickOutside();
         retryingFindingElement(By.xpath("//button[normalize-space()='Search']"));
         driver.findElement(By.xpath("//button[normalize-space()='Search']")).click();
@@ -649,8 +649,8 @@ public class BharatPasudhan extends DataProvider {
         String inseminationDate = null;
         System.out.println("Animal is pregnant and is in 'milk' state");
         clickOnPregnancyDiagnosisTab();
-        wait.ignoring(StaleElementReferenceException.class).until(ExpectedConditions.elementToBeClickable(By.xpath("//input[@id='search-by']")));
-        retryingFindClick(By.xpath("//input[@id='search-by']"), animalId);
+        wait.ignoring(StaleElementReferenceException.class).until(ExpectedConditions.elementToBeClickable(By.xpath("//input[@id='searchBy']")));
+        retryingFindClick(By.xpath("//input[@id='searchBy']"), animalId);
         new WebDriverWait(driver, Duration.ofSeconds(20)).ignoring(StaleElementReferenceException.class).ignoring(ElementClickInterceptedException.class).until(ExpectedConditions.elementToBeClickable(By.cssSelector("button[type=' submit']")));
         driver.findElement(By.cssSelector("button[type=' submit']")).click();
         wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//table[@role='table']")));

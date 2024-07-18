@@ -21,8 +21,8 @@ import java.util.concurrent.ThreadLocalRandom;
 public class DataProvider {
 
     // Mandatory Fields for all runs.
-    public static final String USERNAME = "pdktait175_TN";
-    public static final String PASSWORD = "pdktait175_TN";
+    public static final String USERNAME = "pdktait44_TN";
+    public static final String PASSWORD = "Vdilluppur@1";
     public static final String EXCEL_FILE_LOCATION = "/Users/vishag/Downloads/Thondai AI2.xlsx";
 
     // Vaccination
