@@ -21,9 +21,9 @@ import java.util.concurrent.ThreadLocalRandom;
 public class DataProvider {
 
     // Mandatory Fields for all runs.
-    public static final String USERNAME = "pdktait175_TN";
-    public static final String PASSWORD = "pdktait175_TN";
-    public static final String EXCEL_FILE_LOCATION = "/Users/vishag/Downloads/Thondai PD.xlsx";
+    public static final String USERNAME = "pdktait156_TN";
+    public static final String PASSWORD = "epashudhan123";
+    public static final String EXCEL_FILE_LOCATION = "/Users/vishag/Downloads/Malaikudipatty PD.xlsx";
 
     // Vaccination
     public static final String VACCINATION_VILLAGE_NAME = "Lakshmanapatti";

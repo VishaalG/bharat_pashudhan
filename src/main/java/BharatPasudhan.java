@@ -461,16 +461,16 @@ public class BharatPasudhan extends DataProvider {
         if (Objects.equals(pregnancyStatus.getText(), "Pregnancy Confirmed")) {
             WebElement calvingDate = driver.findElement(By.xpath("//input[@formcontrolname='calvingDate']"));
             clearWebField(calvingDate);
-            String pregnancyDateFromTable = driver.findElement(By.xpath("//table[@class='mat-table cdk-table mat-elevation-z8']//td[2]")).getText();
-            String addedNineMonthsDate = getDatePlusNineMonths(pregnancyDateFromTable);
-            if (addedNineMonthsDate == null) {
+            String inseminationDateFromTable = driver.findElement(By.xpath("//table[@class='mat-table cdk-table mat-elevation-z8']//td[2]")).getText();
+            String gestationDate = getDatePlusNineMonths(inseminationDateFromTable);
+            if (gestationDate == null) {
                 wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//div[@class='back-arrow']")));
                 driver.findElement(By.xpath("//div[@class='back-arrow']")).click();
                 System.out.println("Gestation date is after current date. Skipping");
             }
             WebElement gestationDays = driver.findElement(By.xpath("//table[@class='table animal-table m-0 ng-star-inserted']//td[5]"));
-            String modifiedGestationDate = handleGestationDate(addedNineMonthsDate, pregnancyDateFromTable);
-            System.out.println("Pregnancy date of animal is " + pregnancyDateFromTable);
+            String modifiedGestationDate = handleGestationDate(gestationDate, inseminationDateFromTable);
+            System.out.println("Pregnancy date of animal is " + inseminationDateFromTable);
             System.out.println("Gestation modified animal date is " + modifiedGestationDate);
             calvingDate.sendKeys(modifiedGestationDate);
             clickOutside();
@@ -530,7 +530,7 @@ public class BharatPasudhan extends DataProvider {
                 Thread.sleep(3000);
                 System.out.println("---------------");
             } else {
-                System.out.println("The gestation date range is out of bounds - " + gestationDays.getText());
+                System.out.println("The gestation date range is out of bounds - " + gestationDays.getText() + " days");
                 driver.get("https://bharatpashudhan.ndlm.co.in/dashboard/animal-breeding/calving");
                 Thread.sleep(3000);
             }
