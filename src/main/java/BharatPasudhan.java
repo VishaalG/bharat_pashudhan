@@ -459,21 +459,20 @@ public class BharatPasudhan extends DataProvider {
         WebElement pregnancyStatus = driver.findElement(By.xpath("//span[@class='status-highlight']"));
         wait.until(ExpectedConditions.visibilityOf(pregnancyStatus));
         if (Objects.equals(pregnancyStatus.getText(), "Pregnancy Confirmed")) {
-            WebElement calvingDate = driver.findElement(By.xpath("//input[@formcontrolname='calvingDate']"));
-            clearWebField(calvingDate);
+            WebElement calvingDateField = driver.findElement(By.xpath("//input[@formcontrolname='calvingDate']"));
+            clearWebField(calvingDateField);
             String inseminationDateFromTable = driver.findElement(By.xpath("//table[@class='mat-table cdk-table mat-elevation-z8']//td[2]")).getText();
+            System.out.println("Insemination date of animal is " + inseminationDateFromTable);
             String gestationDate = getDatePlusNineMonths(inseminationDateFromTable);
             if (gestationDate == null) {
-                wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//div[@class='back-arrow']")));
-                driver.findElement(By.xpath("//div[@class='back-arrow']")).click();
-                System.out.println("Gestation date is after current date. Skipping");
+                System.out.println("Added gestation date range is invalid. Skipping");
+                driver.get("https://bharatpashudhan.ndlm.co.in/dashboard/animal-breeding/calving");
+                Thread.sleep(1500);
+                return;
+            } else {
+                calvingDateField.sendKeys(gestationDate);
             }
             WebElement gestationDays = driver.findElement(By.xpath("//table[@class='table animal-table m-0 ng-star-inserted']//td[5]"));
-            String modifiedGestationDate = handleGestationDate(gestationDate, inseminationDateFromTable);
-            System.out.println("Pregnancy date of animal is " + inseminationDateFromTable);
-            System.out.println("Gestation modified animal date is " + modifiedGestationDate);
-            calvingDate.sendKeys(modifiedGestationDate);
-            clickOutside();
             Thread.sleep(3000);
             wait.until(ExpectedConditions.visibilityOf(driver.findElement(By.xpath("//table[@class='table animal-table m-0 ng-star-inserted']//td[5]"))));
             if (checkGestationRange(driver.findElement(By.xpath("//table[@class='table animal-table m-0 ng-star-inserted']//td[5]")).getText())) {
@@ -516,10 +515,9 @@ public class BharatPasudhan extends DataProvider {
                             submitButton.click();
                         }
                         clickOutside();
-                        updateExcelSheetWithRunDetails(animalId, modifiedGestationDate, "Y");
+                        updateExcelSheetWithRunDetails(animalId, gestationDate, "Y");
                         driver.get("https://bharatpashudhan.ndlm.co.in/dashboard/animal-breeding/calving");
                         Thread.sleep(3000);
-
                     }
                 } else {
                     System.out.println("Unable to select 'Successful Calving' option from calving status dropdown'");
