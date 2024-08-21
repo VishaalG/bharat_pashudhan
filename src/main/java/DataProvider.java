@@ -21,14 +21,17 @@ import java.util.concurrent.ThreadLocalRandom;
 public class DataProvider {
 
     // Mandatory Fields for all runs.
-    public static final String USERNAME = "pdktait44_TN";
-    public static final String PASSWORD = "Vdilluppur@1";
-    public static final String EXCEL_FILE_LOCATION = "/Users/vishag/Downloads/Ilupur PD.xlsx";
+    public static final String USERNAME = "Pdktait68_TN";
+    public static final String PASSWORD = "Vasodug@@68";
+    public static final String EXCEL_FILE_LOCATION = "/Users/vishag/Downloads/Check.xlsx";
 
     // Vaccination
-    public static final String VACCINATION_VILLAGE_NAME = "Lakshmanapatti";
-    public static final String VACCINATION_START_DATE_RANGE = "12/11/2023";
-    public static final String VACCINATION_END_DATE_RANGE = "16/12/2023";
+    public static final boolean VACCINATION_BULK_RUN = true;
+    public static final int VACCINATION_BULK_RUN_ITEMS = 2;
+    public static final String VACCINATION_CAMPAIGN_ID = "18909";
+    public static final String VACCINATION_VILLAGE_NAME = "Keelaiyur";
+    public static final String VACCINATION_START_DATE_RANGE = "20/06/2024";
+    public static final String VACCINATION_END_DATE_RANGE = "21/06/2024";
 
     // Artificial Insemination
     public static final String BULL_ID = "SAG-RS-10006";
