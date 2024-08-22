@@ -27,7 +27,7 @@ public class DataProvider {
 
     // Vaccination
     public static final boolean VACCINATION_BULK_RUN = true;
-    public static final int VACCINATION_BULK_RUN_ITEMS = 2;
+    public static final int VACCINATION_BULK_RUN_ITEMS = 10;
     public static final String VACCINATION_CAMPAIGN_ID = "18909";
     public static final String VACCINATION_VILLAGE_NAME = "Keelaiyur";
     public static final String VACCINATION_START_DATE_RANGE = "20/06/2024";
