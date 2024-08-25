@@ -544,12 +544,14 @@ public class BharatPasudhan extends DataProvider {
         System.out.println("Vaccination run for village " + VACCINATION_VILLAGE_NAME);
         commonFlowForVaccination();
         int counter = 0;
+        boolean isSuccess = false;
+        String vaccinationDate = getRandomDateInRange();
         for (int i = 0; i < getAllAnimalTagId().size(); i++) {
             System.out.println("------ " + i + " ------");
             // Get values from Excel
             String animalId = getAllAnimalTagId().get(i);
             if (VACCINATION_BULK_RUN) {
-                System.out.println("Vaccination running in bulk mode");
+                System.out.println("Vaccination - Running in bulk mode");
                 for (int j=0; j<=VACCINATION_BULK_RUN_ITEMS; j++) {
                     String innerAnimalId = getAllAnimalTagId().get(counter++);
                     System.out.println("Vaccination - Selected animal for bulk run is - " + innerAnimalId);
@@ -572,22 +574,33 @@ public class BharatPasudhan extends DataProvider {
                     driver.findElement(By.id("search-by")).clear();
                     if (j == VACCINATION_BULK_RUN_ITEMS) {
                         driver.findElement(By.xpath("//button[normalize-space()='Proceed']")).click();
-                        String vaccinationDate = getRandomDateInRange();
                         wait.ignoring(NoSuchElementException.class).until(ExpectedConditions.elementToBeClickable(By.xpath("//input[@formcontrolname='vaccinationDate']")));
                         WebElement vaccinationDateCalendar = driver.findElement(By.xpath("(//input[@id='mat-input-0'])[1]"));
                         wait.ignoring(ElementClickInterceptedException.class).until(ExpectedConditions.elementToBeClickable(vaccinationDateCalendar));
                         Thread.sleep(1000);
                         clearWebField(vaccinationDateCalendar);
                         vaccinationDateCalendar.sendKeys(vaccinationDate);
-                        wait.ignoring(ElementClickInterceptedException.class).until(ExpectedConditions.elementToBeClickable(By.xpath("//button[normalize-space()='Submit']")));
-                        driver.findElement(By.xpath("//button[normalize-space()='Submit']")).click();
-                        Thread.sleep(3000);
+                        Thread.sleep(1000);
+                        if (vaccinationDateCalendar.getText().equalsIgnoreCase(vaccinationDate)) {
+                            wait.ignoring(ElementClickInterceptedException.class).until(ExpectedConditions.elementToBeClickable(By.xpath("//button[normalize-space()='Submit']")));
+                            driver.findElement(By.xpath("//button[normalize-space()='Submit']")).click();
+                        }
+                        wait.ignoring(ElementClickInterceptedException.class).until(ExpectedConditions.elementToBeClickable(By.xpath("//button[normalize-space()='OK']")));
+                        isSuccess = checkElementExists(By.xpath("//button[normalize-space()='OK']"));
+                        Thread.sleep(5000);
                         driver.get("https://bharatpashudhan.ndlm.co.in/dashboard/vaccination");
                         System.out.println("---------------");
                         commonFlowForVaccination();
                     }
+                    if (isSuccess) {
+                       updateExcelSheetWithRunDetails(innerAnimalId, "Vaccinated", vaccinationDate);
+                    } else {
+                        updateExcelSheetWithRunDetails(innerAnimalId, "Run again", vaccinationDate);
+                    }
+                    isSuccess = false;
                 }
             } if (!VACCINATION_BULK_RUN && verifyAnimalVaccinationDetailsByVillageSearch(animalId)) {
+                System.out.println("Vaccination - Running in individual mode");
                 System.out.println("Vaccination - Animal Id is " + animalId);
                 wait.ignoring(NoSuchElementException.class).until(ExpectedConditions.elementToBeClickable(By.xpath("(//input[@id='filter-by'])[2]")));
                 driver.findElement(By.xpath("(//input[@id='filter-by'])[2]")).clear();
@@ -626,7 +639,6 @@ public class BharatPasudhan extends DataProvider {
                     driver.findElement(By.xpath("//table//td[normalize-space()='" + animalId + "']/ancestor::tr//td[1]//input")).click();
                     retryingFindingElement(By.xpath("//button[normalize-space()='Proceed']"));
                     driver.findElement(By.xpath("//button[normalize-space()='Proceed']")).click();
-                    String vaccinationDate = getRandomDateInRange();
                     wait.ignoring(NoSuchElementException.class).until(ExpectedConditions.elementToBeClickable(By.xpath("//input[@formcontrolname='vaccinationDate']")));
                     WebElement vaccinationDateCalendar = driver.findElement(By.xpath("(//input[@id='mat-input-0'])[1]"));
                     wait.ignoring(ElementClickInterceptedException.class).until(ExpectedConditions.elementToBeClickable(vaccinationDateCalendar));
