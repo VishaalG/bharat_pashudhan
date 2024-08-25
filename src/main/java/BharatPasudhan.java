@@ -585,19 +585,16 @@ public class BharatPasudhan extends DataProvider {
                             wait.ignoring(ElementClickInterceptedException.class).until(ExpectedConditions.elementToBeClickable(By.xpath("//button[normalize-space()='Submit']")));
                             driver.findElement(By.xpath("//button[normalize-space()='Submit']")).click();
                         }
+                        Thread.sleep(5000);
                         wait.ignoring(ElementClickInterceptedException.class).until(ExpectedConditions.elementToBeClickable(By.xpath("//button[normalize-space()='OK']")));
                         isSuccess = checkElementExists(By.xpath("//button[normalize-space()='OK']"));
-                        Thread.sleep(5000);
+                        if (isSuccess) {
+                            updateExcelSheetWithRunDetails(innerAnimalId, "Vaccinated", vaccinationDate);
+                        }
                         driver.get("https://bharatpashudhan.ndlm.co.in/dashboard/vaccination");
                         System.out.println("---------------");
                         commonFlowForVaccination();
                     }
-                    if (isSuccess) {
-                       updateExcelSheetWithRunDetails(innerAnimalId, "Vaccinated", vaccinationDate);
-                    } else {
-                        updateExcelSheetWithRunDetails(innerAnimalId, "Run again", vaccinationDate);
-                    }
-                    isSuccess = false;
                 }
             } if (!VACCINATION_BULK_RUN && verifyAnimalVaccinationDetailsByVillageSearch(animalId)) {
                 System.out.println("Vaccination - Running in individual mode");
