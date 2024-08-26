@@ -581,10 +581,16 @@ public class BharatPasudhan extends DataProvider {
                         clearWebField(vaccinationDateCalendar);
                         vaccinationDateCalendar.sendKeys(vaccinationDate);
                         Thread.sleep(1000);
-                        if (vaccinationDateCalendar.getText().equalsIgnoreCase(vaccinationDate)) {
-                            wait.ignoring(ElementClickInterceptedException.class).until(ExpectedConditions.elementToBeClickable(By.xpath("//button[normalize-space()='Submit']")));
-                            driver.findElement(By.xpath("//button[normalize-space()='Submit']")).click();
-                        }
+                        clickOutside();
+                        wait.ignoring(ElementClickInterceptedException.class).until(ExpectedConditions.elementToBeClickable(By.xpath("//button[normalize-space()='Submit']")));
+                        driver.findElement(By.xpath("//button[normalize-space()='Submit']")).click();
+//                        if (vaccinationDateCalendar.getText().equalsIgnoreCase(vaccinationDate)) {
+//                            wait.ignoring(ElementClickInterceptedException.class).until(ExpectedConditions.elementToBeClickable(By.xpath("//button[normalize-space()='Submit']")));
+//                            driver.findElement(By.xpath("//button[normalize-space()='Submit']")).click();
+//                        } else {
+//                            System.out.println("Vaccination date is not set properly");
+//                            continue;
+//                        }
                         Thread.sleep(5000);
                         wait.ignoring(ElementClickInterceptedException.class).until(ExpectedConditions.elementToBeClickable(By.xpath("//button[normalize-space()='OK']")));
                         isSuccess = checkElementExists(By.xpath("//button[normalize-space()='OK']"));
