@@ -575,12 +575,14 @@ public class BharatPasudhan extends DataProvider {
                     if (j == VACCINATION_BULK_RUN_ITEMS) {
                         driver.findElement(By.xpath("//button[normalize-space()='Proceed']")).click();
                         wait.ignoring(NoSuchElementException.class).until(ExpectedConditions.elementToBeClickable(By.xpath("//input[@formcontrolname='vaccinationDate']")));
+                        retryingFindingElement(By.xpath("//input[@formcontrolname='vaccinationDate']"));
                         WebElement vaccinationDateCalendar = driver.findElement(By.xpath("(//input[@id='mat-input-0'])[1]"));
                         wait.ignoring(ElementClickInterceptedException.class).until(ExpectedConditions.elementToBeClickable(vaccinationDateCalendar));
-                        Thread.sleep(1000);
+                        Thread.sleep(2500);
                         clearWebField(vaccinationDateCalendar);
+                        Thread.sleep(2500);
                         vaccinationDateCalendar.sendKeys(vaccinationDate);
-                        Thread.sleep(1000);
+                        Thread.sleep(2000);
                         clickOutside();
                         wait.ignoring(ElementClickInterceptedException.class).until(ExpectedConditions.elementToBeClickable(By.xpath("//button[normalize-space()='Submit']")));
                         driver.findElement(By.xpath("//button[normalize-space()='Submit']")).click();
@@ -738,9 +740,10 @@ public class BharatPasudhan extends DataProvider {
 
 // Start of web utility methods
 
-    public static void clearWebField(WebElement element) {
+    public static void clearWebField(WebElement element) throws InterruptedException {
         while (!element.getAttribute("value").equals("")) {
             element.sendKeys(Keys.BACK_SPACE);
+            Thread.sleep(100);
         }
     }
 
