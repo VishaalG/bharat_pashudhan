@@ -699,6 +699,9 @@ public class BharatPasudhan extends DataProvider {
         retryingFindingElement(By.xpath("//div[@role='combobox']"));
         driver.findElement(By.xpath("//div[@role='combobox']")).click();
         Thread.sleep(500);
+        wait.ignoring(ElementClickInterceptedException.class).until(ExpectedConditions.elementToBeClickable(By.xpath("//div[@class='ng-input']//input[@type='text']")));
+        driver.findElement(By.xpath("//div[@class='ng-input']//input[@type='text']")).sendKeys(VACCINATION_VILLAGE_NAME);
+        Thread.sleep(700);
         driver.findElement(By.xpath("//span[normalize-space()='" + VACCINATION_VILLAGE_NAME + "']/..")).click();
         clickOutside();
     }

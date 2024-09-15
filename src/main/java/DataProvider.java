@@ -21,15 +21,15 @@ import java.util.concurrent.ThreadLocalRandom;
 public class DataProvider {
 
     // Mandatory Fields for all runs.
-    public static final String USERNAME = "Pdktait68_TN";
-    public static final String PASSWORD = "Vasodug@@68";
-    public static final String EXCEL_FILE_LOCATION = "/Users/vishag/Downloads/Check.xlsx";
+    public static final String USERNAME = "pdktait47_TN";
+    public static final String PASSWORD = "pdktait47_TN";
+    public static final String EXCEL_FILE_LOCATION = "/Users/vishag/Downloads/Parambur.xlsx";
 
     // Vaccination
     public static final boolean VACCINATION_BULK_RUN = true;
     public static final int VACCINATION_BULK_RUN_ITEMS = 2;
     public static final String VACCINATION_CAMPAIGN_ID = "18909";
-    public static final String VACCINATION_VILLAGE_NAME = "Keelaiyur";
+    public static final String VACCINATION_VILLAGE_NAME = "Pudur";
     public static final String VACCINATION_START_DATE_RANGE = "20/06/2024";
     public static final String VACCINATION_END_DATE_RANGE = "21/06/2024";
 
