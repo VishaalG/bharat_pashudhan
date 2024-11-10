@@ -30,8 +30,8 @@ public class BharatPasudhan extends DataProvider {
 
 //        doArtificialInsemination();
 //        doPregnancyDiagnosis();
-//        doCalving();
-        doVaccination();
+        doCalving();
+//        doVaccination();
     }
 
     public static void doArtificialInsemination() throws IOException, InterruptedException {
@@ -472,6 +472,7 @@ public class BharatPasudhan extends DataProvider {
             } else {
                 calvingDateField.sendKeys(gestationDate);
             }
+            clickOutside();
             WebElement gestationDays = driver.findElement(By.xpath("//table[@class='table animal-table m-0 ng-star-inserted']//td[5]"));
             Thread.sleep(3000);
             wait.until(ExpectedConditions.visibilityOf(driver.findElement(By.xpath("//table[@class='table animal-table m-0 ng-star-inserted']//td[5]"))));
