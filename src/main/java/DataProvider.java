@@ -16,6 +16,7 @@ import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.Random;
 import java.util.concurrent.ThreadLocalRandom;
 
 public class DataProvider {
@@ -175,10 +176,23 @@ public class DataProvider {
         return newDate.format(formatter);
     }
 
+    public static String getDatePlusSevenMonths(String input) {
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+        LocalDate date = LocalDate.parse(input, formatter);
+        LocalDate newDate = date.plusMonths(7);
+        System.out.println("7 months added from input date is - " + newDate.format(formatter));
+        if (newDate.isAfter(LocalDate.now()) || newDate.isBefore(LocalDate.now().minusYears(1))) {
+            return null;
+        }
+        return newDate.format(formatter);
+    }
+
     public static String getDatePlusNineMonths(String input) {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
         LocalDate date = LocalDate.parse(input, formatter);
-        LocalDate newDate = date.plusMonths(9);
+        Random random = new Random();
+        int randomInt = random.nextInt(3) + 1;
+        LocalDate newDate = date.plusMonths(9).plusDays(randomInt);
         System.out.println("9 months added from input date is - " + newDate.format(formatter));
         if (newDate.isAfter(LocalDate.now()) || newDate.isBefore(LocalDate.now().minusYears(1))) {
             return null;

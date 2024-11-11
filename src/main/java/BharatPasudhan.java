@@ -415,7 +415,7 @@ public class BharatPasudhan extends DataProvider {
                     commonFlowForCalving(animalId, CALVING_SEX.FEMALE);
                 }
             } else if (searchTable.isDisplayed() && isPregnant.getText().contains("Yes") && milkingStatus.getText().contains("In Milk")) {
-                String calvingDate = getDatePlusNineMonths(getInseminationDateFromCalvingHistoryTable());
+                String calvingDate = getDatePlusSevenMonths(getInseminationDateFromCalvingHistoryTable());
                 if (calvingDate == null) {
                     wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//div[@class='back-arrow']")));
                     driver.findElement(By.xpath("//div[@class='back-arrow']")).click();
@@ -516,6 +516,7 @@ public class BharatPasudhan extends DataProvider {
                             submitButton.click();
                         }
                         clickOutside();
+                        Thread.sleep(3000);
                         updateExcelSheetWithRunDetails(animalId, gestationDate, "Y");
                         driver.get("https://bharatpashudhan.ndlm.co.in/dashboard/animal-breeding/calving");
                         Thread.sleep(3000);
@@ -526,7 +527,7 @@ public class BharatPasudhan extends DataProvider {
                 System.out.println("Calving is updated");
                 clickOutside();
                 driver.get("https://bharatpashudhan.ndlm.co.in/dashboard/animal-breeding/calving");
-                Thread.sleep(3000);
+                Thread.sleep(5000);
                 System.out.println("---------------");
             } else {
                 System.out.println("The gestation date range is out of bounds - " + gestationDays.getText() + " days");
