@@ -29,7 +29,7 @@ public class BharatPasudhan extends DataProvider {
     public static void main(String[] args) throws IOException, InterruptedException {
 
 //        doArtificialInsemination();
-//        doPregnancyDiagnosis();
+        //  doPregnancyDiagnosis();
         doCalving();
 //        doVaccination();
     }
@@ -509,10 +509,12 @@ public class BharatPasudhan extends DataProvider {
                             female.click();
                         }
                         Select reasonForNotRegistering = new Select(driver.findElement(By.xpath("//select[@formcontrolname='reasonForNotRegistering']")));
-                        int numberOfOptionsInReasonForNotRegistering = reasonForNotRegistering.getOptions().size();
-                        for (int i = 1; i <= numberOfOptionsInReasonForNotRegistering; i++) {
-                            reasonForNotRegistering.selectByIndex(i);
+                        int selectedIndex = currentRun % reasonForNotRegistering.getOptions().size();
+                        if(selectedIndex == 0) {
+                            selectedIndex = 1;
                         }
+                        reasonForNotRegistering.selectByIndex(selectedIndex);
+                        currentRun++;
                         WebElement submitButton = driver.findElement(By.xpath("//button[normalize-space()='Submit']"));
                         if (submitButton.isEnabled() && submitButton.isDisplayed()) {
                             submitButton.click();

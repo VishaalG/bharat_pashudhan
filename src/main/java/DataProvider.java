@@ -22,8 +22,8 @@ import java.util.concurrent.ThreadLocalRandom;
 public class DataProvider {
 
     // Mandatory Fields for all runs.
-    public static final String USERNAME = "Pdktait163_tn";
-    public static final String PASSWORD = "Pdktait163_tn";
+    public static final String USERNAME = "pdktait66_TN";
+    public static final String PASSWORD = "pdktait66_TN";
     public static final String EXCEL_FILE_LOCATION = "D:/Periyakurumpatty PD.xlsx";
 
 
@@ -48,7 +48,7 @@ public class DataProvider {
         MALE,
         FEMALE,
     }
-
+    public static int currentRun = 1;
     // Script to convert the date from Excel.
     // =TEXT(DATE(VALUE(MID(B1,7,4)), VALUE(MID(B1,4,2)), VALUE(LEFT(B1,2))), "dd/mm/yy")
 
