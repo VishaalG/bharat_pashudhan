@@ -509,8 +509,10 @@ public class BharatPasudhan extends DataProvider {
                             female.click();
                         }
                         Select reasonForNotRegistering = new Select(driver.findElement(By.xpath("//select[@formcontrolname='reasonForNotRegistering']")));
-                        int randomNumber = (int) (Math.random() * 2) + 1;
-                        reasonForNotRegistering.selectByIndex(randomNumber);
+                        int numberOfOptionsInReasonForNotRegistering = reasonForNotRegistering.getOptions().size();
+                        for (int i = 1; i <= numberOfOptionsInReasonForNotRegistering; i++) {
+                            reasonForNotRegistering.selectByIndex(i);
+                        }
                         WebElement submitButton = driver.findElement(By.xpath("//button[normalize-space()='Submit']"));
                         if (submitButton.isEnabled() && submitButton.isDisplayed()) {
                             submitButton.click();

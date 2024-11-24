@@ -22,9 +22,10 @@ import java.util.concurrent.ThreadLocalRandom;
 public class DataProvider {
 
     // Mandatory Fields for all runs.
-    public static final String USERNAME = "pdktait55_TN";
-    public static final String PASSWORD = "pdktait55_TN";
-    public static final String EXCEL_FILE_LOCATION = "/Users/vishag/Downloads/Akka Calving.xlsx";
+    public static final String USERNAME = "Pdktait163_tn";
+    public static final String PASSWORD = "Pdktait163_tn";
+    public static final String EXCEL_FILE_LOCATION = "D:/Periyakurumpatty PD.xlsx";
+
 
     // Vaccination
     public static final boolean VACCINATION_BULK_RUN = true;
@@ -40,6 +41,7 @@ public class DataProvider {
     public static final List<String> JERSEY = List.of("ABC-JY-21032", "ABC-JY-21033");
     public static final List<String> CBHF = List.of("ALM-HX-40073", "ALM-HX-40074");
     public static final List<String> CBJ = List.of("ALM-JS-40282", "ALM-JS-40351");
+    private static XSSFWorkbook wb;
 
     // Calving
     public enum CALVING_SEX {
@@ -51,8 +53,10 @@ public class DataProvider {
     // =TEXT(DATE(VALUE(MID(B1,7,4)), VALUE(MID(B1,4,2)), VALUE(LEFT(B1,2))), "dd/mm/yy")
 
     public static List<String> getAllAnimalTagId() throws IOException {
-        InputStream excelFile = Files.newInputStream(Paths.get(EXCEL_FILE_LOCATION));
-        XSSFWorkbook wb = new XSSFWorkbook(excelFile);
+        String sanitizedPath = EXCEL_FILE_LOCATION.trim().replace("\u202A", "");
+        InputStream excelFile = Files.newInputStream(Paths.get(sanitizedPath));
+        //InputStream excelFile = Files.newInputStream(Paths.get(EXCEL_FILE_LOCATION));
+        wb = new XSSFWorkbook(excelFile);
         XSSFSheet sheet = wb.getSheetAt(0);
         List<String> animalTagIdValues = new ArrayList<>();
         for (Row r : sheet) {
@@ -70,7 +74,9 @@ public class DataProvider {
     }
 
     public static int findRowOfAnimalId(String animalId) throws IOException {
-        InputStream excelFile = Files.newInputStream(Paths.get(EXCEL_FILE_LOCATION));
+        String sanitizedPath = EXCEL_FILE_LOCATION.trim().replace("\u202A", "");
+        InputStream excelFile = Files.newInputStream(Paths.get(sanitizedPath));
+        // InputStream excelFile = Files.newInputStream(Paths.get(EXCEL_FILE_LOCATION));
         XSSFWorkbook wb = new XSSFWorkbook(excelFile);
         XSSFSheet sheet = wb.getSheetAt(0);
         for (Row row : sheet) {
@@ -92,7 +98,9 @@ public class DataProvider {
     }
 
     public static void updateExcelSheetWithRunDetails(String animalId, String status, String result) throws IOException {
-        InputStream excelFile = Files.newInputStream(Paths.get(EXCEL_FILE_LOCATION));
+        String sanitizedPath = EXCEL_FILE_LOCATION.trim().replace("\u202A", "");
+        InputStream excelFile = Files.newInputStream(Paths.get(sanitizedPath));
+        // InputStream excelFile = Files.newInputStream(Paths.get(EXCEL_FILE_LOCATION));
         XSSFWorkbook wb = new XSSFWorkbook(excelFile);
         XSSFSheet sheet = wb.getSheetAt(0);
         Row row = sheet.getRow(findRowOfAnimalId(animalId));
@@ -108,7 +116,7 @@ public class DataProvider {
             pdResult = row.createCell(2);
         }
         pdResult.setCellValue(result);
-        OutputStream outputStream = Files.newOutputStream(Paths.get(EXCEL_FILE_LOCATION));
+        OutputStream outputStream = Files.newOutputStream(Paths.get(sanitizedPath));
         wb.write(outputStream);
         outputStream.close();
     }
