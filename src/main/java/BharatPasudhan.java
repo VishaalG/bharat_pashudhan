@@ -29,8 +29,8 @@ public class BharatPasudhan extends DataProvider {
     public static void main(String[] args) throws IOException, InterruptedException {
 
 //        doArtificialInsemination();
-        //  doPregnancyDiagnosis();
-        doCalving();
+          doPregnancyDiagnosis();
+//        doCalving();
 //        doVaccination();
     }
 
@@ -43,14 +43,18 @@ public class BharatPasudhan extends DataProvider {
 
     public static void doPregnancyDiagnosis() throws IOException, InterruptedException {
         loginToPortal();
-        clickOnPregnancyDiagnosisTab();
+        driver.get("https://bharatpashudhan.ndlm.co.in/dashboard/animal-breeding/pregnancy-diagnosis");
+        Thread.sleep(2000);
+//        clickOnPregnancyDiagnosisTab();
         pregnancyDiagnosis();
         closeAll();
     }
 
     public static void doCalving() throws IOException, InterruptedException {
         loginToPortal();
-        clickOnCalvingTab();
+        driver.get("https://bharatpashudhan.ndlm.co.in/dashboard/animal-breeding/calving");
+        Thread.sleep(2000);
+        //clickOnCalvingTab();
         calving();
         closeAll();
     }
@@ -58,14 +62,16 @@ public class BharatPasudhan extends DataProvider {
 
     public static void doVaccination() throws IOException, InterruptedException {
         loginToPortal();
-        clickOnVaccinationTab();
+        driver.get("https://bharatpashudhan.ndlm.co.in/dashboard/vaccination");
+        Thread.sleep(2000);
+//        clickOnVaccinationTab();
         vaccination();
         closeAll();
     }
 
     // Start of common navigation tab methods
 
-    public static void loginToPortal() {
+    public static void loginToPortal() throws InterruptedException {
         driver.get("https://bharatpashudhan.ndlm.co.in/auth/login");
         driver.manage().window().maximize();
         WebElement userIdTextBox = driver.findElement(By.xpath("//input[@name='username']"));
@@ -74,6 +80,7 @@ public class BharatPasudhan extends DataProvider {
         passwordTextBox.sendKeys(PASSWORD);
         WebElement submitButton = driver.findElement(By.xpath("//button[@type='submit']"));
         submitButton.click();
+        Thread.sleep(1000);
     }
 
     public static void clickOnArtificialInseminationTab() throws InterruptedException {

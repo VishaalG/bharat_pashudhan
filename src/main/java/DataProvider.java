@@ -22,9 +22,9 @@ import java.util.concurrent.ThreadLocalRandom;
 public class DataProvider {
 
     // Mandatory Fields for all runs.
-    public static final String USERNAME = "pdktait66_TN";
-    public static final String PASSWORD = "pdktait66_TN";
-    public static final String EXCEL_FILE_LOCATION = "D:/Periyakurumpatty PD.xlsx";
+    public static final String USERNAME = "pdktait156_TN";
+    public static final String PASSWORD = "epashudhan123";
+    public static final String EXCEL_FILE_LOCATION = "/Users/vishag/Downloads/Malaikudipatty PD.xlsx";
 
 
     // Vaccination
@@ -48,7 +48,7 @@ public class DataProvider {
         MALE,
         FEMALE,
     }
-    public static int currentRun = 1;
+    public static int currentRun = 2;
     // Script to convert the date from Excel.
     // =TEXT(DATE(VALUE(MID(B1,7,4)), VALUE(MID(B1,4,2)), VALUE(LEFT(B1,2))), "dd/mm/yy")
 
@@ -76,7 +76,6 @@ public class DataProvider {
     public static int findRowOfAnimalId(String animalId) throws IOException {
         String sanitizedPath = EXCEL_FILE_LOCATION.trim().replace("\u202A", "");
         InputStream excelFile = Files.newInputStream(Paths.get(sanitizedPath));
-        // InputStream excelFile = Files.newInputStream(Paths.get(EXCEL_FILE_LOCATION));
         XSSFWorkbook wb = new XSSFWorkbook(excelFile);
         XSSFSheet sheet = wb.getSheetAt(0);
         for (Row row : sheet) {
@@ -88,7 +87,7 @@ public class DataProvider {
                 }
                 if (cell.getCellType() == CellType.NUMERIC) {
                     long animalNumericalValue = (long) cell.getNumericCellValue();
-                    if (Long.valueOf(animalNumericalValue).equals(animalId)) {
+                    if (String.valueOf(animalNumericalValue).equals(animalId)) {
                         return row.getRowNum();
                     }
                 }
