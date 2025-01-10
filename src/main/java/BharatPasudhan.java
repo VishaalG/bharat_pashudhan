@@ -309,7 +309,7 @@ public class BharatPasudhan extends DataProvider {
                     String pregnancyDate = getPregnancyDateOfAnimalTagId(inseminationDate.getText());
                     System.out.println("Pregnancy date is " + pregnancyStatusDate);
                     if (pregnancyDate.equalsIgnoreCase("Before one year")) {
-                        Thread.sleep(2000);
+                        Thread.sleep(100);
                         wait.ignoring(ElementClickInterceptedException.class).until(ExpectedConditions.elementToBeClickable(By.xpath("//i[@class='fa fa-chevron-left mr-2 back-section']")));
                         driver.findElement(By.xpath("//i[@class='fa fa-chevron-left mr-2 back-section']")).click();
                         System.out.println("Skipped - Pregnancy date is before one year");
@@ -317,7 +317,7 @@ public class BharatPasudhan extends DataProvider {
                         continue;
                     }
                     if (pregnancyDate.equalsIgnoreCase("After current date")) {
-                        Thread.sleep(1500);
+                        Thread.sleep(1000);
                         wait.ignoring(ElementClickInterceptedException.class).until(ExpectedConditions.elementToBeClickable(By.xpath("//i[@class='fa fa-chevron-left mr-2 back-section']")));
                         driver.findElement(By.xpath("//i[@class='fa fa-chevron-left mr-2 back-section']")).click();
                         System.out.println("Skipped - Pregnancy date is after current date");
@@ -332,7 +332,7 @@ public class BharatPasudhan extends DataProvider {
                         clickOutside();
                         System.out.println("Pregnancy date is set as " + pregnancyDate);
                         Select selectPdResult = new Select(driver.findElement(By.xpath("//select[@formcontrolname='pdResult']")));
-                        Thread.sleep(2000);
+                        Thread.sleep(1000);
                         selectPdResult.selectByIndex(1);
                         clickOutside();
                         Select serviceTypeDropdown = new Select(driver.findElement(By.xpath("//select[@formcontrolname='serviceType']")));
@@ -355,13 +355,13 @@ public class BharatPasudhan extends DataProvider {
                         System.out.println("---------------");
                         updateExcelSheetWithRunDetails(animalId, pregnancyDate, "Y");
                         driver.get("https://bharatpashudhan.ndlm.co.in/dashboard/animal-breeding/pregnancy-diagnosis");
-                        Thread.sleep(1500);
+                        Thread.sleep(500);
                     } else {
                         System.out.println("Pregnancy is 'NO' and status is '" + pregnancyStatusDate + "' for AnimalId " + animalId);
                         System.out.println("---------------");
                         updateExcelSheetWithRunDetails(animalId, pregnancyStatusDate, "N");
                         driver.get("https://bharatpashudhan.ndlm.co.in/dashboard/animal-breeding/pregnancy-diagnosis");
-                        Thread.sleep(1500);
+                        Thread.sleep(500);
                     }
                 }
             } else {
