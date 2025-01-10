@@ -29,7 +29,7 @@ public class BharatPasudhan extends DataProvider {
     public static void main(String[] args) throws IOException, InterruptedException {
 
 //        doArtificialInsemination();
-          doPregnancyDiagnosis();
+        doPregnancyDiagnosis();
 //        doCalving();
 //        doVaccination();
     }
@@ -346,9 +346,11 @@ public class BharatPasudhan extends DataProvider {
                                     driver.findElement(By.xpath("//div[@class='common-info']//button[normalize-space()='OK']")).click();
                                 }
                             } else {
-                                WebElement modalOk = driver.findElement(By.xpath("//div[@class='campaign-dialog']//button[@type='submit']"));
-                                wait.until(ExpectedConditions.elementToBeClickable(modalOk));
-                                modalOk.click();
+                                if (checkElementExists(By.xpath("//div[@class='campaign-dialog']//button[@type='submit']"))) {
+                                    WebElement modalOk = driver.findElement(By.xpath("//div[@class='campaign-dialog']//button[@type='submit']"));
+                                    wait.until(ExpectedConditions.elementToBeClickable(modalOk));
+                                    modalOk.click();
+                                }
                             }
                         }
                         System.out.println("Pregnancy diagnosis updated for " + animalId + " with pregnancy date " + pregnancyDate);
@@ -517,7 +519,7 @@ public class BharatPasudhan extends DataProvider {
                         }
                         Select reasonForNotRegistering = new Select(driver.findElement(By.xpath("//select[@formcontrolname='reasonForNotRegistering']")));
                         int selectedIndex = currentRun % reasonForNotRegistering.getOptions().size();
-                        if(selectedIndex == 0) {
+                        if (selectedIndex == 0) {
                             selectedIndex = 1;
                         }
                         reasonForNotRegistering.selectByIndex(selectedIndex);
@@ -565,7 +567,7 @@ public class BharatPasudhan extends DataProvider {
             String animalId = getAllAnimalTagId().get(i);
             if (VACCINATION_BULK_RUN) {
                 System.out.println("Vaccination - Running in bulk mode");
-                for (int j=0; j<=VACCINATION_BULK_RUN_ITEMS; j++) {
+                for (int j = 0; j <= VACCINATION_BULK_RUN_ITEMS; j++) {
                     String innerAnimalId = getAllAnimalTagId().get(counter++);
                     System.out.println("Vaccination - Selected animal for bulk run is - " + innerAnimalId);
                     Thread.sleep(500);
@@ -573,7 +575,7 @@ public class BharatPasudhan extends DataProvider {
                     driver.findElement(By.id("search-by")).sendKeys(innerAnimalId);
                     driver.findElement(By.xpath("//button[normalize-space()='Search']")).click();
                     wait.ignoring(ElementClickInterceptedException.class).until(ExpectedConditions.elementToBeClickable(By.xpath("//td[normalize-space()='" + innerAnimalId + "']")));
-                    if (j ==0) {
+                    if (j == 0) {
                         wait.ignoring(ElementClickInterceptedException.class).until(ExpectedConditions.elementToBeClickable(By.id("mat-select-0")));
                         driver.findElement(By.id("mat-select-0")).click();
                         Thread.sleep(100);
@@ -617,7 +619,8 @@ public class BharatPasudhan extends DataProvider {
                         commonFlowForVaccination();
                     }
                 }
-            } if (!VACCINATION_BULK_RUN && verifyAnimalVaccinationDetailsByVillageSearch(animalId)) {
+            }
+            if (!VACCINATION_BULK_RUN && verifyAnimalVaccinationDetailsByVillageSearch(animalId)) {
                 System.out.println("Vaccination - Running in individual mode");
                 System.out.println("Vaccination - Animal Id is " + animalId);
                 wait.ignoring(NoSuchElementException.class).until(ExpectedConditions.elementToBeClickable(By.xpath("(//input[@id='filter-by'])[2]")));
@@ -705,8 +708,8 @@ public class BharatPasudhan extends DataProvider {
         driver.findElement(By.xpath("//button[@id='carousel-control-next']")).click();
         Thread.sleep(500);
         driver.findElement(By.xpath("//button[@id='carousel-control-next']")).click();
-        wait.ignoring(NoSuchElementException.class).until(ExpectedConditions.elementToBeClickable(By.xpath("//button[@name='" + VACCINATION_CAMPAIGN_ID +"']")));
-        driver.findElement(By.xpath("//button[@name='"+VACCINATION_CAMPAIGN_ID+"']")).click();
+        wait.ignoring(NoSuchElementException.class).until(ExpectedConditions.elementToBeClickable(By.xpath("//button[@name='" + VACCINATION_CAMPAIGN_ID + "']")));
+        driver.findElement(By.xpath("//button[@name='" + VACCINATION_CAMPAIGN_ID + "']")).click();
         Thread.sleep(2000);
         wait.ignoring(ElementClickInterceptedException.class).until(ExpectedConditions.elementToBeClickable(By.xpath("//div[@role='combobox']")));
         retryingFindingElement(By.xpath("//div[@role='combobox']"));
