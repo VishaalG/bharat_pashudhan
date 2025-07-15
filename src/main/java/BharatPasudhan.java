@@ -88,6 +88,7 @@ public class BharatPasudhan extends DataProvider {
         wait.until(ExpectedConditions.elementToBeClickable(By.id("project")));
         if (checkElementExists(By.id("project"))) {
             wait.ignoring(ElementNotInteractableException.class).ignoring(StaleElementReferenceException.class).until(ExpectedConditions.elementToBeClickable(By.id("project")));
+            Thread.sleep(200);
             Select projectId = new Select(driver.findElement(By.id("project")));
             projectId.selectByVisibleText(projectName);
         } else {
