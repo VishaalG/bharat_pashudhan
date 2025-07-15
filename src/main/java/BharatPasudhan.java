@@ -29,9 +29,9 @@ public class BharatPasudhan extends DataProvider {
     public static void main(String[] args) throws IOException, InterruptedException {
 
 //        doArtificialInsemination();
-        doPregnancyDiagnosis();
+//        doPregnancyDiagnosis();
 //        doCalving();
-//        doVaccination();
+        doVaccination();
     }
 
     public static void doArtificialInsemination() throws IOException, InterruptedException {
@@ -64,7 +64,7 @@ public class BharatPasudhan extends DataProvider {
         loginToPortal();
         driver.get("https://bharatpashudhan.ndlm.co.in/dashboard/vaccination");
         Thread.sleep(2000);
-//        clickOnVaccinationTab();
+        selectProjectFromDropDown(PROJECT_NAME);
         vaccination();
         closeAll();
     }
@@ -81,6 +81,17 @@ public class BharatPasudhan extends DataProvider {
         WebElement submitButton = driver.findElement(By.xpath("//button[@type='submit']"));
         submitButton.click();
         Thread.sleep(1000);
+    }
+
+    public static void selectProjectFromDropDown(String projectName) {
+        wait.until(ExpectedConditions.elementToBeClickable(By.id("project")));
+        if (checkElementExists(By.id("project"))) {
+            wait.ignoring(ElementNotInteractableException.class).ignoring(StaleElementReferenceException.class).until(ExpectedConditions.elementToBeClickable(By.id("project")));
+            Select projectId = new Select(driver.findElement(By.id("project")));
+            projectId.selectByVisibleText(projectName);
+        } else {
+            System.out.println("Project name not found in dropdown. Skipping project selection.");
+        }
     }
 
     public static void clickOnArtificialInseminationTab() throws InterruptedException {
@@ -703,11 +714,16 @@ public class BharatPasudhan extends DataProvider {
         retryingFindingElement(By.xpath("//label[normalize-space()='Include Data Entry Campaigns']"));
         driver.findElement(By.xpath("//label[normalize-space()='Include Data Entry Campaigns']")).click();
         clickOutside();
-        retryingFindingElement(By.xpath("//button[@id='carousel-control-next']"));
+        boolean nextButton = retryingFindingElement(By.className("//*[@class='carousel-control-next']"));
         Thread.sleep(500);
-        driver.findElement(By.xpath("//button[@id='carousel-control-next']")).click();
-        Thread.sleep(500);
-        driver.findElement(By.xpath("//button[@id='carousel-control-next']")).click();
+        if (nextButton) {
+            System.out.println("Next carousel button is enabled");
+            driver.findElement(By.className("//*[@class='carousel-control-next']")).click();
+            Thread.sleep(500);
+            driver.findElement(By.className("//*[@class='carousel-control-next']345")).click();
+        } else {
+            System.out.println("Next carousel button is not enabled");
+        }
         wait.ignoring(NoSuchElementException.class).until(ExpectedConditions.elementToBeClickable(By.xpath("//button[@name='" + VACCINATION_CAMPAIGN_ID + "']")));
         driver.findElement(By.xpath("//button[@name='" + VACCINATION_CAMPAIGN_ID + "']")).click();
         Thread.sleep(2000);
@@ -718,7 +734,7 @@ public class BharatPasudhan extends DataProvider {
         wait.ignoring(ElementClickInterceptedException.class).until(ExpectedConditions.elementToBeClickable(By.xpath("//div[@class='ng-input']//input[@type='text']")));
         driver.findElement(By.xpath("//div[@class='ng-input']//input[@type='text']")).sendKeys(VACCINATION_VILLAGE_NAME);
         Thread.sleep(700);
-        driver.findElement(By.xpath("//span[normalize-space()='" + VACCINATION_VILLAGE_NAME + "']/..")).click();
+        driver.findElement(By.xpath("//span[contains(text(), '" + VACCINATION_VILLAGE_NAME + "')]")).click();
         clickOutside();
     }
 

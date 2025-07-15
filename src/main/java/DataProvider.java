@@ -22,18 +22,21 @@ import java.util.concurrent.ThreadLocalRandom;
 public class DataProvider {
 
     // Mandatory Fields for all runs.
-    public static final String USERNAME = "pdktait9_TN";
-    public static final String PASSWORD = "pdktait9_TN";
-    public static final String EXCEL_FILE_LOCATION = "/Users/vishag/Downloads/Vadavalam pd.xlsx";
+    public static final String USERNAME = "pdktait24_TN";
+    public static final String PASSWORD = "pdktait24_TN";
+    public static final String EXCEL_FILE_LOCATION = "/Users/vishag/Downloads/Vetta FMD.xlsx";
+
+    // Project Name
+    public static final String PROJECT_NAME = " Livestack LH and DCP "; // Livestack NAIP IV ,  Livestack LH and DCP ,  Surabhi Chayan Shrankhla
 
 
     // Vaccination
     public static final boolean VACCINATION_BULK_RUN = true;
-    public static final int VACCINATION_BULK_RUN_ITEMS = 2;
-    public static final String VACCINATION_CAMPAIGN_ID = "18909";
-    public static final String VACCINATION_VILLAGE_NAME = "Pudur";
-    public static final String VACCINATION_START_DATE_RANGE = "20/06/2024";
-    public static final String VACCINATION_END_DATE_RANGE = "21/06/2024";
+    public static final int VACCINATION_BULK_RUN_ITEMS = 22;
+    public static final String VACCINATION_CAMPAIGN_ID = "25016";
+    public static final String VACCINATION_VILLAGE_NAME = "Pallavarayanpathai";
+    public static final String VACCINATION_START_DATE_RANGE = "11/07/2025";
+    public static final String VACCINATION_END_DATE_RANGE = "11/07/2025";
 
     // Artificial Insemination
     public static final String BULL_ID = "SAG-RS-10006";
