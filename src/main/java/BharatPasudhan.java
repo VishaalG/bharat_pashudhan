@@ -83,7 +83,8 @@ public class BharatPasudhan extends DataProvider {
         Thread.sleep(1000);
     }
 
-    public static void selectProjectFromDropDown(String projectName) {
+    public static void selectProjectFromDropDown(String projectName) throws InterruptedException {
+        retryingFindingElement(By.id("project"));
         wait.until(ExpectedConditions.elementToBeClickable(By.id("project")));
         if (checkElementExists(By.id("project"))) {
             wait.ignoring(ElementNotInteractableException.class).ignoring(StaleElementReferenceException.class).until(ExpectedConditions.elementToBeClickable(By.id("project")));
