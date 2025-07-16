@@ -573,7 +573,7 @@ public class BharatPasudhan extends DataProvider {
         commonFlowForVaccination();
         int counter = 0;
         boolean isSuccess = false;
-        String vaccinationDate = getRandomDateInRange();
+        String vaccinationDate = VACCINATION_START_DATE_RANGE;
         for (int i = 0; i < getAllAnimalTagId().size(); i++) {
             System.out.println("------ " + i + " ------");
             // Get values from Excel
@@ -628,6 +628,8 @@ public class BharatPasudhan extends DataProvider {
                             updateExcelSheetWithRunDetails(innerAnimalId, "Vaccinated", vaccinationDate);
                         }
                         driver.get("https://bharatpashudhan.ndlm.co.in/dashboard/vaccination");
+                        Thread.sleep(2000);
+                        selectProjectFromDropDown(PROJECT_NAME);
                         System.out.println("---------------");
                         commonFlowForVaccination();
                     }
@@ -685,6 +687,7 @@ public class BharatPasudhan extends DataProvider {
                     updateExcelSheetWithRunDetails(animalId, "Vaccinated", "Y");
                     Thread.sleep(3000);
                     driver.get("https://bharatpashudhan.ndlm.co.in/dashboard/vaccination");
+                    selectProjectFromDropDown(PROJECT_NAME);
                     System.out.println("---------------");
                     commonFlowForVaccination();
                 }
