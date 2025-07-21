@@ -1,12 +1,4 @@
-import org.openqa.selenium.By;
-import org.openqa.selenium.ElementClickInterceptedException;
-import org.openqa.selenium.ElementNotInteractableException;
-import org.openqa.selenium.Keys;
-import org.openqa.selenium.NoSuchElementException;
-import org.openqa.selenium.StaleElementReferenceException;
-import org.openqa.selenium.TimeoutException;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
+import org.openqa.selenium.*;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
@@ -19,12 +11,16 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
 
+import static java.awt.SystemColor.window;
+
 
 public class BharatPasudhan extends DataProvider {
 
     static WebDriver driver = new FirefoxDriver();
     static WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(15));
     static Actions action = new Actions(driver);
+    static JavascriptExecutor js = (JavascriptExecutor)driver;
+    static String os = System.getProperty("os.name").toLowerCase();
 
     public static void main(String[] args) throws IOException, InterruptedException {
 
@@ -584,6 +580,17 @@ public class BharatPasudhan extends DataProvider {
                     String innerAnimalId = getAllAnimalTagId().get(counter++);
                     System.out.println("Vaccination - Selected animal for bulk run is - " + innerAnimalId);
                     Thread.sleep(500);
+                    if (j>12) {
+                        System.out.println("scroll to the top");
+                        if (os.contains("mac")) {
+                            action.keyDown(Keys.COMMAND)
+                                    .sendKeys(Keys.ARROW_UP)
+                                    .keyUp(Keys.COMMAND)
+                                    .perform();
+                        } else {
+                            action.sendKeys(Keys.HOME).perform();
+                        }
+                    }
                     wait.ignoring(ElementClickInterceptedException.class).until(ExpectedConditions.elementToBeClickable(By.id("search-by")));
                     driver.findElement(By.id("search-by")).sendKeys(innerAnimalId);
                     driver.findElement(By.xpath("//button[normalize-space()='Search']")).click();
@@ -714,6 +721,7 @@ public class BharatPasudhan extends DataProvider {
     }
 
     public static void commonFlowForVaccination() throws InterruptedException {
+
         wait.ignoring(ElementClickInterceptedException.class).until(ExpectedConditions.elementToBeClickable(By.xpath("//label[normalize-space()='Include Data Entry Campaigns']")));
         Thread.sleep(1000);
         retryingFindingElement(By.xpath("//label[normalize-space()='Include Data Entry Campaigns']"));
