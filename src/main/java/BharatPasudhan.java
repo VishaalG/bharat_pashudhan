@@ -587,8 +587,10 @@ public class BharatPasudhan extends DataProvider {
                                     .sendKeys(Keys.ARROW_UP)
                                     .keyUp(Keys.COMMAND)
                                     .perform();
+                            Thread.sleep(100);
                         } else {
                             action.sendKeys(Keys.HOME).perform();
+                            Thread.sleep(100);
                         }
                     }
                     wait.ignoring(ElementClickInterceptedException.class).until(ExpectedConditions.elementToBeClickable(By.id("search-by")));
